@@ -5,24 +5,78 @@ from scipy import stats
 from sklearn.decomposition import PCA
 import json
 
+# Try to import R's MVN package via rpy2
+try:
+    from rpy2.robjects.packages import importr
+    from rpy2.robjects import numpy2ri
+    import rpy2.robjects as ro
+    numpy2ri.activate()
+    HAS_MVN = True
+    try:
+        mvn = importr('MVN')
+    except:
+        print("Warning: R package 'MVN' not found. Install with: install.packages('MVN') in R")
+        HAS_MVN = False
+except ImportError:
+    print("Warning: rpy2 not installed. Multivariate normality tests unavailable.")
+    print("Install with: pip install rpy2")
+    HAS_MVN = False
+
 def analyze_layer_distribution(X, layer_name):
     """Analyze the distribution quality of a layer's representations"""
     metrics = {}
     
-    # 1. Gaussianity test (Shapiro-Wilk on first few dimensions)
-    # Test on random subset of features (max 10) and samples (max 5000)
-    n_features_test = min(10, X.shape[1])
+    # Subsample for computational efficiency if needed
     n_samples_test = min(5000, X.shape[0])
+    n_features_test = min(100, X.shape[1])
     
-    idx_features = np.random.choice(X.shape[1], n_features_test, replace=False)
-    idx_samples = np.random.choice(X.shape[0], n_samples_test, replace=False)
+    if X.shape[0] > n_samples_test or X.shape[1] > n_features_test:
+        print(f"  Subsampling to {n_samples_test} samples and {n_features_test} features for testing")
+        idx_samples = np.random.choice(X.shape[0], n_samples_test, replace=False)
+        idx_features = np.random.choice(X.shape[1], n_features_test, replace=False)
+        X_test = X[np.ix_(idx_samples, idx_features)]
+    else:
+        X_test = X
     
-    shapiro_stats = []
-    for feat_idx in idx_features:
-        stat, p = stats.shapiro(X[idx_samples, feat_idx])
-        shapiro_stats.append(p)
-    
-    metrics['mean_shapiro_p'] = np.mean(shapiro_stats)
+    # 1. Multivariate normality tests (if available)
+    if HAS_MVN:
+        try:
+            # Convert to R matrix
+            r_data = ro.r.matrix(X_test, nrow=X_test.shape[0], ncol=X_test.shape[1])
+            
+            # Mardia's test
+            mardia_result = mvn.mardiaTest(r_data)
+            metrics['mardia_skew_p'] = float(mardia_result.rx2('p.value.skew')[0])
+            metrics['mardia_kurt_p'] = float(mardia_result.rx2('p.value.kurt')[0])
+            metrics['mardia_p'] = min(metrics['mardia_skew_p'], metrics['mardia_kurt_p'])
+            
+            # Henze-Zirkler test
+            hz_result = mvn.hzTest(r_data)
+            metrics['hz_p'] = float(hz_result.rx2('p.value')[0])
+            
+            # Royston's test (may fail for high dimensions)
+            try:
+                royston_result = mvn.roystonTest(r_data)
+                metrics['royston_p'] = float(royston_result.rx2('p.value')[0])
+            except:
+                metrics['royston_p'] = None
+                
+        except Exception as e:
+            print(f"  Warning: MVN tests failed: {e}")
+            metrics['mardia_p'] = None
+            metrics['hz_p'] = None
+            metrics['royston_p'] = None
+    else:
+        # Fallback: Shapiro-Wilk on subset of dimensions
+        n_features_shapiro = min(10, X.shape[1])
+        idx_features = np.random.choice(X.shape[1], n_features_shapiro, replace=False)
+        
+        shapiro_stats = []
+        for feat_idx in idx_features:
+            stat, p = stats.shapiro(X_test[:, feat_idx])
+            shapiro_stats.append(p)
+        
+        metrics['mean_shapiro_p'] = np.mean(shapiro_stats)
     
     # 2. Variance across dimensions (want balanced variance)
     feature_vars = np.var(X, axis=0)
@@ -106,11 +160,25 @@ def plot_layer_comparison(representations_dir, save_dir="analysis"):
     scores = {}
     for layer in layers:
         m = all_metrics[layer]
-        # Higher Shapiro p-value = more Gaussian
-        # Lower var CV = more balanced features
-        # Higher entropy = better spread eigenvalues
+        
+        # Use multivariate tests if available, otherwise fall back
+        if HAS_MVN and m.get('hz_p') is not None:
+            # Henze-Zirkler is often most powerful for n >= 75
+            # Mardia is good but can be less powerful
+            # Royston is good for smaller samples
+            gaussianity_score = 0
+            if m.get('hz_p') is not None:
+                gaussianity_score += m['hz_p'] * 3.0  # Weight HZ most
+            if m.get('mardia_p') is not None:
+                gaussianity_score += m['mardia_p'] * 2.0
+            if m.get('royston_p') is not None:
+                gaussianity_score += m['royston_p'] * 1.0
+        else:
+            # Fallback to Shapiro-Wilk
+            gaussianity_score = m.get('mean_shapiro_p', 0) * 2.0
+        
         score = (
-            m['mean_shapiro_p'] * 2.0 +  # Gaussianity (weighted more)
+            gaussianity_score +
             (1.0 / (m['var_coefficient_of_variation'] + 0.1)) * 1.0 +
             m['eigenvalue_entropy'] * 1.0
         )
@@ -120,6 +188,11 @@ def plot_layer_comparison(representations_dir, save_dir="analysis"):
     print(f"Best layer for OOD detection: {best_layer}")
     print(f"  Score: {scores[best_layer]:.4f}")
     print(f"  Metrics: {all_metrics[best_layer]}")
+    
+    if HAS_MVN:
+        print("\nMultivariate normality test interpretation:")
+        print("  - p > 0.05: Cannot reject normality (good for Mahalanobis)")
+        print("  - p < 0.05: Reject normality (may need alternatives)")
     
     # Save recommendation
     with open(os.path.join(save_dir, 'best_layer.txt'), 'w') as f:
