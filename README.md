@@ -5,16 +5,47 @@ Out-of-distribution detection system for the JordanAI music generation model.
 ## Overview
 
 This system:
-1. Extracts hidden layer representations from JordanAI model on training data
-2. Analyzes which layer has the best distribution properties for OOD detection (based on higher mean shapiro-wilk p-value, lower variance coefficient of variation, and higher eigenvalue entropy)
-4. Fits a statistical model (Mahalanobis distance) on that layer
-5. Detects when new prompts are out-of-distribution
+1. Extracts hidden layer representations from your model on training data
+2. Analyzes which layer has the best distribution properties for OOD detection (based on higher gaussianity, lower variance coefficient of variation, and higher eigenvalue entropy)
+3. Fits a statistical model (Mahalanobis distance) on that layer
+4. Detects when new prompts are out-of-distribution
 
 ## Installation
 
+### Python Dependencies
 ```bash
 pip install torch transformers datasets numpy scipy scikit-learn matplotlib tqdm
 ```
+
+### Optional: Multivariate Normality Tests (Recommended)
+
+For proper multivariate normality testing (Mardia, Henze-Zirkler, Royston tests), install R integration:
+
+```bash
+# Install rpy2 for Python-R bridge
+pip install rpy2
+
+# Install R (if not already installed)
+# On Ubuntu/Debian:
+sudo apt-get install r-base
+
+# On macOS with Homebrew:
+brew install r
+
+# On Windows: Download from https://cran.r-project.org/
+```
+
+Then install the MVN package in R:
+```r
+# Start R
+R
+
+# Inside R console:
+install.packages("MVN")
+quit()
+```
+
+**Note**: Without R/MVN, the code will fall back to univariate Shapiro-Wilk tests, which work but are less rigorous for multivariate data.
 
 ## Usage
 
@@ -25,7 +56,7 @@ python extract_layers.py
 ```
 
 This will:
-- Load model from HuggingFace
+- Load your model from HuggingFace
 - Process all training data
 - Extract pooled representations (mean + std) from each layer
 - Save to `representations/layer_X.npy`
@@ -43,10 +74,11 @@ This will:
 - Save results to `analysis/`
 
 Metrics evaluated:
-- **Gaussianity** (Shapiro-Wilk test): More Gaussian = better for Mahalanobis
+- **Multivariate Gaussianity** (Mardia/Henze-Zirkler/Royston tests): More Gaussian = better for Mahalanobis distance
+  - Falls back to univariate Shapiro-Wilk if R/MVN not available
 - **Variance balance**: More uniform feature variances = better
 - **Eigenvalue entropy**: Higher = better distributed information
-- **Effective dimensionality**: Intrinsic dimensionality of representations (not included in score because not informative enough for final decision)
+- **Effective dimensionality**: Intrinsic dimensionality of representations
 
 ### Step 3: Fit OOD Detector
 
@@ -174,6 +206,7 @@ ood-detection/
 - Try different layers manually
 - Adjust contamination parameter
 - Check if training data is clean
+- If R/MVN tests are unavailable, install them for better layer selection
 
 **Slow inference?**
 - Cache representations for validation sets
