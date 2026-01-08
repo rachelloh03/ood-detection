@@ -67,6 +67,12 @@ quit()
 
 **Note**: Without R/MVN, the code will fall back to univariate Shapiro-Wilk tests, which work but are less rigorous for multivariate data.
 
+6. You might need to create a cache folder and set up environment var to prevent 'disk quota exceeded' error:
+```bash
+mkdir -p /scratch/{your_username}/huggingface_cache
+export HF_HOME=/scratch/{your_username}/huggingface_cache
+```
+
 ## File Structure
 
 ```
