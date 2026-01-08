@@ -20,8 +20,9 @@ SCRATCH_FILEPATH = "representations/"
 if USER == "joeltjy1":
     JORDAN_DATASET_FILEPATH = "/scratch/joel/jordan_dataset"
     SCRATCH_FILEPATH = "/scratch/joel/representations/"
-elif USER == "rjloh":
-    raise ValueError(f"USER {USER} not supported")
+elif USER == "rachelloh":
+    JORDAN_DATASET_FILEPATH = "./jordan_dataset"
+    SCRATCH_FILEPATH = "./representations/"
 else:
     raise ValueError(f"USER {USER} not supported")
 os.makedirs(JORDAN_DATASET_FILEPATH, exist_ok=True)
