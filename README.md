@@ -50,7 +50,7 @@ python -m src.setup
 conda install -c conda-forge gsl nlopt r-nloptr r-energy r-lme4 r-car r-mvn r-base
 
 # Install rpy2 for Python-R bridge:
-export RPY2_CFFI_MODE=ABI
+# might need to run: export RPY2_CFFI_MODE=ABI
 pip install rpy2
 ```
 
