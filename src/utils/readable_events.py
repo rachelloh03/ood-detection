@@ -12,11 +12,13 @@ from constants import (
     TIME_OFFSET,
     DUR_OFFSET,
     NOTE_OFFSET,
+    INCLUDE_VELOCITY,
     VELOCITY_OFFSET,
+    AVELOCITY_OFFSET,
 )
 
 
-def readable_tokens(tokens, include_velocity=True):
+def get_readable_events(tokens, include_velocity=INCLUDE_VELOCITY):
     """Convert tokens to readable events."""
     tokens_per_event = 4 if include_velocity else 3
 
@@ -57,12 +59,15 @@ def readable_tokens(tokens, include_velocity=True):
     return output
 
 
-def token_to_event(event_repr, idx, token, anticipated, include_velocity=True):
+def token_to_event(
+    event_repr, idx, token, anticipated, include_velocity=INCLUDE_VELOCITY
+):
     """Convert tokens into a readable event"""
     tokens_per_event = 4 if include_velocity else 3
     time_offset = TIME_OFFSET if not anticipated else ATIME_OFFSET
     dur_offset = DUR_OFFSET if not anticipated else ADUR_OFFSET
     note_offset = NOTE_OFFSET if not anticipated else ANOTE_OFFSET
+    velocity_offset = VELOCITY_OFFSET if not anticipated else AVELOCITY_OFFSET
 
     if idx % tokens_per_event == 0:
         event_repr["onset"] = (token - time_offset) * 0.01
@@ -78,7 +83,7 @@ def token_to_event(event_repr, idx, token, anticipated, include_velocity=True):
         event_repr["instrument"] = instrument
         event_repr["pitch"] = pitch_to_note(pitch)
     elif idx % tokens_per_event == 3:
-        event_repr["velocity"] = token - VELOCITY_OFFSET
+        event_repr["velocity"] = token - velocity_offset
     return event_repr
 
 

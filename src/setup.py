@@ -1,6 +1,9 @@
 """
 Setup script for the OOD detection system.
 
+The aim is for all menial setup tasks to be done here.
+If you feel it's unnecessary feel free to remove this.
+
 For now, only downloads the Jordan dataset.
 """
 

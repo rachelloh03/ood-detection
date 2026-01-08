@@ -1,6 +1,6 @@
 """Test script for JordanDataset."""
 
-from src.jordan_dataset import JordanDataset
+from src.data.jordan_dataset import JordanDataset
 from src.constants import JORDAN_DATASET_FILEPATH
 
 

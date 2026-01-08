@@ -1,3 +1,5 @@
+"""Out-of-distribution detector using Mahalanobis distance."""
+
 import os
 import numpy as np
 import torch

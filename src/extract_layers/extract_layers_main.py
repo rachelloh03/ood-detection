@@ -1,0 +1,130 @@
+"""
+Script to extract hidden layer activations from the JordanAI model.
+
+Iterates through the dataset and each layer, and saves the representations.
+
+If there are N transformer blocks, there are N + 1 layers to extract from:
+hidden_states[0] is the embeddings.
+hidden_states[i] is the output of the i-th transformer block.
+"""
+
+import os
+from data.jordan_dataset import JordanDataset
+from constants import JORDAN_DATASET_FILEPATH, JORDAN_MODEL_NAME, SCRATCH_FILEPATH
+import torch
+import numpy as np
+from tqdm import tqdm
+from transformers import AutoModelForCausalLM
+from torch.utils.data import DataLoader
+from extract_layers.pooling_functions import pool_mean_std
+
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+
+
+def collate_fn(examples):
+    """Collate function for DataLoader"""
+    input_ids = torch.stack([torch.tensor(ex["input_ids"]) for ex in examples])
+    return {
+        "input_ids": input_ids,
+    }
+
+
+@torch.no_grad()
+def extract_representations(
+    model,
+    dataloader,
+    pooling_function,
+    save_dir,
+    layers,
+):
+    """
+    Extract pooled representations from specified layers.
+
+    Args:
+        model: The model to extract representations from.
+        dataloader: The dataloader to extract representations from.
+        pooling_function: The function to pool the representations. Currently supported option:
+        - "mean_std": Pool using mean and std across sequence dimension, (B, L, D) -> (B, 2*D).
+        Not sure if will lose too much info.
+        - (TODO: add other pooling functions)
+        save_dir: The directory to save the representations.
+        layers: The layers to extract representations from.
+    """
+    os.makedirs(save_dir, exist_ok=True)
+
+    model.eval()
+    print(model)
+    buffers = {layer_idx: [] for layer_idx in layers}
+
+    for batch in tqdm(dataloader, desc="Extracting hidden states"):
+        batch = {
+            k: v.to(DEVICE) for k, v in batch.items()
+        }  # (B, L) where L ~ 766 is the sequence length
+
+        outputs = model(
+            **batch,
+            output_hidden_states=True,
+            use_cache=False,
+        )
+
+        hidden_states = outputs.hidden_states  # (n_layers + 1)-tuple of (B, L, D)
+        print(len(hidden_states), hidden_states[0].shape)
+
+        for layer_idx in layers:
+            h = hidden_states[layer_idx]  # (B, L, D)
+            pooled = pooling_function(h)
+            buffers[layer_idx].append(pooled.cpu())
+
+    for layer_idx in layers:
+        X = torch.cat(buffers[layer_idx], dim=0).numpy()  # (dataset size, 2*D)
+        np.save(os.path.join(save_dir, f"layer_{layer_idx}.npy"), X)
+        print(f"Saved layer {layer_idx}: {X.shape}")
+
+    return buffers
+
+
+def main():
+    print("Loading model...")
+    model = AutoModelForCausalLM.from_pretrained(
+        JORDAN_MODEL_NAME,
+        torch_dtype=torch.float32,
+    ).to(DEVICE)
+
+    n_layers = (
+        len(model.transformer.h)
+        if hasattr(model, "transformer")
+        else len(model.model.layers)
+    )
+    layers_to_extract = list(range(n_layers + 1))
+
+    print(f"Model has {n_layers} layers, extracting from layers: {layers_to_extract}")
+
+    print("Loading dataset...")
+
+    dataset = JordanDataset(
+        data_dir=JORDAN_DATASET_FILEPATH, split="train", num_samples=1000
+    )
+
+    dataloader = DataLoader(
+        dataset,
+        batch_size=8,
+        shuffle=False,
+        collate_fn=collate_fn,
+    )
+    pooling_function = pool_mean_std
+
+    extract_representations(
+        model=model,
+        dataloader=dataloader,
+        pooling_function=pooling_function,
+        save_dir=SCRATCH_FILEPATH,
+        layers=layers_to_extract,
+    )
+
+    print(
+        f"All representations saved to {SCRATCH_FILEPATH}/{pooling_function.__name__}"
+    )
+
+
+if __name__ == "__main__":
+    main()

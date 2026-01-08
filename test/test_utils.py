@@ -2,7 +2,7 @@
 
 import pytest
 from src.constants import ATIME_OFFSET
-from src.utils.readable_tokens import pitch_to_note, readable_tokens
+from src.utils.readable_events import pitch_to_note, get_readable_events
 
 
 def test_readable_tokens_no_vel():
@@ -59,7 +59,7 @@ def test_readable_tokens_no_vel():
         10005,
         27512,
     ]
-    readable_repr = readable_tokens(tokens, include_velocity=False)
+    readable_repr = get_readable_events(tokens, include_velocity=False)
     assert readable_repr[0]["special_token"] == "AR"
     assert readable_repr[1]["special_token"] == "SEP"
     assert readable_repr[2]["anticipated"] is False
@@ -86,9 +86,9 @@ def test_readable_tokens_no_vel():
         50 + ATIME_OFFSET,
         10048 + ATIME_OFFSET,
         11062 + ATIME_OFFSET,
-        55030,
+        55030 + 128,
     ]
-    readable_repr = readable_tokens(tokens, include_velocity=True)
+    readable_repr = get_readable_events(tokens, include_velocity=True)
     assert readable_repr[0]["special_token"] == "AR"
     assert readable_repr[1]["special_token"] == "SEP"
     assert readable_repr[2]["anticipated"] is False
