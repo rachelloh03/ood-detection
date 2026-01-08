@@ -15,6 +15,8 @@ This system:
 1. Install python dependencies, on a new conda environment if necessary.
 ```bash
 pip install -r requirements.txt
+or
+pip install --user -r requirements.txt
 ```
 Note: if you wish to do statistical tests using the R-Python bridge (rpy2), the python version in the environment must be <=3.11.
 If python=3.11, you can install rpy2 version 3.6+.
@@ -46,6 +48,7 @@ python -m src.setup
 conda install -c conda-forge gsl nlopt r-nloptr r-energy r-lme4 r-car r-mvn r-base
 
 # Install rpy2 for Python-R bridge:
+export RPY2_CFFI_MODE=ABI
 pip install rpy2
 ```
 
