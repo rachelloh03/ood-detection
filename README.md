@@ -90,7 +90,7 @@ ood-detection/src/
 ## Usage
 
 ### Step 1: Extract Hidden Layer Representations
-
+Navigate to src directory then:
 ```bash
 python -m extract_layers.extract_layers_main
 ```
