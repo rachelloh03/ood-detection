@@ -23,6 +23,7 @@ elif USER == "rachelloh":
     SCRATCH_FILEPATH = "./representations/"
 elif USER == "rjloh":
     JORDAN_DATASET_FILEPATH = "/scratch/rjloh/jordan_dataset"
+    OOD_DATASET_FILEPATH = "/scratch/rjloh/ood_dataset"
     SCRATCH_FILEPATH = "/scratch/rjloh/representations/"
 else:
     raise ValueError(f"USER {USER} not supported")

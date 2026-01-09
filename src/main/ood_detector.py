@@ -6,7 +6,7 @@ from collections.abc import Callable
 from typing import Literal
 from main.transformations import Transformations
 import torch
-
+import matplotlib.pyplot as plt
 
 class OODDetector:
     """
@@ -80,6 +80,7 @@ class OODDetector:
                 threshold = A / (A + B)
             threshold = torch.quantile(
                 all_scores, torch.tensor(threshold, dtype=all_scores.dtype)
+                # id_scores, torch.tensor(threshold, dtype=id_scores.dtype) # compute threshold only on ID test data to avoid data leakage
             )
             # print("Threshold:", threshold)
 
@@ -100,6 +101,25 @@ class OODDetector:
         false_positive_rate = (
             false_positive.float() / (false_positive + true_negative).float()
         )
+
+        # plot for debugging purposes
+        # plt.figure(figsize=(10, 4))
+        # plt.subplot(1, 2, 1)
+        # plt.hist(id_scores.cpu().numpy(), bins=50, alpha=0.7, label='ID')
+        # plt.hist(ood_scores.cpu().numpy(), bins=50, alpha=0.7, label='OOD')
+        # plt.axvline(threshold, color='r', linestyle='--', label='Threshold')
+        # plt.legend()
+        # plt.xlabel('OOD Score')
+        # plt.title('Score Distributions')
+
+        # plt.subplot(1, 2, 2)
+        # plt.boxplot([id_scores.cpu().numpy(), ood_scores.cpu().numpy()], labels=['ID', 'OOD'])
+        # plt.axhline(threshold, color='r', linestyle='--')
+        # plt.ylabel('OOD Score')
+        # plt.title('Score Comparison')
+        # plt.show()
+        # print(f"Threshold: {threshold:.4f}")
+
         return confusion_matrix, true_positive_rate, false_positive_rate
 
     def score(

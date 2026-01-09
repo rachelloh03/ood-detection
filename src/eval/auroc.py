@@ -29,11 +29,26 @@ def get_auroc(
         auc: AUROC score.
     """
     thresholds = torch.linspace(0, 1, 100)
+
+    # calculate thresholds based on range of ID and OOD scores
+    # id_scores = ood_detector.score(id_data)
+    # ood_scores = ood_detector.score(ood_data)
+    # all_scores = torch.cat([id_scores, ood_scores])
+    # thresholds = torch.linspace(
+    #     all_scores.min() - 0.1,  # Start slightly below minimum
+    #     all_scores.max() + 0.1,  # End slightly above maximum
+    #     100
+    # )
+    # print(thresholds)
+
     roc_curve = []
     for threshold in thresholds:
         _, tpr, fpr = ood_detector.evaluate(
             id_data, ood_data, threshold, threshold_type="percentile"
         )
+        # _, tpr, fpr = ood_detector.evaluate(
+        #     id_data, ood_data, threshold.item(), threshold_type="value"
+        # )
         roc_curve.append((fpr, tpr))
     roc_curve = np.array(roc_curve)
     roc_curve = roc_curve[np.argsort(roc_curve[:, 0])]
@@ -43,5 +58,6 @@ def get_auroc(
     plt.ylabel("True Positive Rate")
     plt.title("ROC Curve")
     plt.savefig(save_path)
+    plt.show()
     plt.close()
     return auroc
