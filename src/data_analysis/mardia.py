@@ -9,7 +9,7 @@ Mardia's test potentially causes issues if the number of samples is too small.
 Source: https://en.wikipedia.org/wiki/Multivariate_normality#Tests_for_multivariate_normality
 """
 
-from analyze_distribution.preprocess import subsample
+from data_analysis.preprocess import subsample
 from rpy2.robjects.packages import importr
 from rpy2.robjects import ListVector, numpy2ri
 from rpy2.robjects.conversion import localconverter

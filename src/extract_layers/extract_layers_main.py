@@ -9,6 +9,7 @@ hidden_states[i] is the output of the i-th transformer block.
 """
 
 import os
+from typing import Callable
 from data.jordan_dataset import JordanDataset
 from constants import JORDAN_DATASET_FILEPATH, JORDAN_MODEL_NAME, SCRATCH_FILEPATH
 import torch
@@ -17,26 +18,22 @@ from tqdm import tqdm
 from transformers import AutoModelForCausalLM
 from torch.utils.data import DataLoader
 from extract_layers.pooling_functions import pool_mean_std
+from utils.data_loading import collate_fn
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
-
-def collate_fn(examples):
-    """Collate function for DataLoader"""
-    input_ids = torch.stack([torch.tensor(ex["input_ids"]) for ex in examples])
-    return {
-        "input_ids": input_ids,
-    }
+NUM_SAMPLES_LIMIT = 10000
+BATCH_SIZE = 8
 
 
 @torch.no_grad()
 def extract_representations(
-    model,
-    dataloader,
-    pooling_function,
-    save_dir,
-    layers,
-):
+    model: torch.nn.Module,
+    dataloader: DataLoader,
+    pooling_function: Callable[[torch.Tensor], torch.Tensor],
+    save_dir: str,
+    layers: list[int],
+) -> dict[int, list[torch.Tensor]]:
     """
     Extract pooled representations from specified layers.
 
@@ -77,10 +74,12 @@ def extract_representations(
 
     for layer_idx in layers:
         X = torch.cat(buffers[layer_idx], dim=0).numpy()  # (dataset size, 2*D)
-        np.save(os.path.join(save_dir, f"layer_{layer_idx}.npy"), X)
-        print(f"Saved layer {layer_idx}: {X.shape}")
+        buffers[layer_idx] = X  # (dataset size, 2*D)
+        if save_dir is not None:
+            np.save(os.path.join(save_dir, f"layer_{layer_idx}.npy"), X)
+            print(f"Saved layer {layer_idx}: {X.shape}")
 
-    return buffers
+    return buffers  # {layer_idx: (dataset size, 2*D)}
 
 
 def main():
@@ -102,28 +101,27 @@ def main():
     print("Loading dataset...")
 
     dataset = JordanDataset(
-        data_dir=JORDAN_DATASET_FILEPATH, split="train", num_samples=1000
+        data_dir=JORDAN_DATASET_FILEPATH, split="train", num_samples=NUM_SAMPLES_LIMIT
     )
 
     dataloader = DataLoader(
         dataset,
-        batch_size=8,
+        batch_size=BATCH_SIZE,
         shuffle=False,
         collate_fn=collate_fn,
     )
     pooling_function = pool_mean_std
 
+    save_dir = os.path.join(SCRATCH_FILEPATH, pooling_function.__name__)
     extract_representations(
         model=model,
         dataloader=dataloader,
         pooling_function=pooling_function,
-        save_dir=SCRATCH_FILEPATH,
+        save_dir=save_dir,
         layers=layers_to_extract,
     )
 
-    print(
-        f"All representations saved to {SCRATCH_FILEPATH}/{pooling_function.__name__}"
-    )
+    print(f"All representations saved to {save_dir}")
 
 
 if __name__ == "__main__":

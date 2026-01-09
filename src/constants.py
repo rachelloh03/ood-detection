@@ -9,16 +9,14 @@ if USER is None:
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
-# Dataset constants
-JORDAN_DATASET_NAME = (
-    "mitmedialab/"
-    + "jordan_rudess__disklavier__trading"
-    + "_inst0_inst1__free_time__pedal__velocity__v1"
-)
+########################################################
+#                   File management                    #
+########################################################
 
 SCRATCH_FILEPATH = "representations/"
 if USER == "joeltjy1":
     JORDAN_DATASET_FILEPATH = "/scratch/joel/jordan_dataset"
+    OOD_DATASET_FILEPATH = "/scratch/joel/maestrodata"
     SCRATCH_FILEPATH = "/scratch/joel/representations/"
 elif USER == "rachelloh":
     JORDAN_DATASET_FILEPATH = "./jordan_dataset"
@@ -29,7 +27,18 @@ elif USER == "rjloh":
 else:
     raise ValueError(f"USER {USER} not supported")
 os.makedirs(JORDAN_DATASET_FILEPATH, exist_ok=True)
+os.makedirs(OOD_DATASET_FILEPATH, exist_ok=True)
 os.makedirs(SCRATCH_FILEPATH, exist_ok=True)
+
+########################################################
+#                 Jordan dataset constants             #
+########################################################
+
+JORDAN_DATASET_NAME = (
+    "mitmedialab/"
+    + "jordan_rudess__disklavier__trading"
+    + "_inst0_inst1__free_time__pedal__velocity__v1"
+)
 
 TRAIN_FILENAME = "data-00000-of-00001.arrow"
 TEST_FILENAME = "data-00000-of-00001.arrow"
@@ -37,7 +46,9 @@ TEST_FILENAME = "data-00000-of-00001.arrow"
 # Model constants
 JORDAN_MODEL_NAME = "mitmedialab/JordanAI-disklavier-v0.1-pytorch"
 
-# Token constants
+########################################################
+#                   Token constants                    #
+########################################################
 REST = 27512
 SEP = 55025
 AR = 55026
@@ -58,5 +69,4 @@ AVELOCITY_OFFSET = 55156
 INCLUDE_VELOCITY = False
 VOCAB_SIZE = VELOCITY_OFFSET + 256 if INCLUDE_VELOCITY else VELOCITY_OFFSET
 
-# notes
 NOTES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]

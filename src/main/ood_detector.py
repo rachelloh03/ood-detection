@@ -8,19 +8,11 @@ from src.main.transformations import Transformations
 import torch
 
 
-# NOT TESTED YET
 class OODDetector:
     """
     OOD Detector class.
 
-    Many post-hoc OOD detection methods are of the following form:
-    1) Find a embedding function h() that maps each prompt x to a vector representation h(x).
-        An example of h(x) is the hidden state of a model given input x.
-    2) Estimate the distribution of h(x) on a training set.
-    3) For a new prompt x', compute h(x')
-        and determine if it is an outlier of the distribution via a scoring mechanism.
-        An example is taking the Mahalanobis distance of h(x') to the ID distribution of h(x).
-    4) Set a threshold on the score and determine if x' is OOD.
+    Refer to docs/ood_detection.md for more details, under OOD Detector Class section.
     """
 
     def __init__(
@@ -30,14 +22,7 @@ class OODDetector:
         id_train_data: torch.Tensor,
     ):
         """
-        Args:
-            embedding_function: Transformations object that maps each prompt x to a vector representation h(x).
-                Why it's an object is to allow for things like PCA that are fitted on the ID training data.
-            scoring_function: Callable that takes (ID embeddings, new input embeddings), and returns an OOD score.
-                (An example is the Mahalanobis distance of the new input embedding to the ID distribution.)
-                If ID embeddings has shape (N, D) and new input embeddings has shape (M, D),
-                then scoring_function should have shape (M,), one score for each new input embedding.
-            id_train_data: Training data for the ID distribution.
+        Refer to docs/ood_detection.md for more details, under OOD Detector Class section.
         """
         self.embedding_function = embedding_function
         self.scoring_function = scoring_function

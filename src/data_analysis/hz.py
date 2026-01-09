@@ -4,7 +4,7 @@ Henze-Zirkler test for multivariate normality.
 Also called BHEP test in the wiki page on multivariate normality tests.
 """
 
-from analyze_distribution.preprocess import subsample
+from data_analysis.preprocess import subsample
 from rpy2.robjects.packages import importr
 from rpy2.robjects import ListVector, numpy2ri
 from rpy2.robjects.conversion import localconverter

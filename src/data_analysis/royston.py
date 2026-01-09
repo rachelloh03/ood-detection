@@ -4,7 +4,7 @@ Royston test for multivariate normality.
 Source: https://en.wikipedia.org/wiki/Royston_test
 """
 
-from analyze_distribution.preprocess import subsample
+from data_analysis.preprocess import subsample
 from rpy2.robjects.packages import importr
 from rpy2.robjects import ListVector, numpy2ri
 from rpy2.robjects.conversion import localconverter
@@ -17,7 +17,7 @@ ROYSTON_P_KEY = "royston_p"
 
 def royston(X: np.ndarray) -> dict:
     metrics = {}
-    X_test = subsample(X)
+    X_test = subsample(X, num_samples=1000, num_features=100)
 
     with localconverter(ro.default_converter + numpy2ri.converter):
         r_data = X_test  # auto-converts to R matrix
