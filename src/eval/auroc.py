@@ -1,6 +1,6 @@
 """Plots AUROC curve for OOD detection."""
 
-from collections.abc import Callable
+from main.ood_detector import OODDetector
 import matplotlib.pyplot as plt
 import torch
 import numpy as np
@@ -9,7 +9,7 @@ from sklearn.metrics import roc_auc_score
 
 # HAVEN'T TESTED THIS YET
 def get_auroc(
-    ood_detector: Callable,
+    ood_detector: OODDetector,
     id_data: torch.Tensor,
     ood_data: torch.Tensor,
     score_lower_bound=0,
@@ -33,10 +33,7 @@ def get_auroc(
     thresholds = torch.linspace(score_lower_bound, score_upper_bound, 100)
     roc_curve = []
     for threshold in thresholds:
-        is_ood = ood_detector(id_data) > threshold
-        is_ood_ood = ood_detector(ood_data) > threshold
-        tpr = is_ood.sum() / is_ood.sum()
-        fpr = is_ood_ood.sum() / is_ood_ood.sum()
+        _, tpr, fpr = ood_detector.evaluate(id_data, ood_data, threshold)
         roc_curve.append((fpr, tpr))
     roc_curve = np.array(roc_curve)
     auc = roc_auc_score(roc_curve[:, 0], roc_curve[:, 1])

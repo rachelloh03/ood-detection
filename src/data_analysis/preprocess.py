@@ -8,9 +8,14 @@ MAX_SAMPLES = 5000
 MAX_FEATURES = 100
 
 
-def subsample(X):
-    n_samples_test = min(MAX_SAMPLES, X.shape[0])
-    n_features_test = min(MAX_FEATURES, X.shape[1])
+def subsample(
+    X: np.ndarray, num_samples: int = MAX_SAMPLES, num_features: int = MAX_FEATURES
+) -> np.ndarray:
+    """
+    Subsample the data to a maximum number of samples and features.
+    """
+    n_samples_test = min(num_samples, X.shape[0])
+    n_features_test = min(num_features, X.shape[1])
 
     if X.shape[0] > n_samples_test or X.shape[1] > n_features_test:
         print(
@@ -21,8 +26,3 @@ def subsample(X):
         return X[np.ix_(idx_samples, idx_features)]
     else:
         return X
-
-
-# TODO: implement PCA
-def pca(X, n_components=20):
-    pass

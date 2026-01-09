@@ -13,4 +13,6 @@ Preprocessing steps:
 We may need more preprocessing steps if we aren't very sure it's Gaussian,
 which might be possible because the normality tests are pretty weak
 for high-dimensional data and our current number of samples (on the order of 1000).
+
+All methods here take in a numpy array and return a dictionary of metrics.
 """

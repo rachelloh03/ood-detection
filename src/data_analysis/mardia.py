@@ -14,6 +14,7 @@ from rpy2.robjects.packages import importr
 from rpy2.robjects import ListVector, numpy2ri
 from rpy2.robjects.conversion import localconverter
 import rpy2.robjects as ro
+import numpy as np
 
 mvn = importr("MVN")
 
@@ -23,7 +24,7 @@ SKEWNESS_P_KEY = "skewness_p"
 KURTOSIS_P_KEY = "kurtosis_p"
 
 
-def mardia(X):
+def mardia(X: np.ndarray) -> dict:
     metrics = {}
     X_test = subsample(X)
 

@@ -2,6 +2,7 @@
 Test the multivariate normality tests.
 """
 
+from analyze_distribution.royston import ROYSTON_P_KEY, royston
 from src.analyze_distribution.hz import HZ_P_VALUE_KEY
 import numpy as np
 from src.analyze_distribution.hz import hz
@@ -69,6 +70,32 @@ def test_hz():
     assert metrics[HZ_P_VALUE_KEY] < 0.05
 
 
+def test_royston():
+    """Test the royston function."""
+    np.random.seed(42)
+    X_nearly_normal = np.concatenate(
+        [np.zeros((500, 20)), np.ones((500, 20))], axis=0
+    ) + 100 * np.random.randn(1000, 20)
+    assert X_nearly_normal.shape[0] == 1000
+    assert X_nearly_normal.shape[1] == 20
+    metrics = royston(X_nearly_normal)
+    print("metrics", metrics)
+    assert metrics[ROYSTON_P_KEY] is not None
+    assert metrics[ROYSTON_P_KEY] > 0.05
+
+    np.random.seed(42)
+    X_not_normal = np.concatenate(
+        [np.zeros((500, 20)), np.ones((500, 20))], axis=0
+    ) + 0.001 * np.random.randn(1000, 20)
+    assert X_not_normal.shape[0] == 1000
+    assert X_not_normal.shape[1] == 20
+    metrics = royston(X_not_normal)
+    print("metrics", metrics)
+    assert metrics[ROYSTON_P_KEY] is not None
+    assert metrics[ROYSTON_P_KEY] < 0.05
+
+
 if __name__ == "__main__":
     test_mardia()
     test_hz()
+    test_royston()
