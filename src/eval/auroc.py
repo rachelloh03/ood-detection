@@ -4,7 +4,7 @@ from main.ood_detector import OODDetector
 import matplotlib.pyplot as plt
 import torch
 import numpy as np
-from sklearn.metrics import roc_auc_score
+from sklearn.metrics import auc
 
 
 # HAVEN'T TESTED THIS YET
@@ -12,8 +12,6 @@ def get_auroc(
     ood_detector: OODDetector,
     id_data: torch.Tensor,
     ood_data: torch.Tensor,
-    score_lower_bound=0,
-    score_upper_bound=1,
     save_path="auroc.png",
 ):
     """
@@ -30,14 +28,17 @@ def get_auroc(
     Returns:
         auc: AUROC score.
     """
-    thresholds = torch.linspace(score_lower_bound, score_upper_bound, 100)
+    thresholds = torch.linspace(0, 1, 100)
     roc_curve = []
     for threshold in thresholds:
-        _, tpr, fpr = ood_detector.evaluate(id_data, ood_data, threshold)
+        _, tpr, fpr = ood_detector.evaluate(
+            id_data, ood_data, threshold, threshold_type="percentile"
+        )
         roc_curve.append((fpr, tpr))
     roc_curve = np.array(roc_curve)
-    auc = roc_auc_score(roc_curve[:, 0], roc_curve[:, 1])
+    roc_curve = roc_curve[np.argsort(roc_curve[:, 0])]
+    auroc = auc(roc_curve[:, 0], roc_curve[:, 1])
     plt.plot(roc_curve[:, 0], roc_curve[:, 1])
     plt.savefig(save_path)
     plt.close()
-    return auc
+    return auroc

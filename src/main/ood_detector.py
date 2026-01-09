@@ -4,7 +4,7 @@ OOD Detector class.
 
 from collections.abc import Callable
 from typing import Literal
-from src.main.transformations import Transformations
+from main.transformations import Transformations
 import torch
 
 
@@ -69,6 +69,8 @@ class OODDetector:
         ), "ID and OOD test data must have the same number of dimensions"
 
         A, B = id_test_data.shape[0], ood_test_data.shape[0]
+        if A == 0 or B == 0:
+            raise ValueError("ID and OOD test data must have at least one sample")
         id_scores = self.score(id_test_data)  # (A,)
         ood_scores = self.score(ood_test_data)  # (B,)
 
@@ -76,7 +78,9 @@ class OODDetector:
         if threshold_type == "percentile":
             if threshold is None:
                 threshold = A / (A + B)
-            threshold = torch.quantile(all_scores, threshold)
+            threshold = torch.quantile(
+                all_scores, torch.tensor(threshold, dtype=all_scores.dtype)
+            )
             print("Threshold:", threshold)
 
         positive_id = id_scores > threshold  # (A,)
