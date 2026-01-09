@@ -40,7 +40,6 @@ class JordanDataset(Dataset):
             if "text" in sample:
                 input_ids = [int(x) for x in sample["text"].split()]
                 if input_ids[4] == 127:
-                    print("Something might be wrong, skipping")
                     bad_samples += 1
                     continue
             elif "input_ids" in sample:

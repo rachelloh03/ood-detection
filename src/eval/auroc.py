@@ -39,6 +39,9 @@ def get_auroc(
     roc_curve = roc_curve[np.argsort(roc_curve[:, 0])]
     auroc = auc(roc_curve[:, 0], roc_curve[:, 1])
     plt.plot(roc_curve[:, 0], roc_curve[:, 1])
+    plt.xlabel("False Positive Rate")
+    plt.ylabel("True Positive Rate")
+    plt.title("ROC Curve")
     plt.savefig(save_path)
     plt.close()
     return auroc

@@ -81,7 +81,7 @@ class OODDetector:
             threshold = torch.quantile(
                 all_scores, torch.tensor(threshold, dtype=all_scores.dtype)
             )
-            print("Threshold:", threshold)
+            # print("Threshold:", threshold)
 
         positive_id = id_scores > threshold  # (A,)
         positive_ood = ood_scores > threshold  # (B,)
