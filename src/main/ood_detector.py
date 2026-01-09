@@ -92,6 +92,7 @@ class OODDetector:
             if threshold is None:
                 threshold = A / (A + B)
             threshold = torch.quantile(all_scores, threshold)
+            print("Threshold:", threshold)
 
         positive_id = id_scores > threshold  # (A,)
         positive_ood = ood_scores > threshold  # (B,)
@@ -101,7 +102,7 @@ class OODDetector:
         false_negative = (~positive_ood).sum()
         true_positive = (positive_ood).sum()
         confusion_matrix = torch.tensor(
-            [[true_negative, false_positive], [false_negative, true_positive]],
+            [[true_positive, false_negative], [false_positive, true_negative]],
             dtype=torch.long,
         )
         true_positive_rate = (
