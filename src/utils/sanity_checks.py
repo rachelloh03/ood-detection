@@ -1,6 +1,6 @@
 """Sanity checks for the dataset."""
 
-from constants import VOCAB_SIZE
+from constants.token_constants import VOCAB_SIZE
 from utils.process_tokens import get_readable_events
 
 

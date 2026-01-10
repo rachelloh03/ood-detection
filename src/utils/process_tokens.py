@@ -1,6 +1,6 @@
 """Token-processing utilities."""
 
-from constants import (
+from constants.token_constants import (
     ADUR_OFFSET,
     ANOTE_OFFSET,
     ATIME_OFFSET,

@@ -6,7 +6,7 @@ Weakest test, only use if you have to.
 Source: https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test
 """
 
-from analyze_distribution.preprocess import subsample
+from data_analysis.preprocess import subsample
 import numpy as np
 from scipy import stats
 

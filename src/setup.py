@@ -6,10 +6,7 @@ The aim is for all menial setup tasks to be done here.
 For now, only downloads the Jordan dataset.
 """
 
-from src.constants import (
-    JORDAN_DATASET_FILEPATH,
-    JORDAN_DATASET_NAME,
-)
+from src.constants.data_constants import JORDAN_DATASET_FILEPATH, JORDAN_DATASET_NAME
 from datasets import load_dataset, load_from_disk
 from huggingface_hub import login
 import os

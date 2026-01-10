@@ -1,7 +1,7 @@
 from torch.utils.data import Dataset
 from datasets import load_from_disk
 import torch
-from constants import INCLUDE_VELOCITY
+from constants.token_constants import INCLUDE_VELOCITY
 from utils.process_tokens import set_anticipated, set_instrument
 from utils.sanity_checks import check_valid_input_ids
 

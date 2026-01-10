@@ -6,24 +6,50 @@ from collections import defaultdict
 
 import mido
 
-from anticipation.anticipation.config import (
+
+from constants.token_constants import (
+    REST,
+    ATIME_OFFSET,
     MAX_DUR,
     MAX_INSTR,
     MAX_PITCH,
-    TIME_RESOLUTION,
-)
-from anticipation.anticipation.ops import unpad
-from anticipation.anticipation.vocab import (
-    CONTROL_OFFSET,
+    TIME_OFFSET,
     DUR_OFFSET,
     NOTE_OFFSET,
-    SEPARATOR,
-    TIME_OFFSET,
+    TIME_RESOLUTION,
     VELOCITY_OFFSET,
+    SEP,
+    INCLUDE_VELOCITY,
 )
 
-
 DRUMS_CHANNEL = 9
+
+
+def unpad(tokens, include_velocity=INCLUDE_VELOCITY):
+    new_tokens = []
+
+    if include_velocity:
+
+        for time, dur, note, vel in zip(
+            tokens[0::4], tokens[1::4], tokens[2::4], tokens[3::4], strict=True
+        ):
+            if note == REST:
+                continue
+
+            new_tokens.extend([time, dur, note, vel])
+
+        return new_tokens
+    else:
+
+        for time, dur, note in zip(
+            tokens[0::3], tokens[1::3], tokens[2::3], strict=True
+        ):
+            if note == REST:
+                continue
+
+            new_tokens.extend([time, dur, note])
+
+        return new_tokens
 
 
 def midi_to_compound(midifile, debug=False):
@@ -228,7 +254,7 @@ def compound_to_events(tokens, stats=False, include_velocity=False):
     assert all(-1 <= tok < 2**7 for tok in tokens[2::4])
     assert all(-1 <= tok < 129 for tok in tokens[3::4])
     tokens[2::4] = [
-        SEPARATOR if note == -1 else MAX_PITCH * instr + note
+        SEP if note == -1 else MAX_PITCH * instr + note
         for note, instr in zip(tokens[2::4], tokens[3::4], strict=True)
     ]
     tokens[2::4] = [NOTE_OFFSET + tok for tok in tokens[2::4]]
@@ -286,22 +312,19 @@ def events_to_compound(tokens, debug=False, include_velocity=False):
 
     # move all tokens to zero-offset for synthesis
     tokens = [
-        tok - CONTROL_OFFSET if tok >= CONTROL_OFFSET and tok != SEPARATOR else tok
+        tok - ATIME_OFFSET if tok >= ATIME_OFFSET and tok != SEP else tok
         for tok in tokens
     ]
 
     # remove type offsets
     tokens[0::tokens_per_event] = [
-        tok - TIME_OFFSET if tok != SEPARATOR else tok
-        for tok in tokens[0::tokens_per_event]
+        tok - TIME_OFFSET if tok != SEP else tok for tok in tokens[0::tokens_per_event]
     ]
     tokens[1::tokens_per_event] = [
-        tok - DUR_OFFSET if tok != SEPARATOR else tok
-        for tok in tokens[1::tokens_per_event]
+        tok - DUR_OFFSET if tok != SEP else tok for tok in tokens[1::tokens_per_event]
     ]
     tokens[2::tokens_per_event] = [
-        tok - NOTE_OFFSET if tok != SEPARATOR else tok
-        for tok in tokens[2::tokens_per_event]
+        tok - NOTE_OFFSET if tok != SEP else tok for tok in tokens[2::tokens_per_event]
     ]
 
     offset = 0  # add max time from previous track for synthesis
@@ -311,7 +334,7 @@ def events_to_compound(tokens, debug=False, include_velocity=False):
         for j, (time, dur, note) in enumerate(
             zip(tokens[0::4], tokens[1::4], tokens[2::4], strict=True)
         ):
-            if note == SEPARATOR:
+            if note == SEP:
                 offset += track_max
                 track_max = 0
                 if debug:
@@ -323,7 +346,7 @@ def events_to_compound(tokens, debug=False, include_velocity=False):
         for j, (time, dur, note) in enumerate(
             zip(tokens[0::3], tokens[1::3], tokens[2::3], strict=True)
         ):
-            if note == SEPARATOR:
+            if note == SEP:
                 offset += track_max
                 track_max = 0
                 if debug:
@@ -332,9 +355,9 @@ def events_to_compound(tokens, debug=False, include_velocity=False):
                 track_max = max(track_max, time + dur)
                 tokens[3 * j] += offset
 
-    # strip sequence separators
-    assert len([tok for tok in tokens if tok == SEPARATOR]) % tokens_per_event == 0
-    tokens = [tok for tok in tokens if tok != SEPARATOR]
+    # strip sequence SEPs
+    assert len([tok for tok in tokens if tok == SEP]) % tokens_per_event == 0
+    tokens = [tok for tok in tokens if tok != SEP]
 
     assert len(tokens) % tokens_per_event == 0
     out = 5 * (len(tokens) // tokens_per_event) * [0]

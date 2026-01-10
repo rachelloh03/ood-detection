@@ -1,7 +1,7 @@
 """Tests for utils."""
 
 import pytest
-from src.constants import ATIME_OFFSET
+from src.constants.token_constants import ATIME_OFFSET
 from src.utils.process_tokens import (
     pitch_to_note,
     get_readable_events,

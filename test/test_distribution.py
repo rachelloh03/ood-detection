@@ -2,14 +2,12 @@
 Test the multivariate normality tests.
 """
 
-from analyze_distribution.royston import ROYSTON_P_KEY, royston
-from src.analyze_distribution.hz import HZ_P_VALUE_KEY
+from src.data_analysis.royston import ROYSTON_P_KEY, royston
+from src.data_analysis.hz import HZ_P_VALUE_KEY
 import numpy as np
-from src.analyze_distribution.hz import hz
-from src.analyze_distribution.mardia import mardia
-
-# from src.analyze_distribution.royston import royston
-from src.analyze_distribution.mardia import (
+from src.data_analysis.hz import hz
+from src.data_analysis.mardia import (
+    mardia,
     SKEWNESS_KEY,
     KURTOSIS_KEY,
     SKEWNESS_P_KEY,

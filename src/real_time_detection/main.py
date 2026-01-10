@@ -5,7 +5,7 @@ from real_time_detection.helpers import setup_ood_detector, extract_layer
 import mido
 import time
 from transformers import AutoModelForCausalLM
-from constants import JORDAN_MODEL_NAME, DEVICE
+from constants.model_constants import JORDAN_MODEL_NAME, DEVICE
 
 import torch
 

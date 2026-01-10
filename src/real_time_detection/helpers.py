@@ -1,4 +1,6 @@
-from constants import SCRATCH_FILEPATH
+"""Helper functions for real-time OOD detection."""
+
+from constants.data_constants import SCRATCH_FILEPATH
 import mido
 from main.transformations import Transformations
 from sklearn.decomposition import PCA
@@ -76,7 +78,10 @@ def extract_layer(buffer, pooling_function, model, layer_idxs):
     midifile = buffer_to_midifile(buffer)  # MidiFile
     tokens = midi_to_events(midifile)  # (L,)
 
-    output = model(**tokens, output_hidden_states=True)  # (1, L, D)
+    output = model(
+        input_ids=torch.tensor(tokens, dtype=torch.long).unsqueeze(0),
+        output_hidden_states=True,
+    )  # (1, L, D)
     hidden_states = output.hidden_states  # (n_layers + 1)-tuple of (1, L, D)
 
     layer_activations = []

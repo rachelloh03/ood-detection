@@ -11,7 +11,11 @@ hidden_states[i] is the output of the i-th transformer block.
 import os
 from typing import Callable
 from data.jordan_dataset import JordanDataset
-from constants import JORDAN_DATASET_FILEPATH, JORDAN_MODEL_NAME, SCRATCH_FILEPATH
+from constants.data_constants import (
+    JORDAN_DATASET_FILEPATH,
+    SCRATCH_FILEPATH,
+)
+from constants.model_constants import JORDAN_MODEL_NAME
 import torch
 import numpy as np
 from tqdm import tqdm

@@ -39,6 +39,8 @@ When this object is called on new data ```transform_obj(new_data)```, it passes 
 
 The code for this class is in ```main/transformations.py```.
 
+**Important** Extracting the $l$-th hidden layer is never considered a transformation, ```extract_layers``` or passing through the model has to be done. This is because the extraction process takes up memory and so is precomputed on ID data.
+
 ## Scoring Function
 Refer to Step 3 in the General Framework. Given the embeddings of new inputs $h(x')$, we need to compare them against the distribution of $h(x)$, the embeddings of ID data.
 
