@@ -1,13 +1,48 @@
 """Real-time OOD detection using MIDI input."""
 
 from extract_layers.pooling_functions import pool_mean_std
-from real_time_detection.helpers import setup_ood_detector, extract_layer
+from real_time_detection.helpers import extract_layer
+from main.transformations import Transformations
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+from main.scoring_functions import mahalanobis_distance
+from main.ood_detector import OODDetector
+import numpy as np
+from constants.data_constants import SCRATCH_FILEPATH
 import mido
 import time
 from transformers import AutoModelForCausalLM
 from constants.model_constants import JORDAN_MODEL_NAME, DEVICE
 
 import torch
+
+
+def setup_ood_detector(layer_idxs):
+    """
+    Sets up the OOD detector for the given layer indices.
+    """
+    id_train_data = []
+    for layer_idx in layer_idxs:
+        id_train_data.append(
+            np.load(f"{SCRATCH_FILEPATH}/id_train_dataset/layer_{layer_idx}.npy")
+        )  # (N, D)
+    id_train_data = np.concatenate(id_train_data, axis=0)  # (L, N, D)
+    if len(layer_idxs) == 1:
+        id_train_data = id_train_data.squeeze(0)  # (N, D)
+
+    transformations = Transformations(
+        [
+            PCA(n_components=10),
+            StandardScaler(),
+        ]
+    )
+    scoring_function = mahalanobis_distance
+    ood_detector = OODDetector(
+        embedding_function=transformations,
+        scoring_function=scoring_function,
+        id_train_data=id_train_data,
+    )
+    return ood_detector
 
 
 def main():

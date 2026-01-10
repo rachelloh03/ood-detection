@@ -2,7 +2,9 @@
 
 Back to home: [README](../README.md)
 
-## General Framework
+## 1. OOD Detector methods and functions in ```main/```
+
+### General Framework
 
 In this project we focus on post-hoc OOD detection, i.e. the model is frozen.
 
@@ -22,7 +24,7 @@ To explain how the OOD detector class works, we first talk about:
 - how to express $h()$ via the Transformations Class
 - the scoring mechanism.
 
-## Transformations Class
+### Transformations Class
 It is possible that $h()$ needs to be fit to the training data, for instance via sklearn tools such as PCA. Therefore, this function is represented as an object, similar to how sklearn tools operate.
 
 $h()$ can usually be broken down into multiple functions (an example is below.) The `Transformations` object encapsulates a pipeline of transformation functions that are applied sequentially, where the output of each transformation becomes the input to the next.
@@ -41,7 +43,7 @@ The code for this class is in ```main/transformations.py```.
 
 **Important** Extracting the $l$-th hidden layer is never considered a transformation, ```extract_layers``` or passing through the model has to be done. This is because the extraction process takes up memory and so is precomputed on ID data.
 
-## Scoring Function
+### Scoring Function
 Refer to Step 3 in the General Framework. Given the embeddings of new inputs $h(x')$, we need to compare them against the distribution of $h(x)$, the embeddings of ID data.
 
 A **scoring function** does this comparison and outputs OOD scores, with higher scores meaning that it's more likely to be OOD. More concretely, it takes in
@@ -52,7 +54,7 @@ and outputs M scores for the new input embeddings.
 
 An example of a scoring function in ```main/scoring_functions.py``` is the Mahalanobis distance. This assumes that the ID embeddings follows a Gaussian distribution and computes a score based on the sample mean and covariance of ID embeddings.
 
-## OOD Detector Class
+### OOD Detector Class
 ```
 def __init__(
     self,
@@ -64,6 +66,8 @@ def __init__(
 Expressing $h()$ via a Transformations class and defining a scoring function allow us to completely specify the OOD detector. The OOD detector takes in $h()$ via ```embedding_function``` and the scoring function (```scoring_function```), fits the embedding function on the ID training data ```id_train_data```
 
 An example of how to use this is in ```example.ipynb```.
+
+## 2. Real-time OOD detection in ```real_time_detection/```
 
 
 

@@ -2,6 +2,10 @@
 
 Back to home: [README](../README.md)
 
+TODO: clean up this doc
+
+An example of usage in ```data_analysis/main.ipynb```
+
 OOD detection (based on higher gaussianity, lower variance coefficient of variation, and higher eigenvalue entropy)
 
 ## Note on datasets

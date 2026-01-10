@@ -2,11 +2,17 @@
 
 Out-of-distribution detection system for the JordanAI music generation model.
 
-## Things I did/thoughts(1/10):
-- Added some preprocessing steps to jordan dataset. The Jordan dataset uses two instruments (0 and 1) and possibly starts with the AAR token while the current OOD Maestro dataset only uses instrument 0 and starts with the AR token. There is a preprocessing step that is already added to the jordan_dataset to make the instrument only 0.
-- After this, the AUROC is more reasonable for middle layers. layer 12 -> 0.7ish
-- Made the real time detection thing. I don't have a MIDI cable so I haven't tested the whole pipeline, but I tested the software side of things.
-- The distributions of hidden layers are very un-Gaussian. Probably need to do some density estimation.
+## Things I did/thoughts (1/10):
+1. Added some preprocessing steps to jordan dataset. The Jordan dataset uses two instruments (0 and 1) and possibly starts with the AAR token while the current OOD Maestro dataset only uses instrument 0 and starts with the AR token. There is a preprocessing step that is already added to the jordan_dataset to make the instrument only 0.
+- After this, the AUROC seems more reasonable for middle layers. layer 12 -> 0.7ish
+2. Made the real time detection thing. I don't have a MIDI cable so I haven't tested the whole pipeline.
+3. The distributions of hidden layers are very un-Gaussian, all the p-values are <0.001 (data_analysis/main.ipynb). Probably need to do some density estimation.
+- to me a first step to just check things out (haven't done it) is to take a random vector v and do $v \cdot x$ for each sample $x$ and then plot the 1D values to see where they cluster. I'm not sure how effective visualization tools like tSNE will be on this (since it distorts the data), but maybe it allows us to see the clusters?
+- more formal methods: empirical KL divergence, maximum mean discrepancy (MMD)
+4. Implementation wise to make things way less confusing it may be better to get the OOD detector to also extract layers. what do you think? Plan on how to do this:
+- let the extract_representations function take in either a DataLoader or a tensor.
+- when it's run for DataLoader it saves the output to a unique file name that somehow contains which dataloader it is like a cache. when it's re-run it checks if the filepath exists and doesn't run it again if it exists.
+- when it's run for tensor it just passes it through the model as usual.
 
 
 ## Overview
@@ -17,9 +23,10 @@ There are two main functionalities to this system:
 
 ## Documentation
 1. [Installation process](docs/installation.md)
-2. [Data Analysis](docs/data_analysis.md)
-3. [OOD Detection](docs/ood_detection.md)
-4. [Extract Layers](docs/extract_layers.md)
+2. [Extract Layers](docs/extract_layers.md) for documentation on extract_layers/.
+3. [Data Analysis](docs/data_analysis.md) for documentation on data_analysis/.
+4. [OOD Detection](docs/ood_detection.md) for documentation on all other folders.
+
 
 ## File Structure
 
@@ -28,6 +35,7 @@ ood-detection/src/
 ├── extract_layers/            # All methods for extracting representations
 ├── data_analysis/             # All methods for analyzing distributions
 ├── main/                      # All methods relating to the OOD detector.
+├── real_time_detection/       # Real-time OOD detector.
 ├── eval/                      # Evaluation methods to test how good the OOD detector is
 ├── data/                      # Datasets for both inference and eval. OOD dataset will be Maestro.
 ├── utils/                     # Project-wide utilities
@@ -38,7 +46,6 @@ ood-detection/src/
     ├── layer_comparison.png
     └── best_layer.txt
 ```
-For documentation on extract_layers/
 
 ## Usage (to be changed)
 
