@@ -1,7 +1,7 @@
 """Sanity checks for the dataset."""
 
 from constants import VOCAB_SIZE
-from utils.readable_events import get_readable_events
+from utils.process_tokens import get_readable_events
 
 
 def check_valid_input_ids(input_ids):

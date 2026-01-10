@@ -41,7 +41,7 @@ export HF_HOME=/scratch/{your_username}/huggingface_cache
 ```
 if USER == "joeltjy1":
     JORDAN_DATASET_FILEPATH = "/scratch/joel/jordan_dataset"
-    OOD_DATASET_FILEPATH = "..."
+    MAESTRO_DATASET_FILEPATH = "..."
 elif USER == {your_username}:
     JORDAN_DATASET_FILEPATH = {your_filepath}
 ```

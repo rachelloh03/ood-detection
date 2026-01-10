@@ -2,7 +2,12 @@
 
 import pytest
 from src.constants import ATIME_OFFSET
-from src.utils.readable_events import pitch_to_note, get_readable_events
+from src.utils.process_tokens import (
+    pitch_to_note,
+    get_readable_events,
+    set_anticipated,
+    set_instrument,
+)
 
 
 def test_readable_tokens_no_vel():
@@ -105,5 +110,99 @@ def test_readable_tokens_no_vel():
     assert readable_repr[3]["velocity"] == 2
 
 
+def test_set_instrument():
+    """Test the set_instrument function."""
+    tokens = [
+        55026,
+        55025,
+        55025,
+        55025,
+        0,
+        10048,
+        11060 + 3 * 128,
+        50,
+        10048,
+        11060 + 4 * 128,
+        100 + ATIME_OFFSET,
+        10048 + ATIME_OFFSET,
+        11062 + ATIME_OFFSET,
+    ]
+    expected_tokens = [
+        55026,
+        55025,
+        55025,
+        55025,
+        0,
+        10048,
+        11060 + 5 * 128,
+        50,
+        10048,
+        11060 + 5 * 128,
+        100 + ATIME_OFFSET,
+        10048 + ATIME_OFFSET,
+        11062 + ATIME_OFFSET + 5 * 128,
+    ]
+    assert (
+        set_instrument(tokens, 5) == expected_tokens
+    ), f"Expected {expected_tokens} but got {set_instrument(tokens, 5)}"
+
+
+def test_set_anticipated():
+    """Test the set_anticipated function."""
+    tokens = [
+        55026,
+        55025,
+        55025,
+        55025,
+        0,
+        10048,
+        11060,
+        50,
+        10048,
+        11060,
+        100 + ATIME_OFFSET,
+        10048 + ATIME_OFFSET,
+        11062 + ATIME_OFFSET,
+    ]
+    expected_non_anticipated_tokens = [
+        55026,
+        55025,
+        55025,
+        55025,
+        0,
+        10048,
+        11060,
+        50,
+        10048,
+        11060,
+        100,
+        10048,
+        11062,
+    ]
+    expected_anticipated_tokens = [
+        55026,
+        55025,
+        55025,
+        55025,
+        0 + ATIME_OFFSET,
+        10048 + ATIME_OFFSET,
+        11060 + ATIME_OFFSET,
+        50 + ATIME_OFFSET,
+        10048 + ATIME_OFFSET,
+        11060 + ATIME_OFFSET,
+        100 + ATIME_OFFSET,
+        10048 + ATIME_OFFSET,
+        11062 + ATIME_OFFSET,
+    ]
+    assert (
+        set_anticipated(tokens, True) == expected_anticipated_tokens
+    ), f"Expected {expected_anticipated_tokens} but got {set_anticipated(tokens, True)}"
+    assert (
+        set_anticipated(tokens, False) == expected_non_anticipated_tokens
+    ), f"Expected {expected_non_anticipated_tokens} but got {set_anticipated(tokens, False)}"
+
+
 if __name__ == "__main__":
     test_readable_tokens_no_vel()
+    test_set_instrument()
+    test_set_anticipated()

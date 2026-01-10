@@ -10,7 +10,7 @@ There are two main functionalities to this system:
 
 ## Documentation
 1. [Installation process](docs/installation.md)
-2. [Data Analysis](docs/data_analysis.md) # to document
+2. [Data Analysis](docs/data_analysis.md)
 3. [OOD Detection](docs/ood_detection.md)
 4. [Extract Layers](docs/extract_layers.md)
 

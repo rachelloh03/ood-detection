@@ -6,7 +6,7 @@ from collections.abc import Callable
 from typing import Literal
 from main.transformations import Transformations
 import torch
-import matplotlib.pyplot as plt
+
 
 class OODDetector:
     """
@@ -79,8 +79,10 @@ class OODDetector:
             if threshold is None:
                 threshold = A / (A + B)
             threshold = torch.quantile(
-                all_scores, torch.tensor(threshold, dtype=all_scores.dtype)
-                # id_scores, torch.tensor(threshold, dtype=id_scores.dtype) # compute threshold only on ID test data to avoid data leakage
+                all_scores,
+                torch.tensor(threshold, dtype=all_scores.dtype),
+                # id_scores, torch.tensor(threshold, dtype=id_scores.dtype)
+                # # compute threshold only on ID test data to avoid data leakage
             )
             # print("Threshold:", threshold)
 

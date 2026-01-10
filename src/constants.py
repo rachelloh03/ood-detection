@@ -16,7 +16,7 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 SCRATCH_FILEPATH = "representations/"
 if USER == "joeltjy1":
     JORDAN_DATASET_FILEPATH = "/scratch/joel/jordan_dataset"
-    OOD_DATASET_FILEPATH = "/scratch/joel/maestrodata"
+    MAESTRO_DATASET_FILEPATH = "/scratch/joel/maestrodata"
     SCRATCH_FILEPATH = "/scratch/joel/representations/"
 elif USER == "rachelloh":
     JORDAN_DATASET_FILEPATH = "./jordan_dataset"
@@ -28,7 +28,7 @@ elif USER == "rjloh":
 else:
     raise ValueError(f"USER {USER} not supported")
 os.makedirs(JORDAN_DATASET_FILEPATH, exist_ok=True)
-os.makedirs(OOD_DATASET_FILEPATH, exist_ok=True)
+os.makedirs(MAESTRO_DATASET_FILEPATH, exist_ok=True)
 os.makedirs(SCRATCH_FILEPATH, exist_ok=True)
 
 ########################################################

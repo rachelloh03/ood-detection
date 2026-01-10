@@ -1,4 +1,4 @@
-"""Convert tokens to readable text."""
+"""Token-processing utilities."""
 
 from constants import (
     ADUR_OFFSET,
@@ -16,6 +16,42 @@ from constants import (
     VELOCITY_OFFSET,
     AVELOCITY_OFFSET,
 )
+
+
+def set_instrument(
+    tokens: list[int],
+    instrument: int,
+) -> list[int]:
+    """
+    Set the instrument for all tokens in the list to be the given instrument.
+    """
+
+    def set_instrument_for_token(token: int) -> int:
+        if NOTE_OFFSET <= token < NOTE_OFFSET + 129 * 128:
+            return instrument * 128 + (token - NOTE_OFFSET) % 128 + NOTE_OFFSET
+        if ANOTE_OFFSET <= token < ANOTE_OFFSET + 129 * 128:
+            return instrument * 128 + (token - ANOTE_OFFSET) % 128 + ANOTE_OFFSET
+        return token
+
+    return [set_instrument_for_token(token) for token in tokens]
+
+
+def set_anticipated(
+    tokens: list[int],
+    anticipated: bool,
+) -> list[int]:
+    """
+    Set the anticipated flag for all tokens in the list to be the given anticipated.
+    """
+
+    def set_anticipated_for_token(token: int, anticipated: bool) -> int:
+        if anticipated and 0 <= token < ATIME_OFFSET - 1:
+            return token + ATIME_OFFSET
+        if not anticipated and ATIME_OFFSET <= token < 2 * ATIME_OFFSET - 1:
+            return token - ATIME_OFFSET
+        return token
+
+    return [set_anticipated_for_token(token, anticipated) for token in tokens]
 
 
 def get_readable_events(tokens, include_velocity=INCLUDE_VELOCITY):
