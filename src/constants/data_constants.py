@@ -1,0 +1,45 @@
+"""
+Data and file path constants for the OOD detection project.
+"""
+
+import os
+import torch
+
+# User and device
+USER = os.environ.get("USER")
+if USER is None:
+    raise ValueError("USER environment variable is not set")
+
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+
+# File paths
+SCRATCH_FILEPATH = "representations/"
+OOD_DATASET_FILEPATH = None  # Default, may be set per user
+MAESTRO_DATASET_FILEPATH = None  # Default, may be set per user
+
+if USER == "joeltjy1":
+    JORDAN_DATASET_FILEPATH = "/scratch/joel/jordan_dataset"
+    MAESTRO_DATASET_FILEPATH = "/scratch/joel/maestrodata"
+    SCRATCH_FILEPATH = "/scratch/joel/representations/"
+elif USER == "rachelloh":
+    JORDAN_DATASET_FILEPATH = "./jordan_dataset"
+    SCRATCH_FILEPATH = "./representations/"
+elif USER == "rjloh":
+    JORDAN_DATASET_FILEPATH = "/scratch/rjloh/jordan_dataset"
+    OOD_DATASET_FILEPATH = "/scratch/rjloh/ood_dataset"
+    SCRATCH_FILEPATH = "/scratch/rjloh/representations/"
+else:
+    raise ValueError(f"USER {USER} not supported")
+
+# Create directories
+os.makedirs(JORDAN_DATASET_FILEPATH, exist_ok=True)
+if USER == "joeltjy1":
+    os.makedirs(MAESTRO_DATASET_FILEPATH, exist_ok=True)
+os.makedirs(SCRATCH_FILEPATH, exist_ok=True)
+
+# Dataset constants
+JORDAN_DATASET_NAME = (
+    "mitmedialab/"
+    + "jordan_rudess__disklavier__trading"
+    + "_inst0_inst1__free_time__pedal__velocity__v1"
+)

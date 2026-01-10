@@ -2,6 +2,7 @@ from torch.utils.data import Dataset
 from datasets import load_from_disk
 import torch
 from constants import INCLUDE_VELOCITY
+from utils.process_tokens import set_anticipated, set_instrument
 from utils.sanity_checks import check_valid_input_ids
 
 
@@ -60,6 +61,10 @@ class JordanDataset(Dataset):
                 assert (
                     len(input_ids) % 3 == 1
                 ), "Input IDs must be a multiple of 3 apart from the first token"
+
+            input_ids = set_instrument(input_ids, 0)
+            input_ids = set_anticipated(input_ids, False)
+            input_ids[0] = 55026  # AR token
 
             try:
                 check_valid_input_ids(input_ids)

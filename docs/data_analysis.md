@@ -4,6 +4,9 @@ Back to home: [README](../README.md)
 
 OOD detection (based on higher gaussianity, lower variance coefficient of variation, and higher eigenvalue entropy)
 
+## Note on datasets
+The Jordan dataset uses two instruments (0 and 1) and possibly starts with the AAR token while the current OOD Maestro dataset only uses instrument 0 and starts with the AR token. There is a preprocessing step that is already added to the jordan_dataset to make the instrument only 0.
+
 ## On multivariate normality tests
 1. In the MVN tests there is a hidden state that carries over multiple runs, that if not cleared will result in the different runs interfering with each other. Garbage collection has to be done explicitly after every run:
 ```

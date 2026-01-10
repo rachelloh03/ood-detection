@@ -2,6 +2,13 @@
 
 Out-of-distribution detection system for the JordanAI music generation model.
 
+## Things I did/thoughts(1/10):
+- Added some preprocessing steps to jordan dataset. The Jordan dataset uses two instruments (0 and 1) and possibly starts with the AAR token while the current OOD Maestro dataset only uses instrument 0 and starts with the AR token. There is a preprocessing step that is already added to the jordan_dataset to make the instrument only 0.
+- After this, the AUROC is more reasonable for middle layers. layer 12 -> 0.7ish
+- Made the real time detection thing. I don't have a MIDI cable so I haven't tested the whole pipeline, but I tested the software side of things.
+- The distributions of hidden layers are very un-Gaussian. Probably need to do some density estimation.
+
+
 ## Overview
 
 There are two main functionalities to this system:
