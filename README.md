@@ -18,6 +18,7 @@ Out-of-distribution detection system for the JordanAI music generation model.
 1. awesome! this makes sense to map everything to instrument 0 only.
 2. I noticed that the real time detection is only being run once after the entire prompt is generated (aka pedal is released). seems to me like that's no longer real-time because we actually want to see if the prompt is OOD before the musician finishes playing. otherwise, there isn't really a point in detecting OOD because they will just hear the "bad" generated output.
 - so I think we need to edit this to use sliding window and call ood detection multiple times (perhaps every few midi notes received) while the musician is still playing.
+- just to confirm, to run ood detection, the prompt does not need to be tokenized right? we can just directly pass the midi into that helper function for real time detection?
 - is convert.py related to the real-time stuff? what did you use it for?
 - did you arbitrarily choose 12 as the layer index?  just cuz it's like a middle layer?
 3. beause the hidden layers are un-Gaussian, does this mean we will need to change the evaluation metrics? right now, I know we give a higher score if the distribution is more gaussian-like. so instead, we will find the new distribution and then give a higher score based on whether it fits that distribution. is my understanding correct?
