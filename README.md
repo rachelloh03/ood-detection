@@ -16,10 +16,12 @@ Out-of-distribution detection system for the JordanAI music generation model.
 
 ## Rachel thoughts (1/10):
 1. awesome! this makes sense to map everything to instrument 0 only.
-2. great, I will test it out.
+2. great, I took a look at the real time detection. will run main.py to test it out/debug.
 3. beause the hidden layers are un-Gaussian, does this mean we will need to change the evaluation metrics? right now, I know we give a higher score if the distribution is more gaussian-like. so instead, we will find the new distribution and then give a higher score based on whether it fits that distribution. is my understanding correct?
 - also, visualizing the data seems like a good first step
 4. can you clarify your plan? also why is extracting layers and then running OOD detector confusing at the moment? i'm all for the plan if it'll make things less confusing, just not exactly sure what you mean.
+5. what are special, non-anticipated, and anticipated tokens?
+6. is convert.py related to the real-time stuff? what did you use it for?
 
 ## Overview
 
