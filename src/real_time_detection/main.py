@@ -27,8 +27,9 @@ def setup_ood_detector(layer_idxs):
             np.load(f"{SCRATCH_FILEPATH}/id_train_dataset/layer_{layer_idx}.npy")
         )  # (N, D)
     id_train_data = np.concatenate(id_train_data, axis=0)  # (L, N, D)
-    if len(layer_idxs) == 1:
-        id_train_data = id_train_data.squeeze(0)  # (N, D)
+    # print(id_train_data.shape)
+    # if len(layer_idxs) == 1:
+    #     id_train_data = id_train_data.squeeze(0)  # (N, D)
 
     transformations = Transformations(
         [
@@ -53,7 +54,7 @@ def main():
     ood_detector = setup_ood_detector(layer_idxs)
     model = AutoModelForCausalLM.from_pretrained(
         JORDAN_MODEL_NAME,
-        torch_dtype=torch.float32,
+        dtype=torch.float32
     ).to(DEVICE)
     model.eval()
 
