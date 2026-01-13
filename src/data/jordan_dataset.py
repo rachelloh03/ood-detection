@@ -8,7 +8,7 @@ from utils.sanity_checks import check_valid_input_ids
 
 class JordanDataset(Dataset):
     def __init__(
-        self, data_dir, split, num_samples=None, include_velocity=INCLUDE_VELOCITY
+        self, data_dir, split, name, num_samples=None, include_velocity=INCLUDE_VELOCITY
     ):
         """
         Load Jordan dataset from Arrow files and pre-process input_ids.
@@ -16,10 +16,13 @@ class JordanDataset(Dataset):
         Args:
             data_dir: Directory where dataset was saved with save_to_disk()
             split: Dataset split to load ('train', 'validation')
+            name: Name of the dataset (e.g. 'jordan_dataset', 'maestro_dataset')
             num_samples: Optional limit on number of samples to load
+            include_velocity: Whether to include velocity information
         """
         print(f"Loading {split} split from {data_dir}...")
         dataset = load_from_disk(data_dir)
+        self.name = name
 
         if split not in dataset:
             available_splits = list(dataset.keys())

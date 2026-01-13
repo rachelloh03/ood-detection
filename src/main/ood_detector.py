@@ -6,6 +6,7 @@ from collections.abc import Callable
 from typing import Literal
 from main.transformations import Transformations
 import torch
+from torch.utils.data import DataLoader
 
 
 class OODDetector:
@@ -32,12 +33,10 @@ class OODDetector:
             id_train_data
         )  # (N, embedding_dim)
 
-        assert self.embedded_id_train_data.shape[0] == id_train_data.shape[0]
-
     def evaluate(
         self,
-        id_test_data: torch.Tensor,  # (A, D)
-        ood_test_data: torch.Tensor,  # (B, D)
+        id_test_data: DataLoader | torch.Tensor,  # (A, D)
+        ood_test_data: DataLoader | torch.Tensor,  # (B, D)
         threshold: float | None = None,  # If None, it is inferred from the data.
         threshold_type: Literal["value", "percentile"] = "value",
     ):
@@ -45,8 +44,8 @@ class OODDetector:
         Evaluate the OOD detector on the ID and OOD test data.
 
         Args:
-            id_test_data: ID test data. Has shape (A, D).
-            ood_test_data: OOD test data. Has shape (B, D).
+            id_test_data: ID test data. Either a DataLoader or a tensor, has shape (A, D).
+            ood_test_data: OOD test data. Either a DataLoader or a tensor, has shape (B, D).
             threshold: Threshold for the OOD detector.
             threshold_type: Type of threshold. "value" means the threshold is a fixed value. =
             "percentile" means the threshold is the percentile of the OOD scores.
@@ -64,13 +63,15 @@ class OODDetector:
             true_positive_rate: True positive rate.
             false_positive_rate: False positive rate.
         """
-        assert (
-            id_test_data.shape[1] == ood_test_data.shape[1]
-        ), "ID and OOD test data must have the same number of dimensions"
+        if isinstance(id_test_data, DataLoader):
+            A = len(id_test_data)
+        else:
+            A = id_test_data.shape[0]
+        if isinstance(ood_test_data, DataLoader):
+            B = len(ood_test_data)
+        else:
+            B = ood_test_data.shape[0]
 
-        A, B = id_test_data.shape[0], ood_test_data.shape[0]
-        if A == 0 or B == 0:
-            raise ValueError("ID and OOD test data must have at least one sample")
         id_scores = self.score(id_test_data)  # (A,)
         ood_scores = self.score(ood_test_data)  # (B,)
 
@@ -126,13 +127,13 @@ class OODDetector:
 
     def score(
         self,
-        input_data: torch.Tensor,
+        input_data: DataLoader | torch.Tensor,
     ):
         """
         Return the OOD score for the input.
 
         Args:
-            input_data: Input data to score. Has shape (B, D).
+            input_data: Input data to score. Either a DataLoader or a tensor, has shape (B, D).
 
         Returns:
             OOD score for the input. Has shape (B,).

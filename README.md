@@ -14,17 +14,6 @@ Out-of-distribution detection system for the JordanAI music generation model.
 - when it's run for DataLoader it saves the output to a unique file name that somehow contains which dataloader it is like a cache. when it's re-run it checks if the filepath exists and doesn't run it again if it exists.
 - when it's run for tensor it just passes it through the model as usual.
 
-## Rachel thoughts (1/10):
-1. awesome! this makes sense to map everything to instrument 0 only.
-2. I noticed that the real time detection is only being run once after the entire prompt is generated (aka pedal is released). seems to me like that's no longer real-time because we actually want to see if the prompt is OOD before the musician finishes playing. otherwise, there isn't really a point in detecting OOD because they will just hear the "bad" generated output.
-- so I think we need to edit this to use sliding window and call ood detection multiple times (perhaps every few midi notes received) while the musician is still playing.
-- just to confirm, to run ood detection, the prompt does not need to be tokenized right? we can just directly pass the midi into that helper function for real time detection?
-- is convert.py related to the real-time stuff? what did you use it for?
-- did you arbitrarily choose 12 as the layer index?  just cuz it's like a middle layer?
-3. beause the hidden layers are un-Gaussian, does this mean we will need to change the evaluation metrics? right now, I know we give a higher score if the distribution is more gaussian-like. so instead, we will find the new distribution and then give a higher score based on whether it fits that distribution. is my understanding correct?
-- also, visualizing the data seems like a good first step
-4. can you clarify your plan? also why is extracting layers and then running OOD detector confusing at the moment? i'm all for the plan if it'll make things less confusing, just not exactly sure what you mean.
-5. what are special, non-anticipated, and anticipated tokens?
 
 ## Overview
 

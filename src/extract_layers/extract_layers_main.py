@@ -8,20 +8,11 @@ hidden_states[0] is the embeddings.
 hidden_states[i] is the output of the i-th transformer block.
 """
 
-import sys
-from pathlib import Path
-
-# Add src directory to path
-src_dir = Path(__file__).parent.parent
-sys.path.insert(0, str(src_dir))
-
 import os
 from typing import Callable
+from data.file_format import get_extract_layers_file_path, get_extract_layers_dir
 from data.jordan_dataset import JordanDataset
-from constants.data_constants import (
-    JORDAN_DATASET_FILEPATH,
-    SCRATCH_FILEPATH,
-)
+from constants.data_constants import JORDAN_DATASET_FILEPATH
 from constants.model_constants import JORDAN_MODEL_NAME
 import torch
 import numpy as np
@@ -37,8 +28,31 @@ NUM_SAMPLES_LIMIT = 10000
 BATCH_SIZE = 8
 
 
-@torch.no_grad()
 def extract_representations(
+    model: torch.nn.Module,
+    data: DataLoader | torch.Tensor,
+    pooling_function: Callable[[torch.Tensor], torch.Tensor],
+    layers: list[int],
+) -> dict[int, list[torch.Tensor]]:
+    """
+    Extract pooled representations from specified layers.
+    """
+    if isinstance(data, DataLoader):
+        return extract_representations_from_dataset(
+            model, data, pooling_function, None, layers
+        )
+    elif isinstance(data, torch.Tensor):
+        return extract_representations_from_tensor(
+            model, data, pooling_function, layers
+        )
+    else:
+        raise ValueError(
+            f"Invalid data type: {type(data)}, expected DataLoader or torch.Tensor"
+        )
+
+
+@torch.no_grad()
+def extract_representations_from_dataset(
     model: torch.nn.Module,
     dataloader: DataLoader,
     pooling_function: Callable[[torch.Tensor], torch.Tensor],
@@ -54,15 +68,36 @@ def extract_representations(
         pooling_function: The function to pool the representations. Currently supported option:
         - "mean_std": Pool using mean and std across sequence dimension, (B, L, D) -> (B, 2*D).
         Not sure if will lose too much info.
-        - (TODO: add other pooling functions)
         save_dir: The directory to save the representations.
         layers: The layers to extract representations from.
     """
-    os.makedirs(save_dir, exist_ok=True)
-
+    dataset_name = dataloader.dataset.name
+    print(f"Extracting representations from {dataset_name} dataset")
     model.eval()
     print(model)
     buffers = {layer_idx: [] for layer_idx in layers}
+
+    save_dir = get_extract_layers_dir(dataset_name, pooling_function.__name__)
+    if all(
+        os.path.exists(
+            get_extract_layers_file_path(
+                dataset_name, pooling_function.__name__, layer_idx
+            )
+        )
+        for layer_idx in layers
+    ):
+        print(
+            f"Representations already exist for {dataset_name} dataset with {pooling_function.__name__}"
+            + f"pooling function for layers: {layers}. Loading from {save_dir}."
+        )
+        return {
+            layer_idx: np.load(
+                get_extract_layers_file_path(
+                    dataset_name, pooling_function.__name__, layer_idx
+                )
+            )
+            for layer_idx in layers
+        }
 
     for batch in tqdm(dataloader, desc="Extracting hidden states"):
         batch = {
@@ -87,17 +122,59 @@ def extract_representations(
         X = torch.cat(buffers[layer_idx], dim=0).numpy()  # (dataset size, 2*D)
         buffers[layer_idx] = X  # (dataset size, 2*D)
         if save_dir is not None:
-            np.save(os.path.join(save_dir, f"layer_{layer_idx}.npy"), X)
+            np.save(
+                get_extract_layers_file_path(
+                    dataset_name, pooling_function.__name__, layer_idx
+                ),
+                X,
+            )
             print(f"Saved layer {layer_idx}: {X.shape}")
 
     return buffers  # {layer_idx: (dataset size, 2*D)}
 
 
-def main():
+@torch.no_grad()
+def extract_representations_from_tensor(
+    model: torch.nn.Module,
+    tensor: torch.Tensor,
+    pooling_function: Callable[[torch.Tensor], torch.Tensor],
+    layers: list[int],
+) -> dict[int, list[torch.Tensor]]:
+    """
+    Extract pooled representations from specified layers.
+
+    Args:
+        model: The model to extract representations from.
+        tensor: The tensor to extract representations from. (B, L)
+        pooling_function: The function to pool the representations. Currently supported option:
+        - "mean_std": Pool using mean and std across sequence dimension, (B, L, D) -> (B, 2*D).
+        Not sure if will lose too much info.
+        layers: The layers to extract representations from.
+    """
+    model.eval()
+    buffers = {layer_idx: [] for layer_idx in layers}
+
+    outputs = model(
+        tensor,
+        output_hidden_states=True,
+        use_cache=False,
+    )
+
+    hidden_states = outputs.hidden_states  # (n_layers + 1)-tuple of (B, L, D)
+
+    for layer_idx in layers:
+        h = hidden_states[layer_idx]  # (B, L, D)
+        pooled = pooling_function(h)
+        buffers[layer_idx] = pooled.cpu()
+
+    return buffers  # {layer_idx: (B, 2*D)}
+
+
+def example_extract_representations():
     print("Loading model...")
     model = AutoModelForCausalLM.from_pretrained(
         JORDAN_MODEL_NAME,
-        dtype=torch.float32
+        torch_dtype=torch.float32,
     ).to(DEVICE)
 
     n_layers = (
@@ -112,7 +189,10 @@ def main():
     print("Loading dataset...")
 
     dataset = JordanDataset(
-        data_dir=JORDAN_DATASET_FILEPATH, split="train", num_samples=NUM_SAMPLES_LIMIT
+        data_dir=JORDAN_DATASET_FILEPATH,
+        split="train",
+        name="id_train_dataset",
+        num_samples=NUM_SAMPLES_LIMIT,
     )
 
     dataloader = DataLoader(
@@ -123,17 +203,13 @@ def main():
     )
     pooling_function = pool_mean_std
 
-    save_dir = os.path.join(SCRATCH_FILEPATH, pooling_function.__name__)
     extract_representations(
-        model=model,
-        dataloader=dataloader,
-        pooling_function=pooling_function,
-        save_dir=save_dir,
-        layers=layers_to_extract,
+        model,
+        dataloader,
+        pooling_function,
+        layers_to_extract,
     )
-
-    print(f"All representations saved to {save_dir}")
 
 
 if __name__ == "__main__":
-    main()
+    example_extract_representations()

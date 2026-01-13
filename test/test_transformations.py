@@ -2,7 +2,7 @@ import torch
 import pytest
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
-from main.transformations import Transformations
+from src.main.transformations import Transformations
 
 
 def test_transformations():

@@ -13,7 +13,7 @@ if USER is None:
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 # File paths
-SCRATCH_FILEPATH = "representations"
+SCRATCH_FILEPATH = "representations/"
 OOD_DATASET_FILEPATH = None  # Default, may be set per user
 MAESTRO_DATASET_FILEPATH = None  # Default, may be set per user
 
@@ -22,12 +22,12 @@ if USER == "joeltjy1":
     MAESTRO_DATASET_FILEPATH = "/scratch/joel/maestrodata"
     SCRATCH_FILEPATH = "/scratch/joel/representations/"
 elif USER == "rachelloh":
-    JORDAN_DATASET_FILEPATH = "/Users/rachelloh/Desktop/ood-detection/jordan_dataset"
-    SCRATCH_FILEPATH = "/Users/rachelloh/Desktop/ood-detection/representations"
+    JORDAN_DATASET_FILEPATH = "./jordan_dataset"
+    SCRATCH_FILEPATH = "./representations/"
 elif USER == "rjloh":
     JORDAN_DATASET_FILEPATH = "/scratch/rjloh/jordan_dataset"
     OOD_DATASET_FILEPATH = "/scratch/rjloh/ood_dataset"
-    SCRATCH_FILEPATH = "/scratch/rjloh/representations"
+    SCRATCH_FILEPATH = "/scratch/rjloh/representations/"
 else:
     raise ValueError(f"USER {USER} not supported")
 

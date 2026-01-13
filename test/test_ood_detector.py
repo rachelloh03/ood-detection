@@ -1,11 +1,11 @@
 import pytest
 
-from main.ood_detector import OODDetector
+from src.main.ood_detector import OODDetector
 import torch
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
-from main.transformations import Transformations
-from main.scoring_functions import mahalanobis_distance
+from src.main.transformations import Transformations
+from src.main.scoring_functions import mahalanobis_distance
 
 
 def _create_detector():

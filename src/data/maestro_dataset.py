@@ -7,7 +7,8 @@ from torch.utils.data import Dataset
 
 
 class MaestroDataset(Dataset):
-    def __init__(self, data_dir, split, num_samples=None):
+    def __init__(self, data_dir, split, name, num_samples=None):
+        self.name = name
         data_path = os.path.join(data_dir, f"{split}.txt")
         self.data = []
         print("path", data_path)

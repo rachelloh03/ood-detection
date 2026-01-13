@@ -11,7 +11,7 @@ This will:
 - Load your model from HuggingFace
 - Process all training data
 - Extract pooled representations (mean + std) from each layer
-- Save to `representations/layer_X.npy`
+- Save to `representations/.../layer_X.npy` (see constants/file_format)
 
 Currently, the pooling is done along the sequence dimension: given the hidden layer activations of shape 
 (N=number of samples, L=sequence length, D=hidden dim), the pooled result is (N, 2D) = (N, D) for mean + (N, D) for std.

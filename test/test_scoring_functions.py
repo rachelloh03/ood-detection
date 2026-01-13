@@ -1,4 +1,4 @@
-from main.scoring_functions import mahalanobis_distance
+from src.main.scoring_functions import mahalanobis_distance
 import torch
 
 
