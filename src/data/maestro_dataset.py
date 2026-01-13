@@ -11,7 +11,7 @@ class MaestroDataset(Dataset):
         self.name = name
         data_path = os.path.join(data_dir, f"{split}.txt")
         self.data = []
-        print("path", data_path)
+
         with open(data_path, "r") as f:
             for line in f:
                 line = line.strip()

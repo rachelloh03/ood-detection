@@ -1,5 +1,5 @@
 import os
-from src.data.file_format import get_extract_layers_file_path
+from src.constants.file_format import get_extract_layers_file_path
 from src.extract_layers.extract_layers_main import extract_representations
 from src.constants.model_constants import JORDAN_MODEL_NAME
 from src.constants.data_constants import (

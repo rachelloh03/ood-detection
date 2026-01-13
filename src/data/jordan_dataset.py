@@ -8,7 +8,13 @@ from utils.sanity_checks import check_valid_input_ids
 
 class JordanDataset(Dataset):
     def __init__(
-        self, data_dir, split, name, num_samples=None, include_velocity=INCLUDE_VELOCITY
+        self,
+        data_dir,
+        split,
+        name,
+        num_samples=None,
+        include_velocity=INCLUDE_VELOCITY,
+        debug=False,
     ):
         """
         Load Jordan dataset from Arrow files and pre-process input_ids.
@@ -19,8 +25,14 @@ class JordanDataset(Dataset):
             name: Name of the dataset (e.g. 'jordan_dataset', 'maestro_dataset')
             num_samples: Optional limit on number of samples to load
             include_velocity: Whether to include velocity information
+            debug: Whether to print debug information
         """
-        print(f"Loading {split} split from {data_dir}...")
+        if debug:
+            print(f"Loading {split} split from {data_dir}...")
+            print(f"Name: {name}")
+            print(f"Num samples: {num_samples}")
+            print(f"Include velocity: {include_velocity}")
+
         dataset = load_from_disk(data_dir)
         self.name = name
 
@@ -89,11 +101,13 @@ class JordanDataset(Dataset):
 
         self.dataset = processed_data
 
-        print(f"Loaded {len(self.dataset)} samples from {split} split")
-        if len(self.dataset) > 0:
+        if debug:
+            print(f"Loaded {len(self.dataset)} samples from {split} split")
+        if len(self.dataset) > 0 and debug:
             print(f"Sample keys: {list(self.dataset[0].keys())}")
 
-        print(f"Skipped {bad_samples} bad samples")
+        if debug:
+            print(f"Skipped {bad_samples} bad samples")
 
     def __len__(self):
         return len(self.dataset)

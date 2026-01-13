@@ -10,7 +10,7 @@ hidden_states[i] is the output of the i-th transformer block.
 
 import os
 from typing import Callable
-from data.file_format import get_extract_layers_file_path, get_extract_layers_dir
+from constants.file_format import get_extract_layers_file_path, get_extract_layers_dir
 from data.jordan_dataset import JordanDataset
 from constants.data_constants import JORDAN_DATASET_FILEPATH
 from constants.model_constants import JORDAN_MODEL_NAME
@@ -58,6 +58,7 @@ def extract_representations_from_dataset(
     pooling_function: Callable[[torch.Tensor], torch.Tensor],
     save_dir: str,
     layers: list[int],
+    debug: bool = False,
 ) -> dict[int, list[torch.Tensor]]:
     """
     Extract pooled representations from specified layers.
@@ -72,9 +73,12 @@ def extract_representations_from_dataset(
         layers: The layers to extract representations from.
     """
     dataset_name = dataloader.dataset.name
-    print(f"Extracting representations from {dataset_name} dataset")
     model.eval()
-    print(model)
+
+    if debug:
+        print(f"Extracting representations from {dataset_name} dataset")
+        print(model)
+
     buffers = {layer_idx: [] for layer_idx in layers}
 
     save_dir = get_extract_layers_dir(dataset_name, pooling_function.__name__)
@@ -86,10 +90,11 @@ def extract_representations_from_dataset(
         )
         for layer_idx in layers
     ):
-        print(
-            f"Representations already exist for {dataset_name} dataset with {pooling_function.__name__}"
-            + f"pooling function for layers: {layers}. Loading from {save_dir}."
-        )
+        if debug:
+            print(
+                f"Representations already exist for {dataset_name} dataset with {pooling_function.__name__}"
+                f"pooling function for layers: {layers}. Loading from {save_dir}."
+            )
         return {
             layer_idx: np.load(
                 get_extract_layers_file_path(
@@ -111,7 +116,6 @@ def extract_representations_from_dataset(
         )
 
         hidden_states = outputs.hidden_states  # (n_layers + 1)-tuple of (B, L, D)
-        print(len(hidden_states), hidden_states[0].shape)
 
         for layer_idx in layers:
             h = hidden_states[layer_idx]  # (B, L, D)
@@ -128,7 +132,8 @@ def extract_representations_from_dataset(
                 ),
                 X,
             )
-            print(f"Saved layer {layer_idx}: {X.shape}")
+            if debug:
+                print(f"Saved layer {layer_idx}: {X.shape}")
 
     return buffers  # {layer_idx: (dataset size, 2*D)}
 

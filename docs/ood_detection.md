@@ -31,17 +31,15 @@ $h()$ can usually be broken down into multiple functions (an example is below.) 
 
 **Example:** A Transformations object ```transform_obj``` can represent the following pipeline:
 ```
-[lambda x: x+M, PCA(n_components=20), StandardScaler()]
+[extract_layers(...), PCA(n_components=20), StandardScaler()]
 ```
-where M is a tensor.
+where ```extract_layers(...)``` is a function that obtains the $l$-th hidden layers from input data.
 
 This can be fit to the input data via ```transform_obj.fit(input_data)```.
 
 When this object is called on new data ```transform_obj(new_data)```, it passes the new data through the pipeline using the same parameters learnt from the input data.
 
 The code for this class is in ```main/transformations.py```.
-
-**Important** Extracting the $l$-th hidden layer is never considered a transformation, ```extract_layers``` or passing through the model has to be done. This is because the extraction process takes up memory and so is precomputed on ID data.
 
 ### Scoring Function
 Refer to Step 3 in the General Framework. Given the embeddings of new inputs $h(x')$, we need to compare them against the distribution of $h(x)$, the embeddings of ID data.
