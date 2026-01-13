@@ -1,4 +1,12 @@
 """Real-time OOD detection using MIDI input."""
+import sys
+from pathlib import Path
+
+# Add src to path
+# comment out these next two lines out if running on hai-res
+# added for local machine purposes
+src_dir = Path(__file__).parent.parent
+sys.path.insert(0, str(src_dir))
 
 from extract_layers.pooling_functions import pool_mean_std
 from real_time_detection.helpers import extract_layer
@@ -13,8 +21,9 @@ import mido
 import time
 from transformers import AutoModelForCausalLM
 from constants.model_constants import JORDAN_MODEL_NAME, DEVICE
-
+from constants.real_time_constants import SLIDING_WINDOW_LEN
 import torch
+from collections import deque
 
 
 def setup_ood_detector(layer_idxs):
@@ -49,7 +58,7 @@ def setup_ood_detector(layer_idxs):
 def main():
     layer_idxs = [12]
     pedal_down = False
-    buffer = []
+    buffer = deque(maxlen=SLIDING_WINDOW_LEN)
     pooling_function = pool_mean_std
     ood_detector = setup_ood_detector(layer_idxs)
     model = AutoModelForCausalLM.from_pretrained(
@@ -62,27 +71,21 @@ def main():
     for port in mido.get_input_names():
         print(port)
 
-    INPUT_NAME = "Insert input name for the piano"
+    INPUT_NAME = "LUMI Keys BLOCK"
 
     with mido.open_input(INPUT_NAME) as inport:
         for msg in inport:
-            if msg.type == "control_change" and msg.control == 64:
-                if msg.value >= 64 and not pedal_down:
+            # print(msg)
+            if msg.note == 48: # let left-most note be the "pedal" for now
+                if not pedal_down:
                     pedal_down = True
-                    buffer = []
                     print("Pedal down, listening...")
-
-                elif msg.value < 64 and pedal_down:
+                else:
                     pedal_down = False
-                    print("Pedal up, scoring...")
-                    extracted_layer = extract_layer(
-                        buffer, pooling_function, model, layer_idxs
-                    )  # (D,)
-                    ood_score = ood_detector.score(extracted_layer.unsqueeze(0))  # (1,)
-                    print(f"OOD score: {ood_score.item()}")
-                    buffer = []
+                    print("Pedal up, resetting buffer...")
+                    buffer.clear()  # Clear buffer on pedal up
 
-            # Notes (buffer only if pedal is down)
+            # Notes (check OOD if pedal is down)
             elif pedal_down and msg.type in ("note_on", "note_off"):
                 # Treat note_on velocity=0 as note_off
                 if msg.type == "note_on" and msg.velocity == 0:
@@ -90,6 +93,15 @@ def main():
 
                 buffer.append((time.perf_counter(), msg))
 
+                # Check OOD with current buffer
+                if len(buffer) == SLIDING_WINDOW_LEN:  # Only if we have enough msgs to fill window
+                    with torch.no_grad():
+                        extracted_layer = extract_layer(
+                            list(buffer), pooling_function, model, layer_idxs
+                        )  # (D,)
+                    ood_score = ood_detector.score(extracted_layer.unsqueeze(0))  # (1,)
+                    print(f"OOD score (buffer size {len(buffer)}): {ood_score.item():.4f}")
 
+                
 if __name__ == "__main__":
     main()

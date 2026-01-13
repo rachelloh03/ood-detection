@@ -8,6 +8,13 @@ hidden_states[0] is the embeddings.
 hidden_states[i] is the output of the i-th transformer block.
 """
 
+import sys
+from pathlib import Path
+
+# Add src directory to path
+src_dir = Path(__file__).parent.parent
+sys.path.insert(0, str(src_dir))
+
 import os
 from typing import Callable
 from data.jordan_dataset import JordanDataset
@@ -90,7 +97,7 @@ def main():
     print("Loading model...")
     model = AutoModelForCausalLM.from_pretrained(
         JORDAN_MODEL_NAME,
-        torch_dtype=torch.float32,
+        dtype=torch.float32
     ).to(DEVICE)
 
     n_layers = (
