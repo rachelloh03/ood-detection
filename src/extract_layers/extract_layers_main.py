@@ -179,7 +179,7 @@ def example_extract_representations():
     print("Loading model...")
     model = AutoModelForCausalLM.from_pretrained(
         JORDAN_MODEL_NAME,
-        torch_dtype=torch.float32,
+        dtype=torch.float32,
     ).to(DEVICE)
 
     n_layers = (
