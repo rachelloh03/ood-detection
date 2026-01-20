@@ -76,3 +76,10 @@ quit()
 
 **Note**: Without R/MVN, the code will fall back to univariate Shapiro-Wilk tests, which work but are less rigorous for multivariate data.
 
+## 5. MIDI -> WAV conversion
+```conda install -c conda-forge fluidsynth```
+
+A soundfont has to be installed. I have one in ```/data/scratch/joel/soundfont.sf2``` which maybe I can copy over to yours if you need?
+
+Specify the soundfont directory in ```constants/data_constants.py```
+

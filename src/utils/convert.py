@@ -3,12 +3,13 @@ Utilities for converting to and from Midi data and encoded/tokenized data.
 """
 
 from collections import defaultdict
-
+from typing import List
 import mido
+import contextlib
 
+import os
 
 from constants.token_constants import (
-    REST,
     ATIME_OFFSET,
     MAX_DUR,
     MAX_INSTR,
@@ -24,34 +25,11 @@ from constants.token_constants import (
     MAX_VELOCITY,
 )
 
+from constants.data_constants import SOUNDFONT_FILEPATH
+from utils.ops import unpad
+from midi2audio import FluidSynth
+
 DRUMS_CHANNEL = 9
-
-
-def unpad(tokens, include_velocity=INCLUDE_VELOCITY):
-    new_tokens = []
-
-    if include_velocity:
-
-        for time, dur, note, vel in zip(
-            tokens[0::4], tokens[1::4], tokens[2::4], tokens[3::4], strict=True
-        ):
-            if note == REST:
-                continue
-
-            new_tokens.extend([time, dur, note, vel])
-
-        return new_tokens
-    else:
-
-        for time, dur, note in zip(
-            tokens[0::3], tokens[1::3], tokens[2::3], strict=True
-        ):
-            if note == REST:
-                continue
-
-            new_tokens.extend([time, dur, note])
-
-        return new_tokens
 
 
 def midi_to_compound(midifile, debug=False):
@@ -405,3 +383,52 @@ def midi_to_events(midifile, debug=False, include_velocity=False):
     return compound_to_events(
         midi_to_compound(midifile, debug=debug), include_velocity=include_velocity
     )
+
+
+def midi_to_wav(
+    midi_filepath: str, export_filepath: str, soundfont_filepath=SOUNDFONT_FILEPATH
+):
+    """
+    Convert a MIDI file to a WAV file.
+
+    Args:
+        midi_filepath: The MIDI file to convert.
+        export_filepath: The path to export the WAV file to.
+        soundfont_filepath: The path to the soundfont file.
+
+    Returns:
+        The WAV file.
+    """
+    # Suppress FluidSynth audio initialization warnings (harmless for file conversion)
+    with open(os.devnull, "w") as devnull:
+        with contextlib.redirect_stderr(devnull):
+            fs = FluidSynth(soundfont_filepath, sample_rate=44100)
+            wav = fs.midi_to_audio(midi_filepath, export_filepath)
+    return wav
+
+
+def sequence_to_wav(
+    sequence: List[int],
+    export_filepath: str,
+    soundfont_filepath=SOUNDFONT_FILEPATH,
+    include_velocity=INCLUDE_VELOCITY,
+):
+    """
+    Convert a sequence to a WAV file.
+
+    Args:
+        sequence: The sequence to convert.
+        export_filepath: The path to export the WAV file to.
+        soundfont_filepath: The path to the soundfont file.
+        include_velocity: Whether to include velocity in the sequence.
+
+    Returns:
+        The WAV file.
+    """
+    mid = events_to_midi(sequence, include_velocity=include_velocity)
+    mid.save(f"{export_filepath}.mid")
+    wav = midi_to_wav(
+        f"{export_filepath}.mid", export_filepath, soundfont_filepath=soundfont_filepath
+    )
+    os.remove(f"{export_filepath}.mid")
+    return wav

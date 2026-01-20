@@ -21,6 +21,7 @@ if USER == "joeltjy1":
     JORDAN_DATASET_FILEPATH = "/scratch/joel/jordan_dataset"
     MAESTRO_DATASET_FILEPATH = "/scratch/joel/maestrodata"
     SCRATCH_FILEPATH = "/scratch/joel/representations/"
+    SOUNDFONT_FILEPATH = "/data/scratch/joel/soundfont.sf2"
 elif USER == "rachelloh":
     JORDAN_DATASET_FILEPATH = "/Users/rachelloh/Desktop/ood-detection/jordan_dataset"
     SCRATCH_FILEPATH = "/Users/rachelloh/Desktop/ood-detection/representations"

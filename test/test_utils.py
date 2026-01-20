@@ -1,6 +1,8 @@
 """Tests for utils."""
 
-from data.jordan_dataset import MAX_VELOCITY
+import os
+from constants.data_constants import JORDAN_DATASET_FILEPATH
+from data.jordan_dataset import MAX_VELOCITY, JordanDataset
 import pytest
 from src.constants.token_constants import ATIME_OFFSET, MAX_PITCH
 from src.utils.process_tokens import (
@@ -10,6 +12,7 @@ from src.utils.process_tokens import (
     set_anticipated,
     set_instrument,
 )
+from src.utils.convert import sequence_to_wav
 
 
 def test_readable_tokens_no_vel():
@@ -258,8 +261,25 @@ def test_filter_instrument():
     ), f"Expected {expected_tokens_1} but got {actual_tokens_1}"
 
 
+def test_midi_to_wav():
+    """Test the midi_to_wav function."""
+    dataset = JordanDataset(
+        JORDAN_DATASET_FILEPATH,
+        split="train",
+        name="testcase_jordan_dataset",
+        num_samples=5,
+    )
+    sequence = dataset[0]["input_ids"].tolist()
+    print("sequence", sequence[-10:])
+    export_filepath = "test/test_sequence_to_wav.wav"
+    sequence_to_wav(sequence, export_filepath)
+    assert os.path.exists(export_filepath)
+    assert os.path.getsize(export_filepath) > 0
+
+
 if __name__ == "__main__":
     test_readable_tokens_no_vel()
     test_set_instrument()
     test_set_anticipated()
     test_filter_instrument()
+    test_midi_to_wav()

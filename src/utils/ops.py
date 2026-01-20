@@ -15,9 +15,12 @@ from constants.token_constants import (
     NOTE_OFFSET,
     REST,
     SEP,
+    AR,
+    AAR,
     TIME_OFFSET,
     VELOCITY_OFFSET,
     TIME_RESOLUTION,
+    INCLUDE_VELOCITY,
 )
 
 from constants.model_constants import DELTA
@@ -295,9 +298,10 @@ def pad(tokens, end_time=None, density=TIME_RESOLUTION, include_velocity=False):
         return new_tokens
 
 
-# changed
-def unpad(tokens, include_velocity=False):
+def unpad(tokens, include_velocity=INCLUDE_VELOCITY):
     new_tokens = []
+    if tokens[0] in [SEP, REST, AR, AAR]:
+        tokens = tokens[1:]
 
     if include_velocity:
 
