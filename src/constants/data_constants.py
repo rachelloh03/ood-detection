@@ -25,10 +25,12 @@ if USER == "joeltjy1":
 elif USER == "rachelloh":
     JORDAN_DATASET_FILEPATH = "/Users/rachelloh/Desktop/ood-detection/jordan_dataset"
     SCRATCH_FILEPATH = "/Users/rachelloh/Desktop/ood-detection/representations"
+    SOUNDFONT_FILEPATH = "/Users/rachelloh/Desktop/ood-detection/soundfont.sf2"
 elif USER == "rjloh":
     JORDAN_DATASET_FILEPATH = "/scratch/rjloh/jordan_dataset"
     OOD_DATASET_FILEPATH = "/scratch/rjloh/ood_dataset"
     SCRATCH_FILEPATH = "/scratch/rjloh/representations"
+    SOUNDFONT_FILEPATH = "/data/scratch/rjloh/soundfont.sf2"
 else:
     raise ValueError(f"USER {USER} not supported")
 
