@@ -20,6 +20,8 @@ from constants.token_constants import (
     VELOCITY_OFFSET,
     SEP,
     INCLUDE_VELOCITY,
+    DEFAULT_VELOCITY,
+    MAX_VELOCITY,
 )
 
 DRUMS_CHANNEL = 9
@@ -80,7 +82,7 @@ def midi_to_compound(midifile, debug=False):
             instruments[message.channel] = message.program
         elif message.type in ["note_on", "note_off"]:
             instr = (
-                128
+                MAX_INSTR - 1
                 if message.channel == DRUMS_CHANNEL
                 else instruments[message.channel]
             )
@@ -191,7 +193,7 @@ def compound_to_midi(tokens, debug=False):
                     previous_time = 0
                     track = mido.MidiTrack()
                     mid.tracks.append(track)
-                    if instrument == 128:  # drums always go on channel 9
+                    if instrument == MAX_INSTR - 1:  # drums always go on channel 9
                         idx = 9
                         message = mido.Message("program_change", channel=idx, program=0)
                     else:
@@ -370,9 +372,9 @@ def events_to_compound(tokens, debug=False, include_velocity=False):
 
     if include_velocity:
         # Constrain velocity values to valid MIDI range (0-127)
-        out[4::5] = [min(max(tok, 0), 127) for tok in tokens[3::4]]
+        out[4::5] = [min(max(tok, 0), MAX_VELOCITY - 1) for tok in tokens[3::4]]
     else:
-        out[4::5] = (len(tokens) // 3) * [72]  # default velocity
+        out[4::5] = (len(tokens) // 3) * [DEFAULT_VELOCITY]  # default velocity
 
     assert max(out[1::5]) < MAX_DUR
     assert max(out[2::5]) < MAX_PITCH

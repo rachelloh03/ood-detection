@@ -1,7 +1,12 @@
 from torch.utils.data import Dataset
 from datasets import load_from_disk
 import torch
-from constants.token_constants import INCLUDE_VELOCITY, VELOCITY_OFFSET
+from constants.token_constants import (
+    INCLUDE_VELOCITY,
+    VELOCITY_OFFSET,
+    MAX_VELOCITY,
+    AR,
+)
 from utils.process_tokens import set_anticipated, set_instrument
 from utils.sanity_checks import check_valid_input_ids
 
@@ -27,6 +32,7 @@ class JordanDataset(Dataset):
             include_velocity: Whether to include velocity information
             debug: Whether to print debug information
         """
+        tokens_per_event = 4 if include_velocity else 3
         if debug:
             print(f"Loading {split} split from {data_dir}...")
             print(f"Name: {name}")
@@ -56,8 +62,8 @@ class JordanDataset(Dataset):
             if "text" in sample:
                 input_ids = [int(x) for x in sample["text"].split()]
                 for i in range(0, len(input_ids), 4):
-                    if input_ids[i] == 127:
-                        input_ids[i] = 127 + VELOCITY_OFFSET
+                    if input_ids[i] == MAX_VELOCITY - 1:
+                        input_ids[i] = MAX_VELOCITY + VELOCITY_OFFSET - 1
                         bad_samples += 1
             elif "input_ids" in sample:
                 input_ids = sample["input_ids"]
@@ -67,21 +73,17 @@ class JordanDataset(Dataset):
                     f"Found keys: {list(sample.keys())}"
                 )
 
-            assert (
-                len(input_ids) % 4 == 1
-            ), "Input IDs must be a multiple of 4 apart from the first token"
-
             if not include_velocity:
                 input_ids = [
                     x for i, x in enumerate(input_ids) if (i % 4 != 0 or i == 0)
                 ]
-                assert (
-                    len(input_ids) % 3 == 1
-                ), "Input IDs must be a multiple of 3 apart from the first token"
+            assert (
+                len(input_ids) % tokens_per_event == 1
+            ), f"Input IDs must be a multiple of {tokens_per_event} apart from the first token"
 
             input_ids = set_instrument(input_ids, 0)
             input_ids = set_anticipated(input_ids, False)
-            input_ids[0] = 55026  # AR token
+            input_ids[0] = AR
 
             try:
                 check_valid_input_ids(input_ids)

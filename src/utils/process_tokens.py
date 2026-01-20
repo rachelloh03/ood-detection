@@ -10,6 +10,8 @@ from constants.token_constants import (
     AR,
     AAR,
     TIME_OFFSET,
+    MAX_INSTR,
+    MAX_PITCH,
     DUR_OFFSET,
     NOTE_OFFSET,
     INCLUDE_VELOCITY,
@@ -17,6 +19,7 @@ from constants.token_constants import (
     AVELOCITY_OFFSET,
     VOCAB_SIZE,
     MAX_VELOCITY,
+    TIME_RESOLUTION,
 )
 
 
@@ -29,10 +32,16 @@ def set_instrument(
     """
 
     def set_instrument_for_token(token: int) -> int:
-        if NOTE_OFFSET <= token < NOTE_OFFSET + 129 * 128:
-            return instrument * 128 + (token - NOTE_OFFSET) % 128 + NOTE_OFFSET
-        if ANOTE_OFFSET <= token < ANOTE_OFFSET + 129 * 128:
-            return instrument * 128 + (token - ANOTE_OFFSET) % 128 + ANOTE_OFFSET
+        if NOTE_OFFSET <= token < NOTE_OFFSET + MAX_INSTR * MAX_PITCH:
+            return (
+                instrument * MAX_PITCH + (token - NOTE_OFFSET) % MAX_PITCH + NOTE_OFFSET
+            )
+        if ANOTE_OFFSET <= token < ANOTE_OFFSET + MAX_INSTR * MAX_PITCH:
+            return (
+                instrument * MAX_PITCH
+                + (token - ANOTE_OFFSET) % MAX_PITCH
+                + ANOTE_OFFSET
+            )
         return token
 
     return [set_instrument_for_token(token) for token in tokens]
@@ -60,11 +69,10 @@ def set_anticipated(
     return [set_anticipated_for_token(token, anticipated) for token in tokens]
 
 
-def get_readable_events(tokens, include_velocity=INCLUDE_VELOCITY):
+def get_readable_events(tokens, include_velocity: bool = INCLUDE_VELOCITY):
     """Convert tokens to readable events."""
-    tokens_per_event = 4 if include_velocity else 3
-
     output = []
+    tokens_per_event = 4 if include_velocity else 3
     # first token
     if tokens[0] == AR:
         output.append({"special_token": "AR"})
@@ -76,7 +84,7 @@ def get_readable_events(tokens, include_velocity=INCLUDE_VELOCITY):
         token = tokens[i]
 
         anticipated = ATIME_OFFSET <= token < ADUR_OFFSET or (
-            AVELOCITY_OFFSET <= token < AVELOCITY_OFFSET + 256
+            AVELOCITY_OFFSET <= token < AVELOCITY_OFFSET + 2 * MAX_VELOCITY
         )
 
         event_tokens = tokens[i : i + tokens_per_event]
@@ -94,7 +102,7 @@ def get_readable_events(tokens, include_velocity=INCLUDE_VELOCITY):
                 idx % tokens_per_event,
                 t,
                 anticipated,
-                include_velocity=True,
+                include_velocity=include_velocity,
             )
         event_repr["anticipated"] = anticipated
         output.append(event_repr)
@@ -114,16 +122,16 @@ def token_to_event(
     velocity_offset = VELOCITY_OFFSET if not anticipated else AVELOCITY_OFFSET
 
     if idx % tokens_per_event == 0:
-        event_repr["onset"] = (token - time_offset) * 0.01
+        event_repr["onset"] = (token - time_offset) / TIME_RESOLUTION
     elif idx % tokens_per_event == 1:
-        event_repr["duration"] = (token - dur_offset) * 0.01
+        event_repr["duration"] = (token - dur_offset) / TIME_RESOLUTION
     elif idx % tokens_per_event == 2:
         if token == REST:
             event_repr["special_token"] = "REST"
             return event_repr
         val = token - note_offset
-        instrument = val // 128
-        pitch = val % 128
+        instrument = val // MAX_PITCH
+        pitch = val % MAX_PITCH
         event_repr["instrument"] = instrument
         event_repr["pitch"] = pitch_to_note(pitch)
     elif idx % tokens_per_event == 3:

@@ -1,7 +1,8 @@
 """Tests for utils."""
 
+from data.jordan_dataset import MAX_VELOCITY
 import pytest
-from src.constants.token_constants import ATIME_OFFSET
+from src.constants.token_constants import ATIME_OFFSET, MAX_PITCH
 from src.utils.process_tokens import (
     pitch_to_note,
     get_readable_events,
@@ -91,7 +92,7 @@ def test_readable_tokens_no_vel():
         50 + ATIME_OFFSET,
         10048 + ATIME_OFFSET,
         11062 + ATIME_OFFSET,
-        55030 + 128,
+        55030 + MAX_VELOCITY,
     ]
     readable_repr = get_readable_events(tokens, include_velocity=True)
     assert readable_repr[0]["special_token"] == "AR"
@@ -119,10 +120,10 @@ def test_set_instrument():
         55025,
         0,
         10048,
-        11060 + 3 * 128,
+        11060 + 3 * MAX_PITCH,
         50,
         10048,
-        11060 + 4 * 128,
+        11060 + 4 * MAX_PITCH,
         100 + ATIME_OFFSET,
         10048 + ATIME_OFFSET,
         11062 + ATIME_OFFSET,
@@ -134,13 +135,13 @@ def test_set_instrument():
         55025,
         0,
         10048,
-        11060 + 5 * 128,
+        11060 + 5 * MAX_PITCH,
         50,
         10048,
-        11060 + 5 * 128,
+        11060 + 5 * MAX_PITCH,
         100 + ATIME_OFFSET,
         10048 + ATIME_OFFSET,
-        11062 + ATIME_OFFSET + 5 * 128,
+        11062 + ATIME_OFFSET + 5 * MAX_PITCH,
     ]
     assert (
         set_instrument(tokens, 5) == expected_tokens
