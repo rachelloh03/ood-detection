@@ -2,8 +2,7 @@ import os
 
 from torch.utils.data import Dataset
 
-# TODO: upload MaestroDataset
-# This will be for evaluation purposes
+from constants.token_constants import INCLUDE_VELOCITY
 
 
 class MaestroDataset(Dataset):
@@ -17,6 +16,10 @@ class MaestroDataset(Dataset):
                 line = line.strip()
                 if line:
                     tokens = [int(x) for x in line.split()]
+                    if not INCLUDE_VELOCITY:
+                        tokens = [
+                            x for i, x in enumerate(tokens) if (i % 4 != 0 or i == 0)
+                        ]
                     if tokens:
                         self.data.append(tokens)
         if num_samples is not None:

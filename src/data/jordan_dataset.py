@@ -1,7 +1,7 @@
 from torch.utils.data import Dataset
 from datasets import load_from_disk
 import torch
-from constants.token_constants import INCLUDE_VELOCITY
+from constants.token_constants import INCLUDE_VELOCITY, VELOCITY_OFFSET
 from utils.process_tokens import set_anticipated, set_instrument
 from utils.sanity_checks import check_valid_input_ids
 
@@ -55,9 +55,10 @@ class JordanDataset(Dataset):
         for sample in self.dataset:
             if "text" in sample:
                 input_ids = [int(x) for x in sample["text"].split()]
-                if input_ids[4] == 127:
-                    bad_samples += 1
-                    continue
+                for i in range(0, len(input_ids), 4):
+                    if input_ids[i] == 127:
+                        input_ids[i] = 127 + VELOCITY_OFFSET
+                        bad_samples += 1
             elif "input_ids" in sample:
                 input_ids = sample["input_ids"]
             else:
@@ -69,6 +70,7 @@ class JordanDataset(Dataset):
             assert (
                 len(input_ids) % 4 == 1
             ), "Input IDs must be a multiple of 4 apart from the first token"
+
             if not include_velocity:
                 input_ids = [
                     x for i, x in enumerate(input_ids) if (i % 4 != 0 or i == 0)
@@ -107,7 +109,7 @@ class JordanDataset(Dataset):
             print(f"Sample keys: {list(self.dataset[0].keys())}")
 
         if debug:
-            print(f"Skipped {bad_samples} bad samples")
+            print(f"Detected {bad_samples} bad samples")
 
     def __len__(self):
         return len(self.dataset)

@@ -19,7 +19,7 @@ MAESTRO_DATASET_FILEPATH = None  # Default, may be set per user
 
 if USER == "joeltjy1":
     JORDAN_DATASET_FILEPATH = "/scratch/joel/jordan_dataset"
-    MAESTRO_DATASET_FILEPATH = "/scratch/joel/maestrodata"
+    MAESTRO_DATASET_FILEPATH = "/scratch/joel/maestrovelocityaugment"
     SCRATCH_FILEPATH = "/scratch/joel/representations/"
 elif USER == "rachelloh":
     JORDAN_DATASET_FILEPATH = "/Users/rachelloh/Desktop/ood-detection/jordan_dataset"

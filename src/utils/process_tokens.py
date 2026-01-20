@@ -15,6 +15,8 @@ from constants.token_constants import (
     INCLUDE_VELOCITY,
     VELOCITY_OFFSET,
     AVELOCITY_OFFSET,
+    VOCAB_SIZE,
+    MAX_VELOCITY,
 )
 
 
@@ -45,10 +47,14 @@ def set_anticipated(
     """
 
     def set_anticipated_for_token(token: int, anticipated: bool) -> int:
-        if anticipated and 0 <= token < ATIME_OFFSET - 1:
+        if anticipated and (0 <= token < ATIME_OFFSET - 1):
             return token + ATIME_OFFSET
-        if not anticipated and ATIME_OFFSET <= token < 2 * ATIME_OFFSET - 1:
+        if anticipated and (VELOCITY_OFFSET <= token < AVELOCITY_OFFSET):
+            return token + MAX_VELOCITY
+        if not anticipated and (ATIME_OFFSET <= token < 2 * ATIME_OFFSET - 1):
             return token - ATIME_OFFSET
+        if not anticipated and (AVELOCITY_OFFSET <= token < VOCAB_SIZE):
+            return token - MAX_VELOCITY
         return token
 
     return [set_anticipated_for_token(token, anticipated) for token in tokens]
@@ -69,7 +75,9 @@ def get_readable_events(tokens, include_velocity=INCLUDE_VELOCITY):
     while i < len(tokens):
         token = tokens[i]
 
-        anticipated = ATIME_OFFSET <= token < ADUR_OFFSET
+        anticipated = ATIME_OFFSET <= token < ADUR_OFFSET or (
+            AVELOCITY_OFFSET <= token < AVELOCITY_OFFSET + 256
+        )
 
         event_tokens = tokens[i : i + tokens_per_event]
 
@@ -86,7 +94,7 @@ def get_readable_events(tokens, include_velocity=INCLUDE_VELOCITY):
                 idx % tokens_per_event,
                 t,
                 anticipated,
-                include_velocity=include_velocity,
+                include_velocity=True,
             )
         event_repr["anticipated"] = anticipated
         output.append(event_repr)

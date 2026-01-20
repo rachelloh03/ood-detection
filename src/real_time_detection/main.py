@@ -1,12 +1,15 @@
 """Real-time OOD detection using MIDI input."""
-import sys
-from pathlib import Path
 
-# Add src to path
-# comment out these next two lines out if running on hai-res
-# added for local machine purposes
-src_dir = Path(__file__).parent.parent
-sys.path.insert(0, str(src_dir))
+# import sys
+# from pathlib import Path
+
+# # Add src to path
+# # comment out these next two lines out if running on hai-res
+# # added for local machine purposes
+# src_dir = Path(__file__).parent.parent
+# sys.path.insert(0, str(src_dir))
+
+# if you set PYTHONPATH in ~/.bashrc you don't need to do the sys.path.etc
 
 from extract_layers.pooling_functions import pool_mean_std
 from real_time_detection.helpers import extract_layer
@@ -62,8 +65,7 @@ def main():
     pooling_function = pool_mean_std
     ood_detector = setup_ood_detector(layer_idxs)
     model = AutoModelForCausalLM.from_pretrained(
-        JORDAN_MODEL_NAME,
-        dtype=torch.float32
+        JORDAN_MODEL_NAME, dtype=torch.float32
     ).to(DEVICE)
     model.eval()
 
@@ -76,7 +78,7 @@ def main():
     with mido.open_input(INPUT_NAME) as inport:
         for msg in inport:
             # print(msg)
-            if msg.note == 48: # let left-most note be the "pedal" for now
+            if msg.note == 48:  # let left-most note be the "pedal" for now
                 if not pedal_down:
                     pedal_down = True
                     print("Pedal down, listening...")
@@ -94,15 +96,18 @@ def main():
                 buffer.append((time.perf_counter(), msg))
 
                 # Check OOD with current buffer
-                if len(buffer) == SLIDING_WINDOW_LEN:  # Only if we have enough msgs to fill window
+                if (
+                    len(buffer) == SLIDING_WINDOW_LEN
+                ):  # Only if we have enough msgs to fill window
                     with torch.no_grad():
                         extracted_layer = extract_layer(
                             list(buffer), pooling_function, model, layer_idxs
                         )  # (D,)
                     ood_score = ood_detector.score(extracted_layer.unsqueeze(0))  # (1,)
-                    print(f"OOD score (buffer size {len(buffer)}): {ood_score.item():.4f}")
+                    print(
+                        f"OOD score (buffer size {len(buffer)}): {ood_score.item():.4f}"
+                    )
 
-                
+
 if __name__ == "__main__":
     main()
-    

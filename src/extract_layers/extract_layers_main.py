@@ -75,6 +75,9 @@ def extract_representations_from_dataset(
     dataset_name = dataloader.dataset.name
     model.eval()
 
+    # Used to catch out-of-vocab token ids before we hit a CUDA device-side assert.
+    vocab_size = int(model.get_input_embeddings().num_embeddings)
+
     if debug:
         print(f"Extracting representations from {dataset_name} dataset")
         print(model)
@@ -105,6 +108,17 @@ def extract_representations_from_dataset(
         }
 
     for batch in tqdm(dataloader, desc="Extracting hidden states"):
+        input_ids = batch.get("input_ids", None)
+        if input_ids is not None:
+            min_id = int(input_ids.min().item())
+            max_id = int(input_ids.max().item())
+            if min_id < 0 or max_id >= vocab_size:
+                raise ValueError(
+                    f"input_ids out of bounds for embedding vocab_size={vocab_size}: "
+                    f"min={min_id}, max={max_id}. "
+                    "This would crash on CUDA; inspect the dataset/tokenization."
+                )
+
         batch = {
             k: v.to(DEVICE) for k, v in batch.items()
         }  # (B, L) where L ~ 766 is the sequence length

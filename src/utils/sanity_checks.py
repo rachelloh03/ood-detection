@@ -13,7 +13,9 @@ def check_valid_input_ids(input_ids):
     if not all(x >= 0 for x in input_ids):
         raise ValueError("input_ids must be a list of non-negative integers")
     if not all(x < VOCAB_SIZE for x in input_ids):
-        raise ValueError("input_ids must be a list of integers less than VOCAB_SIZE")
+        raise ValueError(
+            f"input_ids must be a list of integers < VOCAB_SIZE ({VOCAB_SIZE})"
+        )
 
     readable_events = get_readable_events(input_ids)
     if not all(isinstance(x, dict) for x in readable_events):

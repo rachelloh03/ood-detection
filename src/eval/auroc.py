@@ -7,7 +7,6 @@ import numpy as np
 from sklearn.metrics import auc
 
 
-# HAVEN'T TESTED THIS YET
 def get_auroc(
     ood_detector: OODDetector,
     id_data: torch.Tensor,
