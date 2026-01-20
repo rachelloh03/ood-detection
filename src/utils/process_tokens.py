@@ -47,6 +47,26 @@ def set_instrument(
     return [set_instrument_for_token(token) for token in tokens]
 
 
+def filter_instrument(
+    tokens: list[int], instrument: int, include_velocity: bool = INCLUDE_VELOCITY
+) -> list[int]:
+    """
+    Filter out all tokens for a certain instrument.
+    """
+    tokens_per_event = 4 if include_velocity else 3
+    returned_tokens = [tokens[0]]
+    for i in range(1, len(tokens), tokens_per_event):
+        event_tokens = tokens[i : i + tokens_per_event]
+        anticipated = ATIME_OFFSET <= event_tokens[0] < SEP or (
+            AVELOCITY_OFFSET <= event_tokens[0] < AVELOCITY_OFFSET + MAX_VELOCITY
+        )
+        note_offset = NOTE_OFFSET if not anticipated else ANOTE_OFFSET
+        event_instrument = (event_tokens[2] - note_offset) // MAX_PITCH
+        if any(t == SEP for t in event_tokens) or event_instrument == instrument:
+            returned_tokens.extend(event_tokens)
+    return returned_tokens
+
+
 def set_anticipated(
     tokens: list[int],
     anticipated: bool,
@@ -133,6 +153,10 @@ def token_to_event(
         instrument = val // MAX_PITCH
         pitch = val % MAX_PITCH
         event_repr["instrument"] = instrument
+        if instrument < 0:
+            raise ValueError(
+                f"Instrument {instrument} is invalid, instrument token: {token}"
+            )
         event_repr["pitch"] = pitch_to_note(pitch)
     elif idx % tokens_per_event == 3:
         event_repr["velocity"] = token - velocity_offset

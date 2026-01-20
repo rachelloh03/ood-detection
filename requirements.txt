@@ -17,3 +17,4 @@ python-rtmidi>=1.0.0
 plotly>=5.0.0
 nbformat>=5.10.0
 ipykernel>=6.23.0
+nbconvert>=7.0.0

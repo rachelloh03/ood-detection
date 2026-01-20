@@ -4,6 +4,7 @@ from data.jordan_dataset import MAX_VELOCITY
 import pytest
 from src.constants.token_constants import ATIME_OFFSET, MAX_PITCH
 from src.utils.process_tokens import (
+    filter_instrument,
     pitch_to_note,
     get_readable_events,
     set_anticipated,
@@ -203,7 +204,62 @@ def test_set_anticipated():
     ), f"Expected {expected_non_anticipated_tokens} but got {set_anticipated(tokens, False)}"
 
 
+def test_filter_instrument():
+    """Test the filter_instrument function."""
+    tokens = [
+        55026,
+        55025,
+        55025,
+        55025,
+        0,
+        10048,
+        11060,
+        50,
+        10050,
+        11188,
+        100 + ATIME_OFFSET,
+        10048 + ATIME_OFFSET,
+        11062 + ATIME_OFFSET,
+        200 + ATIME_OFFSET,
+        10050 + ATIME_OFFSET,
+        11188 + ATIME_OFFSET,
+    ]
+    expected_tokens_0 = [
+        55026,
+        55025,
+        55025,
+        55025,
+        0,
+        10048,
+        11060,
+        100 + ATIME_OFFSET,
+        10048 + ATIME_OFFSET,
+        11062 + ATIME_OFFSET,
+    ]
+    actual_tokens_0 = filter_instrument(tokens, 0, include_velocity=False)
+    assert (
+        actual_tokens_0 == expected_tokens_0
+    ), f"Expected {expected_tokens_0} but got {actual_tokens_0}"
+    expected_tokens_1 = [
+        55026,
+        55025,
+        55025,
+        55025,
+        50,
+        10050,
+        11188,
+        200 + ATIME_OFFSET,
+        10050 + ATIME_OFFSET,
+        11188 + ATIME_OFFSET,
+    ]
+    actual_tokens_1 = filter_instrument(tokens, 1, include_velocity=False)
+    assert (
+        actual_tokens_1 == expected_tokens_1
+    ), f"Expected {expected_tokens_1} but got {actual_tokens_1}"
+
+
 if __name__ == "__main__":
     test_readable_tokens_no_vel()
     test_set_instrument()
     test_set_anticipated()
+    test_filter_instrument()

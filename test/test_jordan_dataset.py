@@ -10,7 +10,7 @@ def test_jordan_dataset():
         train_dataset = JordanDataset(
             data_dir=JORDAN_DATASET_FILEPATH,
             split="train",
-            num_samples=5,
+            name="testcase_jordan_dataset",
         )
         print("Successfully loaded train dataset")
         print(f"Length: {len(train_dataset)}")

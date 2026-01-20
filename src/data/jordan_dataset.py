@@ -5,9 +5,11 @@ from constants.token_constants import (
     INCLUDE_VELOCITY,
     VELOCITY_OFFSET,
     MAX_VELOCITY,
+    NOTE_OFFSET,
     AR,
 )
-from utils.process_tokens import set_anticipated, set_instrument
+
+# from utils.process_tokens import set_anticipated, set_instrument
 from utils.sanity_checks import check_valid_input_ids
 
 
@@ -58,15 +60,17 @@ class JordanDataset(Dataset):
 
         processed_data = []
         bad_samples = 0
-        for sample in self.dataset:
+        for i, sample in enumerate(self.dataset):
+            original_input_ids = []
             if "text" in sample:
-                input_ids = [int(x) for x in sample["text"].split()]
-                for i in range(0, len(input_ids), 4):
-                    if input_ids[i] == MAX_VELOCITY - 1:
-                        input_ids[i] = MAX_VELOCITY + VELOCITY_OFFSET - 1
-                        bad_samples += 1
+                original_input_ids = [int(x) for x in sample["text"].split()]
+                input_ids = original_input_ids.copy()
+                for j in range(0, len(input_ids), 4):
+                    if input_ids[j] == MAX_VELOCITY - 1:
+                        input_ids[j] = MAX_VELOCITY + VELOCITY_OFFSET - 1
             elif "input_ids" in sample:
-                input_ids = sample["input_ids"]
+                original_input_ids = sample["input_ids"]
+                input_ids = original_input_ids.copy()
             else:
                 raise KeyError(
                     f"Sample must have either 'text' or 'input_ids' field. "
@@ -75,23 +79,28 @@ class JordanDataset(Dataset):
 
             if not include_velocity:
                 input_ids = [
-                    x for i, x in enumerate(input_ids) if (i % 4 != 0 or i == 0)
+                    x for j, x in enumerate(input_ids) if (j % 4 != 0 or j == 0)
                 ]
-            assert (
-                len(input_ids) % tokens_per_event == 1
-            ), f"Input IDs must be a multiple of {tokens_per_event} apart from the first token"
 
-            input_ids = set_instrument(input_ids, 0)
-            input_ids = set_anticipated(input_ids, False)
             input_ids[0] = AR
 
+            input_ids[3::3] = [
+                x + NOTE_OFFSET if x < 256 else x for x in input_ids[3::3]
+            ]
+
             try:
+                assert (
+                    len(input_ids) % tokens_per_event == 1
+                ), f"Input IDs must be a multiple of {tokens_per_event} apart from the first token"
                 check_valid_input_ids(input_ids)
             except AssertionError as e:
-                print(f"Error: {e}")
-                print(f"Sample: {sample}")
-                print(f"Input IDs: {input_ids}")
-                raise e
+                print(f"AssertionError: {e} at sample index {i}")
+                bad_samples += 1
+                continue
+            except ValueError as e:
+                print(f"ValueError: {e} at sample index {i}")
+                bad_samples += 1
+                continue
 
             processed_sample = {"input_ids": torch.tensor(input_ids, dtype=torch.long)}
             if "labels" in sample:
@@ -110,8 +119,11 @@ class JordanDataset(Dataset):
         if len(self.dataset) > 0 and debug:
             print(f"Sample keys: {list(self.dataset[0].keys())}")
 
-        if debug:
-            print(f"Detected {bad_samples} bad samples")
+        print(f"Detected {bad_samples} bad samples")
+        if len(self.dataset) == 0:
+            print(
+                f"WARNING: No valid samples loaded from {split} split. All samples were filtered out."
+            )
 
     def __len__(self):
         return len(self.dataset)
