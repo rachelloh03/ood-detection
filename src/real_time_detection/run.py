@@ -12,6 +12,7 @@
 # if you set PYTHONPATH in ~/.bashrc you don't need to do the sys.path.etc
 
 from data.jordan_dataset import JordanDataset
+from extract_layers.extract_layers_main import BATCH_SIZE
 from extract_layers.pooling_functions import pool_mean_std
 from main.transformation_functions import extract_layer_with_mean_std_pooling
 from real_time_detection.helpers import extract_layer
@@ -47,7 +48,7 @@ def setup_ood_detector(layer_idxs):
         name="id_train_dataset",
     )
     id_train_dataloader = DataLoader(
-        dataset, batch_size=128, shuffle=False, collate_fn=collate_fn
+        dataset, batch_size=BATCH_SIZE, shuffle=False, collate_fn=collate_fn
     )
     transformations = Transformations(
         [
