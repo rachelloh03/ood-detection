@@ -11,15 +11,17 @@
 
 # if you set PYTHONPATH in ~/.bashrc you don't need to do the sys.path.etc
 
+from data.jordan_dataset import JordanDataset
 from extract_layers.pooling_functions import pool_mean_std
+from main.transformation_functions import extract_layer_with_mean_std_pooling
 from real_time_detection.helpers import extract_layer
 from main.transformations import Transformations
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 from main.scoring_functions import mahalanobis_distance
 from main.ood_detector import OODDetector
-import numpy as np
-from constants.data_constants import SCRATCH_FILEPATH
+from constants.data_constants import JORDAN_DATASET_FILEPATH
+from torch.utils.data import DataLoader
 import mido
 import time
 from transformers import AutoModelForCausalLM
@@ -28,32 +30,37 @@ from constants.real_time_constants import SLIDING_WINDOW_LEN
 import torch
 from collections import deque
 
-model = AutoModelForCausalLM.from_pretrained(
-        JORDAN_MODEL_NAME, dtype=torch.float32
-    ).to(DEVICE)
+from utils.data_loading import collate_fn
+
+model = AutoModelForCausalLM.from_pretrained(JORDAN_MODEL_NAME, dtype=torch.float32).to(
+    DEVICE
+)
+
 
 def setup_ood_detector(layer_idxs):
     """
     Sets up the OOD detector for the given layer indices.
     """
-    id_train_data = []
-    for layer_idx in layer_idxs:
-        id_train_data.append(
-            np.load(f"{SCRATCH_FILEPATH}/id_train_dataset/layer_{layer_idx}.npy")
-        )
-    id_train_data = np.concatenate(id_train_data, axis=0)
-
+    dataset = JordanDataset(
+        data_dir=JORDAN_DATASET_FILEPATH,
+        split="train",
+        name="id_train_dataset",
+    )
+    id_train_dataloader = DataLoader(
+        dataset, batch_size=128, shuffle=False, collate_fn=collate_fn
+    )
     transformations = Transformations(
-    [
-        PCA(n_components=10),
-        StandardScaler(),
-    ]
-)
+        [
+            extract_layer_with_mean_std_pooling(model, layer_idxs),
+            PCA(n_components=10),
+            StandardScaler(),
+        ]
+    )
     scoring_function = mahalanobis_distance
     ood_detector = OODDetector(
         embedding_function=transformations,
         scoring_function=scoring_function,
-        id_train_data=id_train_data,
+        id_train_data=id_train_dataloader,
     )
     return ood_detector
 
@@ -99,7 +106,9 @@ def main():
                             extracted_layer = extract_layer(
                                 list(buffer), pooling_function, model, layer_idxs
                             )  # (D,)
-                        ood_score = ood_detector.score(extracted_layer.unsqueeze(0))  # (1,)
+                        ood_score = ood_detector.score(
+                            extracted_layer.unsqueeze(0)
+                        )  # (1,)
                         print(
                             f"OOD score (buffer size {len(buffer)}): {ood_score.item():.4f}"
                         )

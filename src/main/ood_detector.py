@@ -20,7 +20,7 @@ class OODDetector:
         self,
         embedding_function: Transformations,
         scoring_function: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],
-        id_train_data: torch.Tensor,
+        id_train_data: torch.Tensor | DataLoader,
     ):
         """
         Refer to docs/ood_detection.md for more details, under OOD Detector Class section.
