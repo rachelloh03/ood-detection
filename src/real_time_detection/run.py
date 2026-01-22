@@ -102,19 +102,16 @@ def main():
                     buffer.append((time.perf_counter(), msg))
 
                     # Check OOD with current buffer
-                    if (
-                        len(buffer) == SLIDING_WINDOW_LEN
-                    ):  # Only if we have enough msgs to fill window
-                        with torch.no_grad():
-                            extracted_layer = extract_layer(
-                                list(buffer), pooling_function, model, layer_idxs
-                            )  # (D,)
-                        ood_score = ood_detector.score(
-                            extracted_layer.unsqueeze(0)
-                        )  # (1,)
-                        print(
-                            f"OOD score (buffer size {len(buffer)}): {ood_score.item():.4f}"
-                        )
+                    with torch.no_grad():
+                        extracted_layer = extract_layer(
+                            list(buffer), pooling_function, model, layer_idxs
+                        )  # (D,)
+                    ood_score = ood_detector.score(
+                        extracted_layer.unsqueeze(0)
+                    )  # (1,)
+                    print(
+                        f"OOD score (buffer size {len(buffer)}): {ood_score.item():.4f}"
+                    )
 
 
 if __name__ == "__main__":
