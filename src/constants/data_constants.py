@@ -3,14 +3,11 @@ Data and file path constants for the OOD detection project.
 """
 
 import os
-import torch
 
 # User and device
 USER = os.environ.get("USER")
 if USER is None:
     raise ValueError("USER environment variable is not set")
-
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 # File paths
 SCRATCH_FILEPATH = "representations"

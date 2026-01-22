@@ -3,7 +3,7 @@ Different transformation functions for the input data
 that can be used to create a Transformations object.
 """
 
-from constants.data_constants import DEVICE
+from constants.model_constants import DEVICE
 from extract_layers.extract_layers_main import extract_representations
 from extract_layers.pooling_functions import pool_mean_std
 import torch
