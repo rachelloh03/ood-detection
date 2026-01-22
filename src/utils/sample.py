@@ -30,6 +30,7 @@ from constants.token_constants import (
     TIME_OFFSET,
     VELOCITY_OFFSET,
     MAX_VELOCITY,
+    INCLUDE_VELOCITY,
     SEP,
 )
 
@@ -726,3 +727,88 @@ def sample_from_model(model, input_sample):
             use_cache=False,
         )
     return output
+
+
+def generate_tokens(
+    model,
+    z,
+    input_sequence,
+    num_tokens,
+    top_p=1.0,
+    debug=False,
+    include_velocity=INCLUDE_VELOCITY,
+):
+    """
+    Generate a specified number of tokens from an input sequence.
+
+    Args:
+        model: The language model to use for generation
+        z: Special token prefix (e.g., [AR] or [AAR])
+        input_sequence: List of input tokens (must be divisible by 3 or 4)
+        num_tokens: Number of tokens to generate (must be divisible by 3 or 4)
+        top_p: Nucleus sampling parameter (default: 1.0)
+        debug: Whether to print debug information
+        include_velocity: Whether to include velocity tokens. If None, auto-detect from input_sequence
+
+    Returns:
+        List of generated tokens (input_sequence + newly generated tokens)
+    """
+    tokens = input_sequence.copy()
+
+    if include_velocity is None:
+        if len(tokens) % 4 == 0:
+            include_velocity = True
+        elif len(tokens) % 3 == 0:
+            include_velocity = False
+        else:
+            raise ValueError(
+                f"Input sequence length ({len(tokens)}) must be divisible by 3 or 4"
+            )
+
+    if include_velocity:
+        assert (
+            len(tokens) % 4 == 0
+        ), "Input sequence length must be divisible by 4 when include_velocity=True"
+        tokens_per_event = 4
+    else:
+        assert (
+            len(tokens) % 3 == 0
+        ), "Input sequence length must be divisible by 3 when include_velocity=False"
+        tokens_per_event = 3
+
+    assert num_tokens % tokens_per_event == 0, (
+        f"num_tokens ({num_tokens}) must be divisible by {tokens_per_event} "
+        f"when include_velocity={include_velocity}"
+    )
+
+    num_events_to_generate = num_tokens // tokens_per_event
+
+    current_time = max_time(tokens, seconds=False, include_velocity=include_velocity)
+
+    if debug:
+        print(f"Generating {num_events_to_generate} events ({num_tokens} tokens)")
+        print(f"Starting with {len(tokens)} tokens, current_time={current_time}")
+
+    for event_idx in range(num_events_to_generate):
+        new_token = add_token(
+            model,
+            z,
+            tokens,
+            top_p,
+            current_time,
+            debug=debug,
+            include_velocity=include_velocity,
+        )
+
+        new_time = new_token[0] - TIME_OFFSET
+        current_time = new_time
+
+        tokens.extend(new_token)
+
+        if debug:
+            print(f"Generated event {event_idx + 1}/{num_events_to_generate}")
+
+        if len(tokens) % 100 == 0:
+            torch.cuda.empty_cache()
+
+    return tokens

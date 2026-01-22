@@ -12,8 +12,10 @@ import os
 from typing import Callable
 from constants.file_format import get_extract_layers_file_path, get_extract_layers_dir
 from data.jordan_dataset import JordanDataset
+from data.sliding_window import SlidingWindowDataset
 from constants.data_constants import JORDAN_DATASET_FILEPATH
-from constants.model_constants import JORDAN_MODEL_NAME
+from constants.model_constants import JORDAN_MODEL_NAME, DEVICE
+from constants.real_time_constants import SLIDING_WINDOW_LEN, STRIDE
 import torch
 import numpy as np
 from tqdm import tqdm
@@ -22,10 +24,11 @@ from torch.utils.data import DataLoader
 from extract_layers.pooling_functions import pool_mean_std
 from utils.data_loading import collate_fn
 
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-
 NUM_SAMPLES_LIMIT = 10000
-BATCH_SIZE = 8
+BATCH_SIZE = 100
+
+# Cache for loaded representations to avoid reloading from disk
+_representation_cache = {}
 
 
 def extract_representations(
@@ -59,29 +62,26 @@ def extract_representations_from_dataset(
     save_dir: str,
     layers: list[int],
     debug: bool = False,
-) -> dict[int, list[torch.Tensor]]:
+    chunk_size: int = 10_000,
+) -> dict[int, np.ndarray]:
     """
-    Extract pooled representations from specified layers.
+    Extract pooled representations from specified layers using chunked GPU pre-allocation.
+    """
 
-    Args:
-        model: The model to extract representations from.
-        dataloader: The dataloader to extract representations from.
-        pooling_function: The function to pool the representations. Currently supported option:
-        - "mean_std": Pool using mean and std across sequence dimension, (B, L, D) -> (B, 2*D).
-        Not sure if will lose too much info.
-        save_dir: The directory to save the representations.
-        layers: The layers to extract representations from.
-    """
-    dataset_name = dataloader.dataset.name
+    dataset = dataloader.dataset
+    dataset_name = dataset.name
     model.eval()
 
     if debug:
         print(f"Extracting representations from {dataset_name} dataset")
         print(model)
 
-    buffers = {layer_idx: [] for layer_idx in layers}
-
     save_dir = get_extract_layers_dir(dataset_name, pooling_function.__name__)
+
+    cache_key = (dataset_name, pooling_function.__name__, tuple(sorted(layers)))
+
+    if cache_key in _representation_cache:
+        return _representation_cache[cache_key]
     if all(
         os.path.exists(
             get_extract_layers_file_path(
@@ -90,52 +90,122 @@ def extract_representations_from_dataset(
         )
         for layer_idx in layers
     ):
-        if debug:
-            print(
-                f"Representations already exist for {dataset_name} dataset with {pooling_function.__name__}"
-                f"pooling function for layers: {layers}. Loading from {save_dir}."
-            )
-        return {
-            layer_idx: np.load(
+        print("Representations already exist. Loading from disk.")
+        return_dict = {}
+        for layer_idx in tqdm(layers, desc="Loading layers from disk"):
+            print(f"Loading layer {layer_idx} from disk.")
+            return_dict[layer_idx] = np.load(
                 get_extract_layers_file_path(
                     dataset_name, pooling_function.__name__, layer_idx
                 )
             )
-            for layer_idx in layers
-        }
+        _representation_cache[cache_key] = return_dict
+        return return_dict
 
-    for batch in tqdm(dataloader, desc="Extracting hidden states"):
-        batch = {
-            k: v.to(DEVICE) for k, v in batch.items()
-        }  # (B, L) where L ~ 766 is the sequence length
+    use_amp = DEVICE.startswith("cuda") and torch.cuda.is_available()
 
+    first_batch = next(iter(dataloader))
+    first_batch = {k: v.to(DEVICE, non_blocking=True) for k, v in first_batch.items()}
+
+    with torch.amp.autocast(device_type="cuda", enabled=use_amp):
         outputs = model(
-            **batch,
+            **first_batch,
             output_hidden_states=True,
             use_cache=False,
         )
 
-        hidden_states = outputs.hidden_states  # (n_layers + 1)-tuple of (B, L, D)
+    example_pooled = pooling_function(outputs.hidden_states[layers[0]])
+    pooled_dim = example_pooled.size(-1)
+    dtype = example_pooled.dtype
+
+    gpu_chunk = {
+        layer_idx: torch.empty(
+            (chunk_size, pooled_dim),
+            device=DEVICE,
+            dtype=dtype,
+        )
+        for layer_idx in layers
+    }
+
+    temp_files = {layer_idx: [] for layer_idx in layers}
+    chunk_offset = 0
+    total_samples = 0
+
+    for batch in tqdm(dataloader, desc="Extracting hidden states"):
+        B = next(iter(batch.values())).size(0)
+
+        batch = {k: v.to(DEVICE, non_blocking=True) for k, v in batch.items()}
+
+        with torch.amp.autocast(device_type="cuda", enabled=use_amp):
+            outputs = model(
+                **batch,
+                output_hidden_states=True,
+                use_cache=False,
+            )
+
+        hidden_states = outputs.hidden_states
 
         for layer_idx in layers:
-            h = hidden_states[layer_idx]  # (B, L, D)
-            pooled = pooling_function(h)
-            buffers[layer_idx].append(pooled.cpu())
+            pooled = pooling_function(hidden_states[layer_idx])
+            gpu_chunk[layer_idx][chunk_offset : chunk_offset + B].copy_(pooled)
+
+        chunk_offset += B
+        total_samples += B
+
+        if chunk_offset >= chunk_size:
+            for layer_idx in layers:
+                chunk_cpu = gpu_chunk[layer_idx][:chunk_offset].cpu().numpy()
+                temp_file = os.path.join(
+                    save_dir,
+                    f"temp_layer_{layer_idx}_chunk_{len(temp_files[layer_idx])}.npy",
+                )
+                os.makedirs(save_dir, exist_ok=True)
+                np.save(temp_file, chunk_cpu)
+                temp_files[layer_idx].append(temp_file)
+            chunk_offset = 0
+
+    if chunk_offset > 0:
+        for layer_idx in layers:
+            chunk_cpu = gpu_chunk[layer_idx][:chunk_offset].cpu().numpy()
+            temp_file = os.path.join(
+                save_dir,
+                f"temp_layer_{layer_idx}_chunk_{len(temp_files[layer_idx])}.npy",
+            )
+            np.save(temp_file, chunk_cpu)
+            temp_files[layer_idx].append(temp_file)
+
+    buffers: dict[int, np.ndarray] = {}
 
     for layer_idx in layers:
-        X = torch.cat(buffers[layer_idx], dim=0).numpy()  # (dataset size, 2*D)
-        buffers[layer_idx] = X  # (dataset size, 2*D)
-        if save_dir is not None:
-            np.save(
-                get_extract_layers_file_path(
-                    dataset_name, pooling_function.__name__, layer_idx
-                ),
-                X,
+        if len(temp_files[layer_idx]) == 1:
+            X = np.load(temp_files[layer_idx][0])
+            final_path = get_extract_layers_file_path(
+                dataset_name, pooling_function.__name__, layer_idx
             )
-            if debug:
-                print(f"Saved layer {layer_idx}: {X.shape}")
+            np.save(final_path, X)
+            os.remove(temp_files[layer_idx][0])
+        else:
+            chunks = []
+            for temp_file in temp_files[layer_idx]:
+                chunks.append(np.load(temp_file))
+            X = np.concatenate(chunks, axis=0)
 
-    return buffers  # {layer_idx: (dataset size, 2*D)}
+            if save_dir is not None:
+                final_path = get_extract_layers_file_path(
+                    dataset_name, pooling_function.__name__, layer_idx
+                )
+                np.save(final_path, X)
+                if debug:
+                    print(f"Saved layer {layer_idx}: {X.shape}")
+
+            for temp_file in temp_files[layer_idx]:
+                os.remove(temp_file)
+
+        buffers[layer_idx] = X
+
+    # Cache the result
+    _representation_cache[cache_key] = buffers
+    return buffers
 
 
 @torch.no_grad()
@@ -193,11 +263,17 @@ def example_extract_representations():
 
     print("Loading dataset...")
 
-    dataset = JordanDataset(
+    base_dataset = JordanDataset(
         data_dir=JORDAN_DATASET_FILEPATH,
         split="train",
         name="id_train_dataset",
-        num_samples=NUM_SAMPLES_LIMIT,
+    )
+
+    dataset = SlidingWindowDataset(
+        base_dataset=base_dataset,
+        name="id_train_dataset",
+        k=SLIDING_WINDOW_LEN,
+        stride=STRIDE,
     )
 
     dataloader = DataLoader(

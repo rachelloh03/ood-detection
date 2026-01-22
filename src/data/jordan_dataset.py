@@ -1,3 +1,4 @@
+import json
 from torch.utils.data import Dataset
 from datasets import load_from_disk
 import torch
@@ -10,6 +11,7 @@ from constants.token_constants import (
 )
 
 # from utils.process_tokens import set_anticipated, set_instrument
+from utils.process_tokens import filter_instrument, get_readable_events
 from utils.sanity_checks import check_valid_input_ids
 
 
@@ -31,10 +33,11 @@ class JordanDataset(Dataset):
             split: Dataset split to load ('train', 'validation')
             name: Name of the dataset (e.g. 'jordan_dataset', 'maestro_dataset')
             num_samples: Optional limit on number of samples to load
+            num_events_per_sample: Optional limit on number of events per sample
             include_velocity: Whether to include velocity information
             debug: Whether to print debug information
+
         """
-        tokens_per_event = 4 if include_velocity else 3
         if debug:
             print(f"Loading {split} split from {data_dir}...")
             print(f"Name: {name}")
@@ -61,16 +64,16 @@ class JordanDataset(Dataset):
         processed_data = []
         bad_samples = 0
         for i, sample in enumerate(self.dataset):
-            original_input_ids = []
+            original_sample_tokens = []
             if "text" in sample:
-                original_input_ids = [int(x) for x in sample["text"].split()]
-                input_ids = original_input_ids.copy()
-                for j in range(0, len(input_ids), 4):
-                    if input_ids[j] == MAX_VELOCITY - 1:
-                        input_ids[j] = MAX_VELOCITY + VELOCITY_OFFSET - 1
+                original_sample_tokens = [int(x) for x in sample["text"].split()]
+                sample_tokens = original_sample_tokens.copy()
+                for j in range(0, len(sample_tokens), 4):
+                    if sample_tokens[j] == MAX_VELOCITY - 1:
+                        sample_tokens[j] = MAX_VELOCITY + VELOCITY_OFFSET - 1
             elif "input_ids" in sample:
-                original_input_ids = sample["input_ids"]
-                input_ids = original_input_ids.copy()
+                original_sample_tokens = sample["input_ids"]
+                sample_tokens = original_sample_tokens.copy()
             else:
                 raise KeyError(
                     f"Sample must have either 'text' or 'input_ids' field. "
@@ -78,21 +81,32 @@ class JordanDataset(Dataset):
                 )
 
             if not include_velocity:
-                input_ids = [
-                    x for j, x in enumerate(input_ids) if (j % 4 != 0 or j == 0)
+                sample_tokens = [
+                    x for j, x in enumerate(sample_tokens) if (j % 4 != 0 or j == 0)
                 ]
 
-            input_ids[0] = AR
+            sample_tokens[0] = AR
+            if i == 0:
+                print("Sample tokens:")
+                readable_events = get_readable_events(sample_tokens)
+                # write readable events to a file
+                with open("readable_events.json", "w") as f:
+                    json.dump(readable_events, f)
 
-            input_ids[3::3] = [
-                x + NOTE_OFFSET if x < 256 else x for x in input_ids[3::3]
+            sample_tokens[3::3] = [
+                x + NOTE_OFFSET if x < 256 else x for x in sample_tokens[3::3]
             ]
 
+            input_ids = filter_instrument(
+                sample_tokens, 0, include_velocity=include_velocity
+            )
+            output_ids = filter_instrument(
+                sample_tokens, 1, include_velocity=include_velocity
+            )
+
             try:
-                assert (
-                    len(input_ids) % tokens_per_event == 1
-                ), f"Input IDs must be a multiple of {tokens_per_event} apart from the first token"
                 check_valid_input_ids(input_ids)
+                check_valid_input_ids(output_ids)
             except AssertionError as e:
                 print(f"AssertionError: {e} at sample index {i}")
                 bad_samples += 1
@@ -102,13 +116,10 @@ class JordanDataset(Dataset):
                 bad_samples += 1
                 continue
 
-            processed_sample = {"input_ids": torch.tensor(input_ids, dtype=torch.long)}
-            if "labels" in sample:
-                processed_sample["labels"] = torch.tensor(
-                    sample["labels"], dtype=torch.long
-                )
-            else:
-                processed_sample["labels"] = torch.tensor(input_ids, dtype=torch.long)
+            processed_sample = {
+                "input_ids": torch.tensor(input_ids, dtype=torch.long),
+                "output_ids": torch.tensor(output_ids, dtype=torch.long),
+            }
 
             processed_data.append(processed_sample)
 
