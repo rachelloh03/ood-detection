@@ -30,8 +30,8 @@ from constants.model_constants import JORDAN_MODEL_NAME, DEVICE
 from constants.real_time_constants import SLIDING_WINDOW_LEN
 import torch
 from collections import deque
-
 from utils.data_loading import collate_fn
+from main.save_ood_detector_params import save_ood_detector_params
 
 model = AutoModelForCausalLM.from_pretrained(JORDAN_MODEL_NAME, dtype=torch.float32).to(
     DEVICE
@@ -63,6 +63,8 @@ def setup_ood_detector(layer_idxs):
         scoring_function=scoring_function,
         id_train_data=id_train_dataloader,
     )
+    save_ood_detector_params(ood_detector, "ood_detector_params")
+
     return ood_detector
 
 
