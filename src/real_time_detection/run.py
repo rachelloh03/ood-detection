@@ -13,7 +13,8 @@
 
 from data.jordan_dataset import JordanDataset
 from extract_layers.extract_layers_main import BATCH_SIZE
-from main.transformation_functions import extract_layer_with_mean_std_pooling
+from main.transformation_functions import extract_layer_transformation
+from extract_layers.pooling_functions import pool_mean_std
 from real_time_detection.helpers import buffer_to_midifile
 from utils.convert import midi_to_events
 from main.transformations import Transformations
@@ -52,7 +53,7 @@ def setup_ood_detector(layer_idxs):
     )
     transformations = Transformations(
         [
-            extract_layer_with_mean_std_pooling(model, layer_idxs),
+            extract_layer_transformation(model, pool_mean_std, layer_idxs),
             PCA(n_components=10),
             StandardScaler(),
         ]

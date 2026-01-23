@@ -13,6 +13,10 @@ def get_graph_visualization(
     show_indices: bool = True,
     show_plot: bool = True,
     return_fig: bool = True,
+    output_format: str = "html",
+    image_format: str = "png",
+    image_width: int | None = None,
+    image_height: int | None = None,
 ):
     """
     Get interactive graph visualization for OOD detection.
@@ -22,11 +26,15 @@ def get_graph_visualization(
         ood_detector: OOD detector instance
         id_data: ID data tensor
         ood_data: OOD data tensor
-        save_path: Path to save the interactive HTML file
+        save_path: Path to save the file (HTML or image depending on output_format)
         bins: Number of bins for the histogram
         show_indices: If True, hover text includes sample indices for each bin.
         show_plot: If True, calls fig.show(). In notebooks you may want False to avoid double display.
         return_fig: If True, returns the Plotly figure. In notebooks you may want False to avoid auto-display.
+        output_format: "html" to save as HTML, "image" to save as image (png/jpeg/etc)
+        image_format: Image format when output_format="image". Options: "png", "jpeg", "svg", "pdf", "webp"
+        image_width: Width of the image in pixels (when output_format="image"). If None, automatically determined.
+        image_height: Height of the image in pixels (when output_format="image"). If None, automatically determined.
     """
     id_scores = ood_detector.score(id_data)
     ood_scores = ood_detector.score(ood_data)
@@ -129,6 +137,14 @@ def get_graph_visualization(
         )
     )
 
+    if output_format == "image":
+        if image_width is None or image_height is None:
+            base_width = max(800, min(2000, bins * 20))
+            if image_width is None:
+                image_width = base_width
+            if image_height is None:
+                image_height = base_width // 2
+
     fig.update_layout(
         title="Score Distributions (Interactive)",
         xaxis_title="OOD Score",
@@ -136,9 +152,23 @@ def get_graph_visualization(
         barmode="overlay",
         hovermode="closest",
         legend=dict(x=0.7, y=0.95),
+        width=image_width if output_format == "image" else None,
+        height=image_height if output_format == "image" else None,
     )
 
-    fig.write_html(save_path)
+    if output_format == "image":
+        if not any(save_path.endswith(ext) for ext in [".png", ".jpeg", ".jpg"]):
+            save_path = f"{save_path.rsplit('.', 1)[0] if '.' in save_path else save_path}.{image_format}"
+        fig.write_image(
+            save_path, format=image_format, width=image_width, height=image_height
+        )
+    else:
+        if not save_path.endswith(".html"):
+            save_path = (
+                f"{save_path.rsplit('.', 1)[0] if '.' in save_path else save_path}.html"
+            )
+        fig.write_html(save_path)
+
     if show_plot:
         fig.show()
 

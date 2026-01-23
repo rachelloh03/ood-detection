@@ -5,12 +5,12 @@ that can be used to create a Transformations object.
 
 from constants.model_constants import DEVICE
 from extract_layers.extract_layers_main import extract_representations
-from extract_layers.pooling_functions import pool_mean_std
 import torch
 import numpy as np
+from sklearn.cluster import KMeans
 
 
-def extract_layer_with_mean_std_pooling(model, layer_idxs):
+def extract_layer_transformation(model, pooling_function, layer_idxs):
     """
     Extract the layer with mean and std pooling.
 
@@ -24,7 +24,7 @@ def extract_layer_with_mean_std_pooling(model, layer_idxs):
         buffers = extract_representations(
             model,
             data,
-            pool_mean_std,
+            pooling_function,
             layer_idxs,
         )
         # sort buffers by layer_idx
@@ -63,3 +63,83 @@ class Subsample:
 
     def __call__(self, x):
         return self.transform(x)
+
+
+class KMeansDistance:
+    """
+    Transform data by computing distances to k-means cluster centers.
+
+    During fit, finds k cluster centers using k-means clustering.
+    During transform, returns distances from each point to each cluster center.
+    """
+
+    def __init__(self, n_clusters: int, random_state: int = 42):
+        """
+        Args:
+            n_clusters: Number of clusters (k) for k-means
+            random_state: Random seed for reproducibility
+        """
+        self.n_clusters = n_clusters
+        self.random_state = random_state
+        self.kmeans = None
+        self.cluster_centers_ = None
+        self.__name__ = f"KMeansDistance(n_clusters={n_clusters})"
+
+    def fit(self, x):
+        """
+        Fit k-means clustering on the data.
+
+        Args:
+            x: Input data of shape (n_samples, n_features)
+               Can be torch.Tensor or numpy array
+        """
+        if isinstance(x, torch.Tensor):
+            x_np = x.cpu().numpy()
+        else:
+            x_np = np.array(x)
+
+        self.kmeans = KMeans(
+            n_clusters=self.n_clusters, random_state=self.random_state, n_init=10
+        )
+        self.kmeans.fit(x_np)
+        self.cluster_centers_ = self.kmeans.cluster_centers_
+
+    def transform(self, x):
+        """
+        Transform data by computing distances to cluster centers.
+
+        Args:
+            x: Input data of shape (n_samples, n_features)
+               Can be torch.Tensor or numpy array
+
+        Returns:
+            Distances to each cluster center, shape (n_samples, n_clusters)
+            Returns torch.Tensor if input is torch.Tensor, numpy array otherwise
+        """
+        if self.cluster_centers_ is None:
+            raise ValueError("KMeansDistance must be fitted before transform")
+
+        is_torch = isinstance(x, torch.Tensor)
+        if is_torch:
+            x_np = x.cpu().numpy()
+        else:
+            x_np = np.array(x)
+
+        distances = np.sqrt(
+            (
+                (x_np[:, np.newaxis, :] - self.cluster_centers_[np.newaxis, :, :]) ** 2
+            ).sum(axis=2)
+        )
+
+        if is_torch:
+            return torch.tensor(distances, dtype=x.dtype, device=x.device)
+        else:
+            return distances
+
+    def __call__(self, x):
+        return self.transform(x)  # (n_samples, n_clusters)
+
+    def get_cluster_centers(self):
+        if self.cluster_centers_ is None:
+            raise ValueError("KMeansDistance must be fitted before get_cluster_centers")
+        return self.cluster_centers_

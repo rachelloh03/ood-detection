@@ -19,3 +19,4 @@ nbformat>=5.10.0
 ipykernel>=6.23.0
 nbconvert>=7.0.0
 fluidsynth>=2.3.2
+kaleido>=0.2.1

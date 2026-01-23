@@ -79,9 +79,14 @@ class OODDetector:
         if threshold_type == "percentile":
             if threshold is None:
                 threshold = A / (A + B)
+            # Convert threshold to tensor if it isn't already
+            if isinstance(threshold, torch.Tensor):
+                threshold_tensor = threshold.to(dtype=all_scores.dtype)
+            else:
+                threshold_tensor = torch.tensor(threshold, dtype=all_scores.dtype)
             threshold = torch.quantile(
                 all_scores,
-                torch.tensor(threshold, dtype=all_scores.dtype),
+                threshold_tensor,
                 # id_scores, torch.tensor(threshold, dtype=id_scores.dtype)
                 # # compute threshold only on ID test data to avoid data leakage
             )
