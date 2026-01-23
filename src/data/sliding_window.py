@@ -2,6 +2,7 @@ from data.jordan_dataset import check_valid_input_ids
 from torch.utils.data import Dataset
 import torch
 import random
+from constants.real_time_constants import TOKENS_PER_EVENT
 
 
 class SlidingWindowDataset(Dataset):
@@ -24,17 +25,19 @@ class SlidingWindowDataset(Dataset):
 
         Args:
             base_dataset: Dataset returning dicts with 'input_ids' (and optionally 'labels')
-            k: Length of sliding window (excluding special first token)
+            k: Length of sliding window in events (excluding special first token) i.e. k=40 means 120 tokens
+                if each event is 3 tokens (default)
             name: Name of the dataset
-            stride: Step size between windows
+            stride: Step size between windows in events i.e. stride=10 means 30 tokens
+                if each event is 3 tokens (default)
             drop_last: Drop windows shorter than k
             num_samples: Optional limit on number of samples to load, picks randomly
             lm_labels: If True, labels = input_ids shifted by 1
             first_token_special: Whether to treat input_ids[0] as fixed prefix
         """
         self.base = base_dataset
-        self.k = k
-        self.stride = stride
+        self.k = k * TOKENS_PER_EVENT
+        self.stride = stride * TOKENS_PER_EVENT
         self.drop_last = drop_last
         self.lm_labels = lm_labels
         self.first_token_special = first_token_special

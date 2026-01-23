@@ -19,5 +19,17 @@ def pool_mean_std(h):
     return pooled
 
 
-# TODO: add other pooling functions. Maybe taking the last few D-dimensional vectors instead?
-# or concatenating some of them together?
+def pool_last_k_tokens(h, k=10):
+    """
+    Pool using the last k tokens.
+    Args:
+        h: (B, L, D) tensor of hidden states
+        k: number of last tokens to pool
+    Returns:
+        (B, 2*D) tensor of pooled hidden states
+    """
+    if k is None:
+        k = h.size(1)
+    mean = h[:, -k:].mean(dim=1)
+    std = h[:, -k:].std(dim=1)
+    return torch.cat([mean, std], dim=-1)

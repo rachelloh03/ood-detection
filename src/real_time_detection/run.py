@@ -13,9 +13,9 @@
 
 from data.jordan_dataset import JordanDataset
 from extract_layers.extract_layers_main import BATCH_SIZE
-from extract_layers.pooling_functions import pool_mean_std
 from main.transformation_functions import extract_layer_with_mean_std_pooling
-from real_time_detection.helpers import extract_layer
+from real_time_detection.helpers import buffer_to_midifile
+from utils.convert import midi_to_events
 from main.transformations import Transformations
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
@@ -72,7 +72,6 @@ def main():
     layer_idxs = [12]
     pedal_down = False
     buffer = deque(maxlen=SLIDING_WINDOW_LEN)
-    pooling_function = pool_mean_std
     ood_detector = setup_ood_detector(layer_idxs)
 
     print("Available MIDI ports:")
@@ -101,14 +100,12 @@ def main():
 
                     buffer.append((time.perf_counter(), msg))
 
-                    # Check OOD with current buffer
-                    with torch.no_grad():
-                        extracted_layer = extract_layer(
-                            list(buffer), pooling_function, model, layer_idxs
-                        )  # (D,)
-                    ood_score = ood_detector.score(
-                        extracted_layer.unsqueeze(0)
-                    )  # (1,)
+                    midifile = buffer_to_midifile(list(buffer))
+                    tokens = midi_to_events(midifile)  # (L,)
+                    tokens_tensor = torch.tensor(tokens, dtype=torch.long).unsqueeze(
+                        0
+                    )  # (1, L)
+                    ood_score = ood_detector.score(tokens_tensor)  # (1,)
                     print(
                         f"OOD score (buffer size {len(buffer)}): {ood_score.item():.4f}"
                     )
@@ -116,4 +113,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    

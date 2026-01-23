@@ -1,4 +1,3 @@
-import json
 from torch.utils.data import Dataset
 from datasets import load_from_disk
 import torch
@@ -11,7 +10,7 @@ from constants.token_constants import (
 )
 
 # from utils.process_tokens import set_anticipated, set_instrument
-from utils.process_tokens import filter_instrument, get_readable_events
+from utils.process_tokens import filter_instrument
 from utils.sanity_checks import check_valid_input_ids
 
 
@@ -86,12 +85,6 @@ class JordanDataset(Dataset):
                 ]
 
             sample_tokens[0] = AR
-            if i == 0:
-                print("Sample tokens:")
-                readable_events = get_readable_events(sample_tokens)
-                # write readable events to a file
-                with open("readable_events.json", "w") as f:
-                    json.dump(readable_events, f)
 
             sample_tokens[3::3] = [
                 x + NOTE_OFFSET if x < 256 else x for x in sample_tokens[3::3]
