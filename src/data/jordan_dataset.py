@@ -5,7 +5,6 @@ from constants.token_constants import (
     INCLUDE_VELOCITY,
     VELOCITY_OFFSET,
     MAX_VELOCITY,
-    NOTE_OFFSET,
     AR,
 )
 
@@ -86,10 +85,6 @@ class JordanDataset(Dataset):
 
             sample_tokens[0] = AR
 
-            sample_tokens[3::3] = [
-                x + NOTE_OFFSET if x < 256 else x for x in sample_tokens[3::3]
-            ]
-
             input_ids = filter_instrument(
                 sample_tokens, 0, include_velocity=include_velocity
             )
@@ -103,7 +98,8 @@ class JordanDataset(Dataset):
             except AssertionError as e:
                 print(f"AssertionError: {e} at sample index {i}")
                 bad_samples += 1
-                continue
+                print(f"Input IDs (first 50): {input_ids[:50]}")
+                print(f"Output IDs (first 50): {output_ids[:50]}")
             except ValueError as e:
                 print(f"ValueError: {e} at sample index {i}")
                 bad_samples += 1

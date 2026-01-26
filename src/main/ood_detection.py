@@ -104,20 +104,23 @@ def load_actual_datasets():
         k=SLIDING_WINDOW_LEN,
         stride=STRIDE,
     )
+    print("len(id_train_dataset)", len(id_train_dataset))
     id_test_dataset = SlidingWindowDataset(
         id_test_base_dataset,
         name="id_test_dataset",
         k=SLIDING_WINDOW_LEN,
         stride=STRIDE,
-        num_samples=500,
+        num_samples=240,
     )
+    print("len(id_test_dataset)", len(id_test_dataset))
     ood_dataset = SlidingWindowDataset(
         ood_base_dataset,
         name="ood_dataset",
         k=SLIDING_WINDOW_LEN,
         stride=STRIDE,
-        num_samples=500,
+        num_samples=240,
     )
+    print("len(ood_dataset)", len(ood_dataset))
 
     return id_train_dataset, id_test_dataset, ood_dataset
 
