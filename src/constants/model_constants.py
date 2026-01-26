@@ -4,7 +4,9 @@ Model-related constants for the OOD detection project.
 
 import torch
 
-DEVICE = "cuda:1" if torch.cuda.is_available() else "cpu"
+# Use the first visible CUDA device if available; otherwise fall back to CPU.
+# This respects CUDA_VISIBLE_DEVICES set by SLURM.
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 # Model name
 JORDAN_MODEL_NAME = "mitmedialab/JordanAI-disklavier-v0.1-pytorch"
 

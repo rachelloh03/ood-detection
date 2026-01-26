@@ -73,7 +73,12 @@ class KMeansDistance:
     During transform, returns distances from each point to each cluster center.
     """
 
-    def __init__(self, n_clusters: int, random_state: int = 42):
+    def __init__(
+        self,
+        n_clusters: int,
+        random_state: int = 42,
+        max_samples_for_fit: int | None = 2000,
+    ):
         """
         Args:
             n_clusters: Number of clusters (k) for k-means
@@ -81,6 +86,7 @@ class KMeansDistance:
         """
         self.n_clusters = n_clusters
         self.random_state = random_state
+        self.max_samples_for_fit = max_samples_for_fit
         self.kmeans = None
         self.cluster_centers_ = None
         self.__name__ = f"KMeansDistance(n_clusters={n_clusters})"
@@ -98,10 +104,21 @@ class KMeansDistance:
         else:
             x_np = np.array(x)
 
+        # Optionally subsample rows to speed up KMeans on very large datasets
+        if (
+            self.max_samples_for_fit is not None
+            and x_np.shape[0] > self.max_samples_for_fit
+        ):
+            rng = np.random.RandomState(self.random_state)
+            indices = rng.choice(x_np.shape[0], self.max_samples_for_fit, replace=False)
+            x_fit = x_np[indices]
+        else:
+            x_fit = x_np
+
         self.kmeans = KMeans(
             n_clusters=self.n_clusters, random_state=self.random_state, n_init=10
         )
-        self.kmeans.fit(x_np)
+        self.kmeans.fit(x_fit)
         self.cluster_centers_ = self.kmeans.cluster_centers_
 
     def transform(self, x):

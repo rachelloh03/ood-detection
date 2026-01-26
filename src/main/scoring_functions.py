@@ -67,6 +67,8 @@ def k_nearest_neighbors_distances(
     """
     Compute the k-nearest neighbors distance between the ID embeddings and the new input embeddings.
     """
+    MAX_ID_SAMPLES = 1_000
+
     if id_embeddings.ndim > 1:
         assert (
             id_embeddings.shape[1] == new_input_embeddings.shape[1]
@@ -74,7 +76,17 @@ def k_nearest_neighbors_distances(
     else:
         id_embeddings = id_embeddings.unsqueeze(-1)
         new_input_embeddings = new_input_embeddings.unsqueeze(-1)
-    assert k > 0 and k <= id_embeddings.shape[0]
+
+    num_id = id_embeddings.shape[0]
+    assert k > 0 and k <= num_id
+
+    if num_id > MAX_ID_SAMPLES:
+        perm = torch.randperm(num_id, device=id_embeddings.device)
+        keep = perm[:MAX_ID_SAMPLES]
+        id_embeddings = id_embeddings[keep]
+        num_id = id_embeddings.shape[0]
+        if k > num_id:
+            k = num_id
 
     x2 = (new_input_embeddings**2).sum(dim=1, keepdim=True)  # (M, 1)
     y2 = (id_embeddings**2).sum(dim=1).unsqueeze(0)  # (1, N)

@@ -1,5 +1,7 @@
 """
 Run OOD detection for all combinations of pooling functions, subsampling transformations, and scoring functions.
+
+Results in
 """
 
 import itertools
@@ -168,7 +170,7 @@ def load_dummy_datasets():
 def generate_all_transformations(model, pooling_functions, subsampling_transformations):
     all_transformations = []
     for pooling_function, pooling_function_name in pooling_functions:
-        for n_clusters in [5, 25, 100]:
+        for n_clusters in [25, 10, 5]:
             all_transformations.append(
                 (
                     Transformations(
@@ -221,7 +223,8 @@ def generate_all_transformations(model, pooling_functions, subsampling_transform
 
 
 if __name__ == "__main__":
-    id_train_dataset, id_test_dataset, ood_dataset = load_dummy_datasets()
+    print("running")
+    id_train_dataset, id_test_dataset, ood_dataset = load_actual_datasets()
 
     batch_size = 8
 
@@ -242,22 +245,22 @@ if __name__ == "__main__":
 
     pooling_functions = [
         (pool_mean_std, "pool_mean_std"),
-        (pool_last_k_tokens(k=1), "pool_last_k_tokens(k=1)"),
-        (pool_last_k_tokens(k=5), "pool_last_k_tokens(k=5)"),
         (pool_last_k_tokens(k=10), "pool_last_k_tokens(k=10)"),
+        (pool_last_k_tokens(k=5), "pool_last_k_tokens(k=5)"),
+        (pool_last_k_tokens(k=1), "pool_last_k_tokens(k=1)"),
     ]
     subsampling_transformations = [
-        (Subsample(10), "Subsample(10)"),
-        (Subsample(20), "Subsample(20)"),
         (Subsample(50), "Subsample(50)"),
-        (PCA(n_components=10), "PCA(n_components=10)"),
-        (PCA(n_components=20), "PCA(n_components=20)"),
         (PCA(n_components=50), "PCA(n_components=50)"),
+        (Subsample(20), "Subsample(20)"),
+        (PCA(n_components=20), "PCA(n_components=20)"),
+        (Subsample(10), "Subsample(10)"),
+        (PCA(n_components=10), "PCA(n_components=10)"),
     ]
     scoring_functions = [
-        (k_nearest_neighbors(k=10), "knn(k=10)"),
-        (k_nearest_neighbors(k=20), "knn(k=20)"),
         (k_nearest_neighbors(k=50), "knn(k=50)"),
+        (k_nearest_neighbors(k=20), "knn(k=20)"),
+        (k_nearest_neighbors(k=10), "knn(k=10)"),
         (mahalanobis_distance, "mahalanobis_distance"),
         (identity, "identity"),
     ]

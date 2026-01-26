@@ -1,0 +1,5136 @@
+[
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                5,
+                11
+            ],
+            [
+                5,
+                11
+            ]
+        ],
+        "true_positive_rate": 0.3125,
+        "false_positive_rate": 0.3125,
+        "auroc": 0.45703125
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                6,
+                10
+            ],
+            [
+                4,
+                12
+            ]
+        ],
+        "true_positive_rate": 0.375,
+        "false_positive_rate": 0.25,
+        "auroc": 0.55859375
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                5,
+                11
+            ],
+            [
+                5,
+                11
+            ]
+        ],
+        "true_positive_rate": 0.3125,
+        "false_positive_rate": 0.3125,
+        "auroc": 0.552734375
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                5,
+                11
+            ],
+            [
+                5,
+                11
+            ]
+        ],
+        "true_positive_rate": 0.3125,
+        "false_positive_rate": 0.3125,
+        "auroc": 0.390625
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                5,
+                11
+            ],
+            [
+                5,
+                11
+            ]
+        ],
+        "true_positive_rate": 0.3125,
+        "false_positive_rate": 0.3125,
+        "auroc": 0.552734375
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                7,
+                9
+            ],
+            [
+                3,
+                13
+            ]
+        ],
+        "true_positive_rate": 0.4375,
+        "false_positive_rate": 0.1875,
+        "auroc": 0.69921875
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                6,
+                10
+            ],
+            [
+                4,
+                12
+            ]
+        ],
+        "true_positive_rate": 0.375,
+        "false_positive_rate": 0.25,
+        "auroc": 0.689453125
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                6,
+                10
+            ],
+            [
+                4,
+                12
+            ]
+        ],
+        "true_positive_rate": 0.375,
+        "false_positive_rate": 0.25,
+        "auroc": 0.65625
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                6,
+                10
+            ],
+            [
+                4,
+                12
+            ]
+        ],
+        "true_positive_rate": 0.375,
+        "false_positive_rate": 0.25,
+        "auroc": 0.44140625
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                29,
+                51
+            ],
+            [
+                19,
+                61
+            ]
+        ],
+        "true_positive_rate": 0.36250001192092896,
+        "false_positive_rate": 0.23749999701976776,
+        "auroc": 0.57164067029953
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                5,
+                11
+            ],
+            [
+                5,
+                11
+            ]
+        ],
+        "true_positive_rate": 0.3125,
+        "false_positive_rate": 0.3125,
+        "auroc": 0.4453125
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                5,
+                11
+            ],
+            [
+                5,
+                11
+            ]
+        ],
+        "true_positive_rate": 0.3125,
+        "false_positive_rate": 0.3125,
+        "auroc": 0.5078125
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                5,
+                11
+            ],
+            [
+                5,
+                11
+            ]
+        ],
+        "true_positive_rate": 0.3125,
+        "false_positive_rate": 0.3125,
+        "auroc": 0.525390625
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                5,
+                11
+            ],
+            [
+                5,
+                11
+            ]
+        ],
+        "true_positive_rate": 0.3125,
+        "false_positive_rate": 0.3125,
+        "auroc": 0.396484375
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                5,
+                11
+            ],
+            [
+                5,
+                11
+            ]
+        ],
+        "true_positive_rate": 0.3125,
+        "false_positive_rate": 0.3125,
+        "auroc": 0.55078125
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                6,
+                10
+            ],
+            [
+                4,
+                12
+            ]
+        ],
+        "true_positive_rate": 0.375,
+        "false_positive_rate": 0.25,
+        "auroc": 0.654296875
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                6,
+                10
+            ],
+            [
+                4,
+                12
+            ]
+        ],
+        "true_positive_rate": 0.375,
+        "false_positive_rate": 0.25,
+        "auroc": 0.6796875
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                6,
+                10
+            ],
+            [
+                4,
+                12
+            ]
+        ],
+        "true_positive_rate": 0.375,
+        "false_positive_rate": 0.25,
+        "auroc": 0.615234375
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                7,
+                9
+            ],
+            [
+                3,
+                13
+            ]
+        ],
+        "true_positive_rate": 0.4375,
+        "false_positive_rate": 0.1875,
+        "auroc": 0.583984375
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                126,
+                274
+            ],
+            [
+                114,
+                286
+            ]
+        ],
+        "true_positive_rate": 0.3149999976158142,
+        "false_positive_rate": 0.2849999964237213,
+        "auroc": 0.5463531613349915
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=100)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                6,
+                10
+            ],
+            [
+                4,
+                12
+            ]
+        ],
+        "true_positive_rate": 0.375,
+        "false_positive_rate": 0.25,
+        "auroc": 0.62890625
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=100)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                6,
+                10
+            ],
+            [
+                4,
+                12
+            ]
+        ],
+        "true_positive_rate": 0.375,
+        "false_positive_rate": 0.25,
+        "auroc": 0.59375
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=100)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                6,
+                10
+            ],
+            [
+                4,
+                12
+            ]
+        ],
+        "true_positive_rate": 0.375,
+        "false_positive_rate": 0.25,
+        "auroc": 0.603515625
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=100)_withmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                4,
+                12
+            ],
+            [
+                6,
+                10
+            ]
+        ],
+        "true_positive_rate": 0.25,
+        "false_positive_rate": 0.375,
+        "auroc": 0.455078125
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=100)_withmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                6,
+                10
+            ],
+            [
+                4,
+                12
+            ]
+        ],
+        "true_positive_rate": 0.375,
+        "false_positive_rate": 0.25,
+        "auroc": 0.609375
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=100)_withoutmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                7,
+                9
+            ],
+            [
+                3,
+                13
+            ]
+        ],
+        "true_positive_rate": 0.4375,
+        "false_positive_rate": 0.1875,
+        "auroc": 0.673828125
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=100)_withoutmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                6,
+                10
+            ],
+            [
+                4,
+                12
+            ]
+        ],
+        "true_positive_rate": 0.375,
+        "false_positive_rate": 0.25,
+        "auroc": 0.6875
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=100)_withoutmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                6,
+                10
+            ],
+            [
+                4,
+                12
+            ]
+        ],
+        "true_positive_rate": 0.375,
+        "false_positive_rate": 0.25,
+        "auroc": 0.64453125
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=100)_withoutmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                5,
+                11
+            ],
+            [
+                5,
+                11
+            ]
+        ],
+        "true_positive_rate": 0.3125,
+        "false_positive_rate": 0.3125,
+        "auroc": 0.45703125
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=100)_withoutmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                557,
+                1043
+            ],
+            [
+                403,
+                1197
+            ]
+        ],
+        "true_positive_rate": 0.34812501072883606,
+        "false_positive_rate": 0.25187501311302185,
+        "auroc": 0.5847046375274658
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                5,
+                11
+            ],
+            [
+                5,
+                11
+            ]
+        ],
+        "true_positive_rate": 0.3125,
+        "false_positive_rate": 0.3125,
+        "auroc": 0.42578125
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                5,
+                11
+            ],
+            [
+                5,
+                11
+            ]
+        ],
+        "true_positive_rate": 0.3125,
+        "false_positive_rate": 0.3125,
+        "auroc": 0.453125
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                5,
+                11
+            ],
+            [
+                5,
+                11
+            ]
+        ],
+        "true_positive_rate": 0.3125,
+        "false_positive_rate": 0.3125,
+        "auroc": 0.412109375
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                5,
+                11
+            ],
+            [
+                5,
+                11
+            ]
+        ],
+        "true_positive_rate": 0.3125,
+        "false_positive_rate": 0.3125,
+        "auroc": 0.462890625
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                6,
+                10
+            ],
+            [
+                4,
+                12
+            ]
+        ],
+        "true_positive_rate": 0.375,
+        "false_positive_rate": 0.25,
+        "auroc": 0.541015625
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                5,
+                11
+            ],
+            [
+                5,
+                11
+            ]
+        ],
+        "true_positive_rate": 0.3125,
+        "false_positive_rate": 0.3125,
+        "auroc": 0.482421875
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                5,
+                11
+            ],
+            [
+                5,
+                11
+            ]
+        ],
+        "true_positive_rate": 0.3125,
+        "false_positive_rate": 0.3125,
+        "auroc": 0.408203125
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                3,
+                13
+            ],
+            [
+                7,
+                9
+            ]
+        ],
+        "true_positive_rate": 0.1875,
+        "false_positive_rate": 0.4375,
+        "auroc": 0.34765625
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                164,
+                336
+            ],
+            [
+                136,
+                364
+            ]
+        ],
+        "true_positive_rate": 0.328000009059906,
+        "false_positive_rate": 0.2720000147819519,
+        "auroc": 0.5463739633560181
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                168,
+                332
+            ],
+            [
+                132,
+                368
+            ]
+        ],
+        "true_positive_rate": 0.335999995470047,
+        "false_positive_rate": 0.2639999985694885,
+        "auroc": 0.556797981262207
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                169,
+                331
+            ],
+            [
+                131,
+                369
+            ]
+        ],
+        "true_positive_rate": 0.33799999952316284,
+        "false_positive_rate": 0.2619999945163727,
+        "auroc": 0.558664083480835
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                169,
+                331
+            ],
+            [
+                131,
+                369
+            ]
+        ],
+        "true_positive_rate": 0.33799999952316284,
+        "false_positive_rate": 0.2619999945163727,
+        "auroc": 0.5530979633331299
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                166,
+                334
+            ],
+            [
+                134,
+                366
+            ]
+        ],
+        "true_positive_rate": 0.3319999873638153,
+        "false_positive_rate": 0.2680000066757202,
+        "auroc": 0.5687679052352905
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                168,
+                332
+            ],
+            [
+                132,
+                368
+            ]
+        ],
+        "true_positive_rate": 0.335999995470047,
+        "false_positive_rate": 0.2639999985694885,
+        "auroc": 0.5747660398483276
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                151,
+                349
+            ],
+            [
+                149,
+                351
+            ]
+        ],
+        "true_positive_rate": 0.3019999861717224,
+        "false_positive_rate": 0.2980000078678131,
+        "auroc": 0.49636200070381165
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                182,
+                318
+            ],
+            [
+                118,
+                382
+            ]
+        ],
+        "true_positive_rate": 0.36399999260902405,
+        "false_positive_rate": 0.23600000143051147,
+        "auroc": 0.6096320152282715
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                144,
+                356
+            ],
+            [
+                156,
+                344
+            ]
+        ],
+        "true_positive_rate": 0.2879999876022339,
+        "false_positive_rate": 0.31200000643730164,
+        "auroc": 0.487203985452652
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                142,
+                358
+            ],
+            [
+                158,
+                342
+            ]
+        ],
+        "true_positive_rate": 0.2840000092983246,
+        "false_positive_rate": 0.3160000145435333,
+        "auroc": 0.4893920123577118
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                145,
+                355
+            ],
+            [
+                155,
+                345
+            ]
+        ],
+        "true_positive_rate": 0.28999999165534973,
+        "false_positive_rate": 0.3100000023841858,
+        "auroc": 0.48845401406288147
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                139,
+                361
+            ],
+            [
+                161,
+                339
+            ]
+        ],
+        "true_positive_rate": 0.27799999713897705,
+        "false_positive_rate": 0.32199999690055847,
+        "auroc": 0.4438520073890686
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                846,
+                1654
+            ],
+            [
+                654,
+                1846
+            ]
+        ],
+        "true_positive_rate": 0.3384000062942505,
+        "false_positive_rate": 0.26159998774528503,
+        "auroc": 0.558862030506134
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                168,
+                332
+            ],
+            [
+                132,
+                368
+            ]
+        ],
+        "true_positive_rate": 0.335999995470047,
+        "false_positive_rate": 0.2639999985694885,
+        "auroc": 0.5675259828567505
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                175,
+                325
+            ],
+            [
+                125,
+                375
+            ]
+        ],
+        "true_positive_rate": 0.3499999940395355,
+        "false_positive_rate": 0.25,
+        "auroc": 0.5590841174125671
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                159,
+                341
+            ],
+            [
+                141,
+                359
+            ]
+        ],
+        "true_positive_rate": 0.3179999887943268,
+        "false_positive_rate": 0.28200000524520874,
+        "auroc": 0.5673180222511292
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                156,
+                344
+            ],
+            [
+                144,
+                356
+            ]
+        ],
+        "true_positive_rate": 0.31200000643730164,
+        "false_positive_rate": 0.2879999876022339,
+        "auroc": 0.5705741047859192
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                151,
+                349
+            ],
+            [
+                149,
+                351
+            ]
+        ],
+        "true_positive_rate": 0.3019999861717224,
+        "false_positive_rate": 0.2980000078678131,
+        "auroc": 0.4964640140533447
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                183,
+                317
+            ],
+            [
+                117,
+                383
+            ]
+        ],
+        "true_positive_rate": 0.3659999966621399,
+        "false_positive_rate": 0.23399999737739563,
+        "auroc": 0.6098280549049377
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                145,
+                355
+            ],
+            [
+                155,
+                345
+            ]
+        ],
+        "true_positive_rate": 0.28999999165534973,
+        "false_positive_rate": 0.3100000023841858,
+        "auroc": 0.5028700232505798
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                143,
+                357
+            ],
+            [
+                157,
+                343
+            ]
+        ],
+        "true_positive_rate": 0.28600001335144043,
+        "false_positive_rate": 0.3140000104904175,
+        "auroc": 0.5061119794845581
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                153,
+                347
+            ],
+            [
+                147,
+                353
+            ]
+        ],
+        "true_positive_rate": 0.3059999942779541,
+        "false_positive_rate": 0.2939999997615814,
+        "auroc": 0.5098400115966797
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                141,
+                359
+            ],
+            [
+                159,
+                341
+            ]
+        ],
+        "true_positive_rate": 0.28200000524520874,
+        "false_positive_rate": 0.3179999887943268,
+        "auroc": 0.44696399569511414
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                846,
+                1654
+            ],
+            [
+                654,
+                1846
+            ]
+        ],
+        "true_positive_rate": 0.3384000062942505,
+        "false_positive_rate": 0.26159998774528503,
+        "auroc": 0.5585321187973022
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                171,
+                329
+            ],
+            [
+                129,
+                371
+            ]
+        ],
+        "true_positive_rate": 0.34200000762939453,
+        "false_positive_rate": 0.257999986410141,
+        "auroc": 0.5528079867362976
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                153,
+                347
+            ],
+            [
+                147,
+                353
+            ]
+        ],
+        "true_positive_rate": 0.3059999942779541,
+        "false_positive_rate": 0.2939999997615814,
+        "auroc": 0.5607179403305054
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                162,
+                338
+            ],
+            [
+                138,
+                362
+            ]
+        ],
+        "true_positive_rate": 0.3240000009536743,
+        "false_positive_rate": 0.2759999930858612,
+        "auroc": 0.5439940094947815
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                147,
+                353
+            ],
+            [
+                153,
+                347
+            ]
+        ],
+        "true_positive_rate": 0.2939999997615814,
+        "false_positive_rate": 0.3059999942779541,
+        "auroc": 0.4776759743690491
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                180,
+                320
+            ],
+            [
+                120,
+                380
+            ]
+        ],
+        "true_positive_rate": 0.36000001430511475,
+        "false_positive_rate": 0.23999999463558197,
+        "auroc": 0.6082479953765869
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                159,
+                341
+            ],
+            [
+                141,
+                359
+            ]
+        ],
+        "true_positive_rate": 0.3179999887943268,
+        "false_positive_rate": 0.28200000524520874,
+        "auroc": 0.5381760001182556
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                162,
+                338
+            ],
+            [
+                138,
+                362
+            ]
+        ],
+        "true_positive_rate": 0.3240000009536743,
+        "false_positive_rate": 0.2759999930858612,
+        "auroc": 0.5473199486732483
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                155,
+                345
+            ],
+            [
+                145,
+                355
+            ]
+        ],
+        "true_positive_rate": 0.3100000023841858,
+        "false_positive_rate": 0.28999999165534973,
+        "auroc": 0.5588300824165344
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                158,
+                342
+            ],
+            [
+                142,
+                358
+            ]
+        ],
+        "true_positive_rate": 0.3160000145435333,
+        "false_positive_rate": 0.2840000092983246,
+        "auroc": 0.5261760354042053
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                4117,
+                8383
+            ],
+            [
+                3383,
+                9117
+            ]
+        ],
+        "true_positive_rate": 0.3293600082397461,
+        "false_positive_rate": 0.27063998579978943,
+        "auroc": 0.5494557619094849
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                167,
+                333
+            ],
+            [
+                133,
+                367
+            ]
+        ],
+        "true_positive_rate": 0.33399999141693115,
+        "false_positive_rate": 0.26600000262260437,
+        "auroc": 0.5644340515136719
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                188,
+                312
+            ],
+            [
+                112,
+                388
+            ]
+        ],
+        "true_positive_rate": 0.37599998712539673,
+        "false_positive_rate": 0.2240000069141388,
+        "auroc": 0.5604020357131958
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                168,
+                332
+            ],
+            [
+                132,
+                368
+            ]
+        ],
+        "true_positive_rate": 0.335999995470047,
+        "false_positive_rate": 0.2639999985694885,
+        "auroc": 0.542538046836853
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                147,
+                353
+            ],
+            [
+                153,
+                347
+            ]
+        ],
+        "true_positive_rate": 0.2939999997615814,
+        "false_positive_rate": 0.3059999942779541,
+        "auroc": 0.4827880263328552
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                185,
+                315
+            ],
+            [
+                115,
+                385
+            ]
+        ],
+        "true_positive_rate": 0.3700000047683716,
+        "false_positive_rate": 0.23000000417232513,
+        "auroc": 0.6108960509300232
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                154,
+                346
+            ],
+            [
+                145,
+                355
+            ]
+        ],
+        "true_positive_rate": 0.30799999833106995,
+        "false_positive_rate": 0.28999999165534973,
+        "auroc": 0.5316179990768433
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                163,
+                337
+            ],
+            [
+                137,
+                363
+            ]
+        ],
+        "true_positive_rate": 0.32600000500679016,
+        "false_positive_rate": 0.27399998903274536,
+        "auroc": 0.5333619713783264
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                153,
+                347
+            ],
+            [
+                147,
+                353
+            ]
+        ],
+        "true_positive_rate": 0.3059999942779541,
+        "false_positive_rate": 0.2939999997615814,
+        "auroc": 0.5428079962730408
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                127,
+                373
+            ],
+            [
+                173,
+                327
+            ]
+        ],
+        "true_positive_rate": 0.2540000081062317,
+        "false_positive_rate": 0.34599998593330383,
+        "auroc": 0.4233100116252899
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                1634,
+                3366
+            ],
+            [
+                1366,
+                3634
+            ]
+        ],
+        "true_positive_rate": 0.32679998874664307,
+        "false_positive_rate": 0.27320000529289246,
+        "auroc": 0.5485250949859619
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                181,
+                319
+            ],
+            [
+                119,
+                381
+            ]
+        ],
+        "true_positive_rate": 0.3619999885559082,
+        "false_positive_rate": 0.23800000548362732,
+        "auroc": 0.5532839894294739
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                183,
+                317
+            ],
+            [
+                117,
+                383
+            ]
+        ],
+        "true_positive_rate": 0.3659999966621399,
+        "false_positive_rate": 0.23399999737739563,
+        "auroc": 0.5534359812736511
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                171,
+                329
+            ],
+            [
+                129,
+                371
+            ]
+        ],
+        "true_positive_rate": 0.34200000762939453,
+        "false_positive_rate": 0.257999986410141,
+        "auroc": 0.5429539680480957
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                151,
+                349
+            ],
+            [
+                149,
+                351
+            ]
+        ],
+        "true_positive_rate": 0.3019999861717224,
+        "false_positive_rate": 0.2980000078678131,
+        "auroc": 0.4913780093193054
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                183,
+                317
+            ],
+            [
+                117,
+                383
+            ]
+        ],
+        "true_positive_rate": 0.3659999966621399,
+        "false_positive_rate": 0.23399999737739563,
+        "auroc": 0.6058759689331055
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                164,
+                336
+            ],
+            [
+                136,
+                364
+            ]
+        ],
+        "true_positive_rate": 0.328000009059906,
+        "false_positive_rate": 0.2720000147819519,
+        "auroc": 0.5226420760154724
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                160,
+                340
+            ],
+            [
+                140,
+                360
+            ]
+        ],
+        "true_positive_rate": 0.3199999928474426,
+        "false_positive_rate": 0.2800000011920929,
+        "auroc": 0.5160859823226929
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                158,
+                342
+            ],
+            [
+                142,
+                358
+            ]
+        ],
+        "true_positive_rate": 0.3160000145435333,
+        "false_positive_rate": 0.2840000092983246,
+        "auroc": 0.5138900279998779
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                145,
+                355
+            ],
+            [
+                155,
+                345
+            ]
+        ],
+        "true_positive_rate": 0.28999999165534973,
+        "false_positive_rate": 0.3100000023841858,
+        "auroc": 0.4481939673423767
+    },
+    {
+        "transformations": "pool_mean_std_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                853,
+                1647
+            ],
+            [
+                647,
+                1853
+            ]
+        ],
+        "true_positive_rate": 0.34119999408721924,
+        "false_positive_rate": 0.2587999999523163,
+        "auroc": 0.5573437809944153
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                114,
+                386
+            ],
+            [
+                186,
+                314
+            ]
+        ],
+        "true_positive_rate": 0.2280000001192093,
+        "false_positive_rate": 0.3720000088214874,
+        "auroc": 0.4435739815235138
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                117,
+                383
+            ],
+            [
+                183,
+                317
+            ]
+        ],
+        "true_positive_rate": 0.23399999737739563,
+        "false_positive_rate": 0.3659999966621399,
+        "auroc": 0.4399460256099701
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                112,
+                388
+            ],
+            [
+                188,
+                312
+            ]
+        ],
+        "true_positive_rate": 0.2240000069141388,
+        "false_positive_rate": 0.37599998712539673,
+        "auroc": 0.43786194920539856
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                110,
+                390
+            ],
+            [
+                190,
+                310
+            ]
+        ],
+        "true_positive_rate": 0.2199999988079071,
+        "false_positive_rate": 0.3799999952316284,
+        "auroc": 0.38229599595069885
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                111,
+                389
+            ],
+            [
+                189,
+                311
+            ]
+        ],
+        "true_positive_rate": 0.22200000286102295,
+        "false_positive_rate": 0.3779999911785126,
+        "auroc": 0.4569980204105377
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                109,
+                391
+            ],
+            [
+                191,
+                309
+            ]
+        ],
+        "true_positive_rate": 0.21799999475479126,
+        "false_positive_rate": 0.38199999928474426,
+        "auroc": 0.37897202372550964
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                110,
+                390
+            ],
+            [
+                190,
+                310
+            ]
+        ],
+        "true_positive_rate": 0.2199999988079071,
+        "false_positive_rate": 0.3799999952316284,
+        "auroc": 0.37970998883247375
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                113,
+                387
+            ],
+            [
+                187,
+                313
+            ]
+        ],
+        "true_positive_rate": 0.22599999606609344,
+        "false_positive_rate": 0.37400001287460327,
+        "auroc": 0.383495956659317
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                118,
+                382
+            ],
+            [
+                182,
+                318
+            ]
+        ],
+        "true_positive_rate": 0.23600000143051147,
+        "false_positive_rate": 0.36399999260902405,
+        "auroc": 0.4150579571723938
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                3307,
+                9193
+            ],
+            [
+                4193,
+                8307
+            ]
+        ],
+        "true_positive_rate": 0.2645600140094757,
+        "false_positive_rate": 0.3354400098323822,
+        "auroc": 0.45958349108695984
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                107,
+                393
+            ],
+            [
+                193,
+                307
+            ]
+        ],
+        "true_positive_rate": 0.21400000154972076,
+        "false_positive_rate": 0.38600000739097595,
+        "auroc": 0.45789003372192383
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                110,
+                390
+            ],
+            [
+                190,
+                310
+            ]
+        ],
+        "true_positive_rate": 0.2199999988079071,
+        "false_positive_rate": 0.3799999952316284,
+        "auroc": 0.4515340030193329
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                115,
+                385
+            ],
+            [
+                185,
+                315
+            ]
+        ],
+        "true_positive_rate": 0.23000000417232513,
+        "false_positive_rate": 0.3700000047683716,
+        "auroc": 0.44547000527381897
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                111,
+                389
+            ],
+            [
+                189,
+                311
+            ]
+        ],
+        "true_positive_rate": 0.22200000286102295,
+        "false_positive_rate": 0.3779999911785126,
+        "auroc": 0.38733601570129395
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                112,
+                388
+            ],
+            [
+                188,
+                312
+            ]
+        ],
+        "true_positive_rate": 0.2240000069141388,
+        "false_positive_rate": 0.37599998712539673,
+        "auroc": 0.459494024515152
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                109,
+                391
+            ],
+            [
+                191,
+                309
+            ]
+        ],
+        "true_positive_rate": 0.21799999475479126,
+        "false_positive_rate": 0.38199999928474426,
+        "auroc": 0.38691800832748413
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                113,
+                387
+            ],
+            [
+                187,
+                313
+            ]
+        ],
+        "true_positive_rate": 0.22599999606609344,
+        "false_positive_rate": 0.37400001287460327,
+        "auroc": 0.38501203060150146
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                109,
+                391
+            ],
+            [
+                191,
+                309
+            ]
+        ],
+        "true_positive_rate": 0.21799999475479126,
+        "false_positive_rate": 0.38199999928474426,
+        "auroc": 0.38894203305244446
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                112,
+                388
+            ],
+            [
+                188,
+                312
+            ]
+        ],
+        "true_positive_rate": 0.2240000069141388,
+        "false_positive_rate": 0.37599998712539673,
+        "auroc": 0.39420801401138306
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                1344,
+                3656
+            ],
+            [
+                1656,
+                3344
+            ]
+        ],
+        "true_positive_rate": 0.2687999904155731,
+        "false_positive_rate": 0.3312000036239624,
+        "auroc": 0.4636632204055786
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                128,
+                372
+            ],
+            [
+                172,
+                328
+            ]
+        ],
+        "true_positive_rate": 0.25600001215934753,
+        "false_positive_rate": 0.3440000116825104,
+        "auroc": 0.45780399441719055
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                148,
+                352
+            ],
+            [
+                152,
+                348
+            ]
+        ],
+        "true_positive_rate": 0.29600000381469727,
+        "false_positive_rate": 0.30399999022483826,
+        "auroc": 0.4580100178718567
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                136,
+                364
+            ],
+            [
+                164,
+                336
+            ]
+        ],
+        "true_positive_rate": 0.2720000147819519,
+        "false_positive_rate": 0.328000009059906,
+        "auroc": 0.4559420347213745
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                117,
+                383
+            ],
+            [
+                183,
+                317
+            ]
+        ],
+        "true_positive_rate": 0.23399999737739563,
+        "false_positive_rate": 0.3659999966621399,
+        "auroc": 0.4042780101299286
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                118,
+                382
+            ],
+            [
+                182,
+                318
+            ]
+        ],
+        "true_positive_rate": 0.23600000143051147,
+        "false_positive_rate": 0.36399999260902405,
+        "auroc": 0.4650920033454895
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                117,
+                383
+            ],
+            [
+                183,
+                317
+            ]
+        ],
+        "true_positive_rate": 0.23399999737739563,
+        "false_positive_rate": 0.3659999966621399,
+        "auroc": 0.3885419964790344
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                107,
+                393
+            ],
+            [
+                193,
+                307
+            ]
+        ],
+        "true_positive_rate": 0.21400000154972076,
+        "false_positive_rate": 0.38600000739097595,
+        "auroc": 0.3863840103149414
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                111,
+                389
+            ],
+            [
+                189,
+                311
+            ]
+        ],
+        "true_positive_rate": 0.22200000286102295,
+        "false_positive_rate": 0.3779999911785126,
+        "auroc": 0.3883960247039795
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                109,
+                391
+            ],
+            [
+                191,
+                309
+            ]
+        ],
+        "true_positive_rate": 0.21799999475479126,
+        "false_positive_rate": 0.38199999928474426,
+        "auroc": 0.4034160077571869
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                695,
+                1805
+            ],
+            [
+                805,
+                1695
+            ]
+        ],
+        "true_positive_rate": 0.27799999713897705,
+        "false_positive_rate": 0.32199999690055847,
+        "auroc": 0.47095271944999695
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                126,
+                374
+            ],
+            [
+                174,
+                326
+            ]
+        ],
+        "true_positive_rate": 0.25200000405311584,
+        "false_positive_rate": 0.3479999899864197,
+        "auroc": 0.42235803604125977
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                124,
+                376
+            ],
+            [
+                176,
+                324
+            ]
+        ],
+        "true_positive_rate": 0.24799999594688416,
+        "false_positive_rate": 0.35199999809265137,
+        "auroc": 0.4246620535850525
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                136,
+                364
+            ],
+            [
+                164,
+                336
+            ]
+        ],
+        "true_positive_rate": 0.2720000147819519,
+        "false_positive_rate": 0.328000009059906,
+        "auroc": 0.4230540096759796
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                121,
+                379
+            ],
+            [
+                178,
+                322
+            ]
+        ],
+        "true_positive_rate": 0.24199999868869781,
+        "false_positive_rate": 0.35600000619888306,
+        "auroc": 0.4453439712524414
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                132,
+                368
+            ],
+            [
+                168,
+                332
+            ]
+        ],
+        "true_positive_rate": 0.2639999985694885,
+        "false_positive_rate": 0.335999995470047,
+        "auroc": 0.4624440371990204
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                107,
+                393
+            ],
+            [
+                193,
+                307
+            ]
+        ],
+        "true_positive_rate": 0.21400000154972076,
+        "false_positive_rate": 0.38600000739097595,
+        "auroc": 0.38704201579093933
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                107,
+                393
+            ],
+            [
+                193,
+                307
+            ]
+        ],
+        "true_positive_rate": 0.21400000154972076,
+        "false_positive_rate": 0.38600000739097595,
+        "auroc": 0.38795599341392517
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                107,
+                393
+            ],
+            [
+                193,
+                307
+            ]
+        ],
+        "true_positive_rate": 0.21400000154972076,
+        "false_positive_rate": 0.38600000739097595,
+        "auroc": 0.3949120044708252
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                115,
+                385
+            ],
+            [
+                185,
+                315
+            ]
+        ],
+        "true_positive_rate": 0.23000000417232513,
+        "false_positive_rate": 0.3700000047683716,
+        "auroc": 0.4213400185108185
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                3443,
+                9057
+            ],
+            [
+                4057,
+                8443
+            ]
+        ],
+        "true_positive_rate": 0.2754400074481964,
+        "false_positive_rate": 0.3245599865913391,
+        "auroc": 0.47306379675865173
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                157,
+                343
+            ],
+            [
+                143,
+                357
+            ]
+        ],
+        "true_positive_rate": 0.3140000104904175,
+        "false_positive_rate": 0.28600001335144043,
+        "auroc": 0.42217200994491577
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                123,
+                377
+            ],
+            [
+                177,
+                323
+            ]
+        ],
+        "true_positive_rate": 0.2460000067949295,
+        "false_positive_rate": 0.3540000021457672,
+        "auroc": 0.4220540225505829
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                141,
+                359
+            ],
+            [
+                159,
+                341
+            ]
+        ],
+        "true_positive_rate": 0.28200000524520874,
+        "false_positive_rate": 0.3179999887943268,
+        "auroc": 0.4302760064601898
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                122,
+                378
+            ],
+            [
+                178,
+                322
+            ]
+        ],
+        "true_positive_rate": 0.24400000274181366,
+        "false_positive_rate": 0.35600000619888306,
+        "auroc": 0.4499800205230713
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                134,
+                366
+            ],
+            [
+                166,
+                334
+            ]
+        ],
+        "true_positive_rate": 0.2680000066757202,
+        "false_positive_rate": 0.3319999873638153,
+        "auroc": 0.47259601950645447
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                110,
+                390
+            ],
+            [
+                190,
+                310
+            ]
+        ],
+        "true_positive_rate": 0.2199999988079071,
+        "false_positive_rate": 0.3799999952316284,
+        "auroc": 0.3795520067214966
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                108,
+                392
+            ],
+            [
+                192,
+                308
+            ]
+        ],
+        "true_positive_rate": 0.2160000056028366,
+        "false_positive_rate": 0.3840000033378601,
+        "auroc": 0.3790220022201538
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                109,
+                391
+            ],
+            [
+                191,
+                309
+            ]
+        ],
+        "true_positive_rate": 0.21799999475479126,
+        "false_positive_rate": 0.38199999928474426,
+        "auroc": 0.3792160451412201
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                100,
+                400
+            ],
+            [
+                200,
+                300
+            ]
+        ],
+        "true_positive_rate": 0.20000000298023224,
+        "false_positive_rate": 0.4000000059604645,
+        "auroc": 0.3670940399169922
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                1416,
+                3584
+            ],
+            [
+                1584,
+                3416
+            ]
+        ],
+        "true_positive_rate": 0.2831999957561493,
+        "false_positive_rate": 0.31679999828338623,
+        "auroc": 0.48104244470596313
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                113,
+                387
+            ],
+            [
+                187,
+                313
+            ]
+        ],
+        "true_positive_rate": 0.22599999606609344,
+        "false_positive_rate": 0.37400001287460327,
+        "auroc": 0.4279000163078308
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                126,
+                374
+            ],
+            [
+                174,
+                326
+            ]
+        ],
+        "true_positive_rate": 0.25200000405311584,
+        "false_positive_rate": 0.3479999899864197,
+        "auroc": 0.43392595648765564
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                120,
+                380
+            ],
+            [
+                180,
+                320
+            ]
+        ],
+        "true_positive_rate": 0.23999999463558197,
+        "false_positive_rate": 0.36000001430511475,
+        "auroc": 0.43661805987358093
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                126,
+                374
+            ],
+            [
+                174,
+                326
+            ]
+        ],
+        "true_positive_rate": 0.25200000405311584,
+        "false_positive_rate": 0.3479999899864197,
+        "auroc": 0.45572996139526367
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                133,
+                367
+            ],
+            [
+                167,
+                333
+            ]
+        ],
+        "true_positive_rate": 0.26600000262260437,
+        "false_positive_rate": 0.33399999141693115,
+        "auroc": 0.4768580496311188
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                103,
+                397
+            ],
+            [
+                197,
+                303
+            ]
+        ],
+        "true_positive_rate": 0.20600000023841858,
+        "false_positive_rate": 0.39399999380111694,
+        "auroc": 0.3862999975681305
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                103,
+                397
+            ],
+            [
+                197,
+                303
+            ]
+        ],
+        "true_positive_rate": 0.20600000023841858,
+        "false_positive_rate": 0.39399999380111694,
+        "auroc": 0.38824400305747986
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                106,
+                394
+            ],
+            [
+                193,
+                307
+            ]
+        ],
+        "true_positive_rate": 0.21199999749660492,
+        "false_positive_rate": 0.38600000739097595,
+        "auroc": 0.38705599308013916
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                107,
+                393
+            ],
+            [
+                193,
+                307
+            ]
+        ],
+        "true_positive_rate": 0.21400000154972076,
+        "false_positive_rate": 0.38600000739097595,
+        "auroc": 0.4022819995880127
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                714,
+                1786
+            ],
+            [
+                786,
+                1714
+            ]
+        ],
+        "true_positive_rate": 0.2856000065803528,
+        "false_positive_rate": 0.31439998745918274,
+        "auroc": 0.483963280916214
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                101,
+                399
+            ],
+            [
+                199,
+                301
+            ]
+        ],
+        "true_positive_rate": 0.20200000703334808,
+        "false_positive_rate": 0.39800000190734863,
+        "auroc": 0.4182180166244507
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                109,
+                391
+            ],
+            [
+                191,
+                309
+            ]
+        ],
+        "true_positive_rate": 0.21799999475479126,
+        "false_positive_rate": 0.38199999928474426,
+        "auroc": 0.4136500358581543
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                122,
+                378
+            ],
+            [
+                178,
+                322
+            ]
+        ],
+        "true_positive_rate": 0.24400000274181366,
+        "false_positive_rate": 0.35600000619888306,
+        "auroc": 0.4215540587902069
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                113,
+                387
+            ],
+            [
+                187,
+                313
+            ]
+        ],
+        "true_positive_rate": 0.22599999606609344,
+        "false_positive_rate": 0.37400001287460327,
+        "auroc": 0.42578402161598206
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=25)_withmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                161,
+                339
+            ],
+            [
+                139,
+                361
+            ]
+        ],
+        "true_positive_rate": 0.32199999690055847,
+        "false_positive_rate": 0.27799999713897705,
+        "auroc": 0.5638320446014404
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                145,
+                355
+            ],
+            [
+                155,
+                345
+            ]
+        ],
+        "true_positive_rate": 0.28999999165534973,
+        "false_positive_rate": 0.3100000023841858,
+        "auroc": 0.4379660189151764
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                128,
+                372
+            ],
+            [
+                172,
+                328
+            ]
+        ],
+        "true_positive_rate": 0.25600001215934753,
+        "false_positive_rate": 0.3440000116825104,
+        "auroc": 0.45646798610687256
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                148,
+                352
+            ],
+            [
+                152,
+                348
+            ]
+        ],
+        "true_positive_rate": 0.29600000381469727,
+        "false_positive_rate": 0.30399999022483826,
+        "auroc": 0.45707595348358154
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                154,
+                346
+            ],
+            [
+                146,
+                354
+            ]
+        ],
+        "true_positive_rate": 0.30799999833106995,
+        "false_positive_rate": 0.2919999957084656,
+        "auroc": 0.4919640123844147
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=25)_withoutmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                3951,
+                8549
+            ],
+            [
+                3549,
+                8951
+            ]
+        ],
+        "true_positive_rate": 0.3160800039768219,
+        "false_positive_rate": 0.2839199900627136,
+        "auroc": 0.5490025281906128
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                98,
+                402
+            ],
+            [
+                202,
+                298
+            ]
+        ],
+        "true_positive_rate": 0.19599999487400055,
+        "false_positive_rate": 0.40400001406669617,
+        "auroc": 0.4153819978237152
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                126,
+                374
+            ],
+            [
+                174,
+                326
+            ]
+        ],
+        "true_positive_rate": 0.25200000405311584,
+        "false_positive_rate": 0.3479999899864197,
+        "auroc": 0.4234979748725891
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                115,
+                385
+            ],
+            [
+                185,
+                315
+            ]
+        ],
+        "true_positive_rate": 0.23000000417232513,
+        "false_positive_rate": 0.3700000047683716,
+        "auroc": 0.42906802892684937
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                113,
+                387
+            ],
+            [
+                187,
+                313
+            ]
+        ],
+        "true_positive_rate": 0.22599999606609344,
+        "false_positive_rate": 0.37400001287460327,
+        "auroc": 0.42631804943084717
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=10)_withmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                163,
+                337
+            ],
+            [
+                137,
+                363
+            ]
+        ],
+        "true_positive_rate": 0.32600000500679016,
+        "false_positive_rate": 0.27399998903274536,
+        "auroc": 0.5649279952049255
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                123,
+                377
+            ],
+            [
+                177,
+                323
+            ]
+        ],
+        "true_positive_rate": 0.2460000067949295,
+        "false_positive_rate": 0.3540000021457672,
+        "auroc": 0.4105140268802643
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                124,
+                376
+            ],
+            [
+                176,
+                324
+            ]
+        ],
+        "true_positive_rate": 0.24799999594688416,
+        "false_positive_rate": 0.35199999809265137,
+        "auroc": 0.42309001088142395
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                124,
+                376
+            ],
+            [
+                176,
+                324
+            ]
+        ],
+        "true_positive_rate": 0.24799999594688416,
+        "false_positive_rate": 0.35199999809265137,
+        "auroc": 0.43247199058532715
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                136,
+                364
+            ],
+            [
+                164,
+                336
+            ]
+        ],
+        "true_positive_rate": 0.2720000147819519,
+        "false_positive_rate": 0.328000009059906,
+        "auroc": 0.4485960006713867
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=10)_withoutmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                1546,
+                3454
+            ],
+            [
+                1453,
+                3547
+            ]
+        ],
+        "true_positive_rate": 0.3091999888420105,
+        "false_positive_rate": 0.2906000018119812,
+        "auroc": 0.5460451245307922
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                102,
+                398
+            ],
+            [
+                198,
+                302
+            ]
+        ],
+        "true_positive_rate": 0.20399999618530273,
+        "false_positive_rate": 0.3959999978542328,
+        "auroc": 0.41086602210998535
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                118,
+                382
+            ],
+            [
+                182,
+                318
+            ]
+        ],
+        "true_positive_rate": 0.23600000143051147,
+        "false_positive_rate": 0.36399999260902405,
+        "auroc": 0.41449403762817383
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                122,
+                378
+            ],
+            [
+                178,
+                322
+            ]
+        ],
+        "true_positive_rate": 0.24400000274181366,
+        "false_positive_rate": 0.35600000619888306,
+        "auroc": 0.42080599069595337
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                115,
+                385
+            ],
+            [
+                184,
+                316
+            ]
+        ],
+        "true_positive_rate": 0.23000000417232513,
+        "false_positive_rate": 0.36800000071525574,
+        "auroc": 0.4253160059452057
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=5)_withmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                160,
+                340
+            ],
+            [
+                140,
+                360
+            ]
+        ],
+        "true_positive_rate": 0.3199999928474426,
+        "false_positive_rate": 0.2800000011920929,
+        "auroc": 0.5677799582481384
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                109,
+                391
+            ],
+            [
+                190,
+                310
+            ]
+        ],
+        "true_positive_rate": 0.21799999475479126,
+        "false_positive_rate": 0.3799999952316284,
+        "auroc": 0.3937000036239624
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                105,
+                395
+            ],
+            [
+                195,
+                305
+            ]
+        ],
+        "true_positive_rate": 0.20999999344348907,
+        "false_positive_rate": 0.38999998569488525,
+        "auroc": 0.4008980095386505
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                118,
+                382
+            ],
+            [
+                182,
+                318
+            ]
+        ],
+        "true_positive_rate": 0.23600000143051147,
+        "false_positive_rate": 0.36399999260902405,
+        "auroc": 0.4042860269546509
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                116,
+                384
+            ],
+            [
+                184,
+                316
+            ]
+        ],
+        "true_positive_rate": 0.23199999332427979,
+        "false_positive_rate": 0.36800000071525574,
+        "auroc": 0.42156603932380676
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_KMeansDistance(n_clusters=5)_withoutmean",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                748,
+                1752
+            ],
+            [
+                752,
+                1748
+            ]
+        ],
+        "true_positive_rate": 0.29919999837875366,
+        "false_positive_rate": 0.30079999566078186,
+        "auroc": 0.541848361492157
+    },
+    {
+        "transformations": "pool_mean_std_Subsample(50)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                191,
+                309
+            ],
+            [
+                109,
+                391
+            ]
+        ],
+        "true_positive_rate": 0.38199999928474426,
+        "false_positive_rate": 0.21799999475479126,
+        "auroc": 0.6227339506149292
+    },
+    {
+        "transformations": "pool_mean_std_Subsample(50)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                184,
+                316
+            ],
+            [
+                116,
+                384
+            ]
+        ],
+        "true_positive_rate": 0.36800000071525574,
+        "false_positive_rate": 0.23199999332427979,
+        "auroc": 0.6212860345840454
+    },
+    {
+        "transformations": "pool_mean_std_Subsample(50)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                158,
+                342
+            ],
+            [
+                142,
+                358
+            ]
+        ],
+        "true_positive_rate": 0.3160000145435333,
+        "false_positive_rate": 0.2840000092983246,
+        "auroc": 0.5533879995346069
+    },
+    {
+        "transformations": "pool_mean_std_Subsample(50)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                179,
+                321
+            ],
+            [
+                121,
+                379
+            ]
+        ],
+        "true_positive_rate": 0.3580000102519989,
+        "false_positive_rate": 0.24199999868869781,
+        "auroc": 0.6063640117645264
+    },
+    {
+        "transformations": "pool_mean_std_Subsample(50)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                7503,
+                17497
+            ],
+            [
+                7497,
+                17503
+            ]
+        ],
+        "true_positive_rate": 0.3001199960708618,
+        "false_positive_rate": 0.2998799979686737,
+        "auroc": 0.49189990758895874
+    },
+    {
+        "transformations": "pool_mean_std_PCA(n_components=50)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                192,
+                308
+            ],
+            [
+                108,
+                392
+            ]
+        ],
+        "true_positive_rate": 0.3840000033378601,
+        "false_positive_rate": 0.2160000056028366,
+        "auroc": 0.6739880442619324
+    },
+    {
+        "transformations": "pool_mean_std_PCA(n_components=50)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                207,
+                293
+            ],
+            [
+                93,
+                407
+            ]
+        ],
+        "true_positive_rate": 0.414000004529953,
+        "false_positive_rate": 0.1860000044107437,
+        "auroc": 0.6826519966125488
+    },
+    {
+        "transformations": "pool_mean_std_PCA(n_components=50)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                202,
+                298
+            ],
+            [
+                98,
+                402
+            ]
+        ],
+        "true_positive_rate": 0.40400001406669617,
+        "false_positive_rate": 0.19599999487400055,
+        "auroc": 0.6912100911140442
+    },
+    {
+        "transformations": "pool_mean_std_PCA(n_components=50)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                199,
+                301
+            ],
+            [
+                101,
+                399
+            ]
+        ],
+        "true_positive_rate": 0.39800000190734863,
+        "false_positive_rate": 0.20200000703334808,
+        "auroc": 0.6532540321350098
+    },
+    {
+        "transformations": "pool_mean_std_PCA(n_components=50)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                7512,
+                17488
+            ],
+            [
+                7488,
+                17512
+            ]
+        ],
+        "true_positive_rate": 0.3004800081253052,
+        "false_positive_rate": 0.29951998591423035,
+        "auroc": 0.4869315028190613
+    },
+    {
+        "transformations": "pool_mean_std_Subsample(20)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                170,
+                330
+            ],
+            [
+                130,
+                370
+            ]
+        ],
+        "true_positive_rate": 0.3400000035762787,
+        "false_positive_rate": 0.25999999046325684,
+        "auroc": 0.569525957107544
+    },
+    {
+        "transformations": "pool_mean_std_Subsample(20)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                161,
+                339
+            ],
+            [
+                139,
+                361
+            ]
+        ],
+        "true_positive_rate": 0.32199999690055847,
+        "false_positive_rate": 0.27799999713897705,
+        "auroc": 0.5417219996452332
+    },
+    {
+        "transformations": "pool_mean_std_Subsample(20)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                177,
+                323
+            ],
+            [
+                123,
+                377
+            ]
+        ],
+        "true_positive_rate": 0.3540000021457672,
+        "false_positive_rate": 0.2460000067949295,
+        "auroc": 0.6051519513130188
+    },
+    {
+        "transformations": "pool_mean_std_Subsample(20)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                176,
+                324
+            ],
+            [
+                124,
+                376
+            ]
+        ],
+        "true_positive_rate": 0.35199999809265137,
+        "false_positive_rate": 0.24799999594688416,
+        "auroc": 0.5905179977416992
+    },
+    {
+        "transformations": "pool_mean_std_Subsample(20)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                3131,
+                6869
+            ],
+            [
+                2869,
+                7131
+            ]
+        ],
+        "true_positive_rate": 0.31310001015663147,
+        "false_positive_rate": 0.28690001368522644,
+        "auroc": 0.514352560043335
+    },
+    {
+        "transformations": "pool_mean_std_PCA(n_components=20)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                175,
+                325
+            ],
+            [
+                124,
+                376
+            ]
+        ],
+        "true_positive_rate": 0.3499999940395355,
+        "false_positive_rate": 0.24799999594688416,
+        "auroc": 0.6529759764671326
+    },
+    {
+        "transformations": "pool_mean_std_PCA(n_components=20)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                184,
+                316
+            ],
+            [
+                116,
+                384
+            ]
+        ],
+        "true_positive_rate": 0.36800000071525574,
+        "false_positive_rate": 0.23199999332427979,
+        "auroc": 0.6675159931182861
+    },
+    {
+        "transformations": "pool_mean_std_PCA(n_components=20)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                191,
+                309
+            ],
+            [
+                109,
+                391
+            ]
+        ],
+        "true_positive_rate": 0.38199999928474426,
+        "false_positive_rate": 0.21799999475479126,
+        "auroc": 0.6707520484924316
+    },
+    {
+        "transformations": "pool_mean_std_PCA(n_components=20)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                194,
+                306
+            ],
+            [
+                106,
+                394
+            ]
+        ],
+        "true_positive_rate": 0.3880000114440918,
+        "false_positive_rate": 0.21199999749660492,
+        "auroc": 0.6424100399017334
+    },
+    {
+        "transformations": "pool_mean_std_PCA(n_components=20)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                2996,
+                7004
+            ],
+            [
+                3004,
+                6996
+            ]
+        ],
+        "true_positive_rate": 0.2996000051498413,
+        "false_positive_rate": 0.3003999888896942,
+        "auroc": 0.48332130908966064
+    },
+    {
+        "transformations": "pool_mean_std_Subsample(10)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                187,
+                313
+            ],
+            [
+                113,
+                387
+            ]
+        ],
+        "true_positive_rate": 0.37400001287460327,
+        "false_positive_rate": 0.22599999606609344,
+        "auroc": 0.6130979657173157
+    },
+    {
+        "transformations": "pool_mean_std_Subsample(10)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                172,
+                328
+            ],
+            [
+                128,
+                372
+            ]
+        ],
+        "true_positive_rate": 0.3440000116825104,
+        "false_positive_rate": 0.25600001215934753,
+        "auroc": 0.5942760705947876
+    },
+    {
+        "transformations": "pool_mean_std_Subsample(10)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                176,
+                324
+            ],
+            [
+                124,
+                376
+            ]
+        ],
+        "true_positive_rate": 0.35199999809265137,
+        "false_positive_rate": 0.24799999594688416,
+        "auroc": 0.5803879499435425
+    },
+    {
+        "transformations": "pool_mean_std_Subsample(10)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                180,
+                320
+            ],
+            [
+                120,
+                380
+            ]
+        ],
+        "true_positive_rate": 0.36000001430511475,
+        "false_positive_rate": 0.23999999463558197,
+        "auroc": 0.5940919518470764
+    },
+    {
+        "transformations": "pool_mean_std_Subsample(10)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                1512,
+                3488
+            ],
+            [
+                1488,
+                3512
+            ]
+        ],
+        "true_positive_rate": 0.30239999294281006,
+        "false_positive_rate": 0.29760000109672546,
+        "auroc": 0.4969605803489685
+    },
+    {
+        "transformations": "pool_mean_std_PCA(n_components=10)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                181,
+                319
+            ],
+            [
+                119,
+                381
+            ]
+        ],
+        "true_positive_rate": 0.3619999885559082,
+        "false_positive_rate": 0.23800000548362732,
+        "auroc": 0.6319000720977783
+    },
+    {
+        "transformations": "pool_mean_std_PCA(n_components=10)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                184,
+                316
+            ],
+            [
+                116,
+                384
+            ]
+        ],
+        "true_positive_rate": 0.36800000071525574,
+        "false_positive_rate": 0.23199999332427979,
+        "auroc": 0.6478440165519714
+    },
+    {
+        "transformations": "pool_mean_std_PCA(n_components=10)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                190,
+                310
+            ],
+            [
+                110,
+                390
+            ]
+        ],
+        "true_positive_rate": 0.3799999952316284,
+        "false_positive_rate": 0.2199999988079071,
+        "auroc": 0.6516519784927368
+    },
+    {
+        "transformations": "pool_mean_std_PCA(n_components=10)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                202,
+                298
+            ],
+            [
+                98,
+                402
+            ]
+        ],
+        "true_positive_rate": 0.40400001406669617,
+        "false_positive_rate": 0.19599999487400055,
+        "auroc": 0.6532139778137207
+    },
+    {
+        "transformations": "pool_mean_std_PCA(n_components=10)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                1282,
+                3718
+            ],
+            [
+                1718,
+                3282
+            ]
+        ],
+        "true_positive_rate": 0.2563999891281128,
+        "false_positive_rate": 0.34360000491142273,
+        "auroc": 0.4337792694568634
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_Subsample(50)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                130,
+                370
+            ],
+            [
+                170,
+                330
+            ]
+        ],
+        "true_positive_rate": 0.25999999046325684,
+        "false_positive_rate": 0.3400000035762787,
+        "auroc": 0.46297404170036316
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_Subsample(50)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                128,
+                372
+            ],
+            [
+                172,
+                328
+            ]
+        ],
+        "true_positive_rate": 0.25600001215934753,
+        "false_positive_rate": 0.3440000116825104,
+        "auroc": 0.4642820358276367
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_Subsample(50)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                110,
+                390
+            ],
+            [
+                190,
+                310
+            ]
+        ],
+        "true_positive_rate": 0.2199999988079071,
+        "false_positive_rate": 0.3799999952316284,
+        "auroc": 0.4357200264930725
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_Subsample(50)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                121,
+                379
+            ],
+            [
+                179,
+                321
+            ]
+        ],
+        "true_positive_rate": 0.24199999868869781,
+        "false_positive_rate": 0.3580000102519989,
+        "auroc": 0.44189801812171936
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_Subsample(50)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                7921,
+                17079
+            ],
+            [
+                7079,
+                17921
+            ]
+        ],
+        "true_positive_rate": 0.3168399930000305,
+        "false_positive_rate": 0.283160001039505,
+        "auroc": 0.5395727157592773
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_PCA(n_components=50)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                131,
+                369
+            ],
+            [
+                169,
+                331
+            ]
+        ],
+        "true_positive_rate": 0.2619999945163727,
+        "false_positive_rate": 0.33799999952316284,
+        "auroc": 0.47697800397872925
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_PCA(n_components=50)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                145,
+                355
+            ],
+            [
+                155,
+                345
+            ]
+        ],
+        "true_positive_rate": 0.28999999165534973,
+        "false_positive_rate": 0.3100000023841858,
+        "auroc": 0.5138480067253113
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_PCA(n_components=50)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                148,
+                352
+            ],
+            [
+                152,
+                348
+            ]
+        ],
+        "true_positive_rate": 0.29600000381469727,
+        "false_positive_rate": 0.30399999022483826,
+        "auroc": 0.5349820256233215
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_PCA(n_components=50)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                142,
+                358
+            ],
+            [
+                158,
+                342
+            ]
+        ],
+        "true_positive_rate": 0.2840000092983246,
+        "false_positive_rate": 0.3160000145435333,
+        "auroc": 0.5017179846763611
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_PCA(n_components=50)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                7601,
+                17399
+            ],
+            [
+                7399,
+                17601
+            ]
+        ],
+        "true_positive_rate": 0.30404001474380493,
+        "false_positive_rate": 0.295960009098053,
+        "auroc": 0.5056483745574951
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_Subsample(20)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                131,
+                369
+            ],
+            [
+                169,
+                331
+            ]
+        ],
+        "true_positive_rate": 0.2619999945163727,
+        "false_positive_rate": 0.33799999952316284,
+        "auroc": 0.4528740346431732
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_Subsample(20)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                147,
+                353
+            ],
+            [
+                153,
+                347
+            ]
+        ],
+        "true_positive_rate": 0.2939999997615814,
+        "false_positive_rate": 0.3059999942779541,
+        "auroc": 0.49498602747917175
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_Subsample(20)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                139,
+                361
+            ],
+            [
+                161,
+                339
+            ]
+        ],
+        "true_positive_rate": 0.27799999713897705,
+        "false_positive_rate": 0.32199999690055847,
+        "auroc": 0.46481603384017944
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_Subsample(20)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                137,
+                363
+            ],
+            [
+                163,
+                337
+            ]
+        ],
+        "true_positive_rate": 0.27399998903274536,
+        "false_positive_rate": 0.32600000500679016,
+        "auroc": 0.4717940092086792
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_Subsample(20)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                3173,
+                6827
+            ],
+            [
+                2827,
+                7173
+            ]
+        ],
+        "true_positive_rate": 0.3172999918460846,
+        "false_positive_rate": 0.2827000021934509,
+        "auroc": 0.5429738759994507
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_PCA(n_components=20)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                133,
+                367
+            ],
+            [
+                166,
+                334
+            ]
+        ],
+        "true_positive_rate": 0.26600000262260437,
+        "false_positive_rate": 0.3319999873638153,
+        "auroc": 0.45973601937294006
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_PCA(n_components=20)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                143,
+                357
+            ],
+            [
+                157,
+                343
+            ]
+        ],
+        "true_positive_rate": 0.28600001335144043,
+        "false_positive_rate": 0.3140000104904175,
+        "auroc": 0.5026119947433472
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_PCA(n_components=20)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                158,
+                342
+            ],
+            [
+                142,
+                358
+            ]
+        ],
+        "true_positive_rate": 0.3160000145435333,
+        "false_positive_rate": 0.2840000092983246,
+        "auroc": 0.520173966884613
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_PCA(n_components=20)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                147,
+                353
+            ],
+            [
+                153,
+                347
+            ]
+        ],
+        "true_positive_rate": 0.2939999997615814,
+        "false_positive_rate": 0.3059999942779541,
+        "auroc": 0.49161601066589355
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_PCA(n_components=20)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                2996,
+                7004
+            ],
+            [
+                3004,
+                6996
+            ]
+        ],
+        "true_positive_rate": 0.2996000051498413,
+        "false_positive_rate": 0.3003999888896942,
+        "auroc": 0.49860501289367676
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_Subsample(10)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                129,
+                371
+            ],
+            [
+                171,
+                329
+            ]
+        ],
+        "true_positive_rate": 0.257999986410141,
+        "false_positive_rate": 0.34200000762939453,
+        "auroc": 0.4499960243701935
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_Subsample(10)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                133,
+                367
+            ],
+            [
+                167,
+                333
+            ]
+        ],
+        "true_positive_rate": 0.26600000262260437,
+        "false_positive_rate": 0.33399999141693115,
+        "auroc": 0.4793039858341217
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_Subsample(10)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                143,
+                357
+            ],
+            [
+                157,
+                343
+            ]
+        ],
+        "true_positive_rate": 0.28600001335144043,
+        "false_positive_rate": 0.3140000104904175,
+        "auroc": 0.4625300168991089
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_Subsample(10)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                145,
+                355
+            ],
+            [
+                155,
+                345
+            ]
+        ],
+        "true_positive_rate": 0.28999999165534973,
+        "false_positive_rate": 0.3100000023841858,
+        "auroc": 0.48543399572372437
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_Subsample(10)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                1584,
+                3416
+            ],
+            [
+                1416,
+                3584
+            ]
+        ],
+        "true_positive_rate": 0.31679999828338623,
+        "false_positive_rate": 0.2831999957561493,
+        "auroc": 0.5418164730072021
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_PCA(n_components=10)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                113,
+                387
+            ],
+            [
+                187,
+                313
+            ]
+        ],
+        "true_positive_rate": 0.22599999606609344,
+        "false_positive_rate": 0.37400001287460327,
+        "auroc": 0.4229680001735687
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_PCA(n_components=10)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                125,
+                375
+            ],
+            [
+                175,
+                325
+            ]
+        ],
+        "true_positive_rate": 0.25,
+        "false_positive_rate": 0.3499999940395355,
+        "auroc": 0.4376620054244995
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_PCA(n_components=10)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                142,
+                358
+            ],
+            [
+                158,
+                342
+            ]
+        ],
+        "true_positive_rate": 0.2840000092983246,
+        "false_positive_rate": 0.3160000145435333,
+        "auroc": 0.4489680230617523
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_PCA(n_components=10)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                129,
+                371
+            ],
+            [
+                171,
+                329
+            ]
+        ],
+        "true_positive_rate": 0.257999986410141,
+        "false_positive_rate": 0.34200000762939453,
+        "auroc": 0.4325219988822937
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=10)_PCA(n_components=10)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                1388,
+                3612
+            ],
+            [
+                1612,
+                3388
+            ]
+        ],
+        "true_positive_rate": 0.2775999903678894,
+        "false_positive_rate": 0.3224000036716461,
+        "auroc": 0.47601553797721863
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_Subsample(50)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                139,
+                361
+            ],
+            [
+                161,
+                339
+            ]
+        ],
+        "true_positive_rate": 0.27799999713897705,
+        "false_positive_rate": 0.32199999690055847,
+        "auroc": 0.4873799681663513
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_Subsample(50)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                143,
+                357
+            ],
+            [
+                157,
+                343
+            ]
+        ],
+        "true_positive_rate": 0.28600001335144043,
+        "false_positive_rate": 0.3140000104904175,
+        "auroc": 0.4855940341949463
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_Subsample(50)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                158,
+                342
+            ],
+            [
+                142,
+                358
+            ]
+        ],
+        "true_positive_rate": 0.3160000145435333,
+        "false_positive_rate": 0.2840000092983246,
+        "auroc": 0.5346980094909668
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_Subsample(50)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                147,
+                353
+            ],
+            [
+                152,
+                348
+            ]
+        ],
+        "true_positive_rate": 0.2939999997615814,
+        "false_positive_rate": 0.30399999022483826,
+        "auroc": 0.4897560179233551
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_Subsample(50)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                7791,
+                17209
+            ],
+            [
+                7209,
+                17791
+            ]
+        ],
+        "true_positive_rate": 0.3116399943828583,
+        "false_positive_rate": 0.28835999965667725,
+        "auroc": 0.5288329124450684
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_PCA(n_components=50)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                157,
+                343
+            ],
+            [
+                143,
+                357
+            ]
+        ],
+        "true_positive_rate": 0.3140000104904175,
+        "false_positive_rate": 0.28600001335144043,
+        "auroc": 0.5050240755081177
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_PCA(n_components=50)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                156,
+                344
+            ],
+            [
+                144,
+                356
+            ]
+        ],
+        "true_positive_rate": 0.31200000643730164,
+        "false_positive_rate": 0.2879999876022339,
+        "auroc": 0.5481880307197571
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_PCA(n_components=50)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                157,
+                343
+            ],
+            [
+                143,
+                357
+            ]
+        ],
+        "true_positive_rate": 0.3140000104904175,
+        "false_positive_rate": 0.28600001335144043,
+        "auroc": 0.5624880790710449
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_PCA(n_components=50)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                133,
+                367
+            ],
+            [
+                167,
+                333
+            ]
+        ],
+        "true_positive_rate": 0.26600000262260437,
+        "false_positive_rate": 0.33399999141693115,
+        "auroc": 0.49844202399253845
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_PCA(n_components=50)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                7477,
+                17523
+            ],
+            [
+                7523,
+                17477
+            ]
+        ],
+        "true_positive_rate": 0.2990800142288208,
+        "false_positive_rate": 0.3009200096130371,
+        "auroc": 0.49482643604278564
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_Subsample(20)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                117,
+                383
+            ],
+            [
+                183,
+                317
+            ]
+        ],
+        "true_positive_rate": 0.23399999737739563,
+        "false_positive_rate": 0.3659999966621399,
+        "auroc": 0.4062480032444
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_Subsample(20)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                141,
+                359
+            ],
+            [
+                159,
+                341
+            ]
+        ],
+        "true_positive_rate": 0.28200000524520874,
+        "false_positive_rate": 0.3179999887943268,
+        "auroc": 0.4842820465564728
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_Subsample(20)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                153,
+                347
+            ],
+            [
+                147,
+                353
+            ]
+        ],
+        "true_positive_rate": 0.3059999942779541,
+        "false_positive_rate": 0.2939999997615814,
+        "auroc": 0.5149259567260742
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_Subsample(20)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                139,
+                361
+            ],
+            [
+                161,
+                339
+            ]
+        ],
+        "true_positive_rate": 0.27799999713897705,
+        "false_positive_rate": 0.32199999690055847,
+        "auroc": 0.4891799986362457
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_Subsample(20)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                3265,
+                6735
+            ],
+            [
+                2735,
+                7265
+            ]
+        ],
+        "true_positive_rate": 0.3264999985694885,
+        "false_positive_rate": 0.273499995470047,
+        "auroc": 0.5548174977302551
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_PCA(n_components=20)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                134,
+                366
+            ],
+            [
+                166,
+                334
+            ]
+        ],
+        "true_positive_rate": 0.2680000066757202,
+        "false_positive_rate": 0.3319999873638153,
+        "auroc": 0.48335000872612
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_PCA(n_components=20)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                162,
+                338
+            ],
+            [
+                138,
+                362
+            ]
+        ],
+        "true_positive_rate": 0.3240000009536743,
+        "false_positive_rate": 0.2759999930858612,
+        "auroc": 0.5240880250930786
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_PCA(n_components=20)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                163,
+                337
+            ],
+            [
+                137,
+                363
+            ]
+        ],
+        "true_positive_rate": 0.32600000500679016,
+        "false_positive_rate": 0.27399998903274536,
+        "auroc": 0.5469520092010498
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_PCA(n_components=20)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                148,
+                352
+            ],
+            [
+                152,
+                348
+            ]
+        ],
+        "true_positive_rate": 0.29600000381469727,
+        "false_positive_rate": 0.30399999022483826,
+        "auroc": 0.49004197120666504
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_PCA(n_components=20)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                2899,
+                7101
+            ],
+            [
+                3101,
+                6899
+            ]
+        ],
+        "true_positive_rate": 0.289900004863739,
+        "false_positive_rate": 0.3100999891757965,
+        "auroc": 0.47969576716423035
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_Subsample(10)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                143,
+                357
+            ],
+            [
+                156,
+                344
+            ]
+        ],
+        "true_positive_rate": 0.28600001335144043,
+        "false_positive_rate": 0.31200000643730164,
+        "auroc": 0.4824400246143341
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_Subsample(10)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                154,
+                346
+            ],
+            [
+                146,
+                354
+            ]
+        ],
+        "true_positive_rate": 0.30799999833106995,
+        "false_positive_rate": 0.2919999957084656,
+        "auroc": 0.48923203349113464
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_Subsample(10)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                157,
+                343
+            ],
+            [
+                143,
+                357
+            ]
+        ],
+        "true_positive_rate": 0.3140000104904175,
+        "false_positive_rate": 0.28600001335144043,
+        "auroc": 0.5188260674476624
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_Subsample(10)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                144,
+                356
+            ],
+            [
+                156,
+                344
+            ]
+        ],
+        "true_positive_rate": 0.2879999876022339,
+        "false_positive_rate": 0.31200000643730164,
+        "auroc": 0.5040320158004761
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_Subsample(10)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                1564,
+                3436
+            ],
+            [
+                1436,
+                3564
+            ]
+        ],
+        "true_positive_rate": 0.31279999017715454,
+        "false_positive_rate": 0.287200003862381,
+        "auroc": 0.5330907106399536
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_PCA(n_components=10)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                121,
+                379
+            ],
+            [
+                179,
+                321
+            ]
+        ],
+        "true_positive_rate": 0.24199999868869781,
+        "false_positive_rate": 0.3580000102519989,
+        "auroc": 0.42671999335289
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_PCA(n_components=10)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                139,
+                361
+            ],
+            [
+                161,
+                339
+            ]
+        ],
+        "true_positive_rate": 0.27799999713897705,
+        "false_positive_rate": 0.32199999690055847,
+        "auroc": 0.44252198934555054
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_PCA(n_components=10)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                129,
+                371
+            ],
+            [
+                171,
+                329
+            ]
+        ],
+        "true_positive_rate": 0.257999986410141,
+        "false_positive_rate": 0.34200000762939453,
+        "auroc": 0.4609159827232361
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_PCA(n_components=10)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                125,
+                375
+            ],
+            [
+                175,
+                325
+            ]
+        ],
+        "true_positive_rate": 0.25,
+        "false_positive_rate": 0.3499999940395355,
+        "auroc": 0.4276079833507538
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=5)_PCA(n_components=10)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                1428,
+                3572
+            ],
+            [
+                1572,
+                3428
+            ]
+        ],
+        "true_positive_rate": 0.2856000065803528,
+        "false_positive_rate": 0.31439998745918274,
+        "auroc": 0.48453623056411743
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_Subsample(50)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                167,
+                333
+            ],
+            [
+                133,
+                367
+            ]
+        ],
+        "true_positive_rate": 0.33399999141693115,
+        "false_positive_rate": 0.26600000262260437,
+        "auroc": 0.5669040083885193
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_Subsample(50)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                153,
+                347
+            ],
+            [
+                147,
+                353
+            ]
+        ],
+        "true_positive_rate": 0.3059999942779541,
+        "false_positive_rate": 0.2939999997615814,
+        "auroc": 0.5486400127410889
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_Subsample(50)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                168,
+                332
+            ],
+            [
+                132,
+                368
+            ]
+        ],
+        "true_positive_rate": 0.335999995470047,
+        "false_positive_rate": 0.2639999985694885,
+        "auroc": 0.5723780989646912
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_Subsample(50)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                156,
+                344
+            ],
+            [
+                144,
+                356
+            ]
+        ],
+        "true_positive_rate": 0.31200000643730164,
+        "false_positive_rate": 0.2879999876022339,
+        "auroc": 0.5342839956283569
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_Subsample(50)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                5525,
+                19475
+            ],
+            [
+                5524,
+                19476
+            ]
+        ],
+        "true_positive_rate": 0.22100000083446503,
+        "false_positive_rate": 0.22096000611782074,
+        "auroc": 0.5000119805335999
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_PCA(n_components=50)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                163,
+                337
+            ],
+            [
+                137,
+                363
+            ]
+        ],
+        "true_positive_rate": 0.32600000500679016,
+        "false_positive_rate": 0.27399998903274536,
+        "auroc": 0.5631140470504761
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_PCA(n_components=50)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                177,
+                323
+            ],
+            [
+                123,
+                377
+            ]
+        ],
+        "true_positive_rate": 0.3540000021457672,
+        "false_positive_rate": 0.2460000067949295,
+        "auroc": 0.572160005569458
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_PCA(n_components=50)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                173,
+                327
+            ],
+            [
+                127,
+                373
+            ]
+        ],
+        "true_positive_rate": 0.34599998593330383,
+        "false_positive_rate": 0.2540000081062317,
+        "auroc": 0.5793539881706238
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_PCA(n_components=50)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                162,
+                338
+            ],
+            [
+                138,
+                362
+            ]
+        ],
+        "true_positive_rate": 0.3240000009536743,
+        "false_positive_rate": 0.2759999930858612,
+        "auroc": 0.5516960620880127
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_PCA(n_components=50)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                7598,
+                17402
+            ],
+            [
+                7402,
+                17598
+            ]
+        ],
+        "true_positive_rate": 0.3039200007915497,
+        "false_positive_rate": 0.29607999324798584,
+        "auroc": 0.5023041367530823
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_Subsample(20)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                164,
+                336
+            ],
+            [
+                136,
+                364
+            ]
+        ],
+        "true_positive_rate": 0.328000009059906,
+        "false_positive_rate": 0.2720000147819519,
+        "auroc": 0.5587559938430786
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_Subsample(20)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                165,
+                335
+            ],
+            [
+                135,
+                365
+            ]
+        ],
+        "true_positive_rate": 0.33000001311302185,
+        "false_positive_rate": 0.27000001072883606,
+        "auroc": 0.5597039461135864
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_Subsample(20)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                158,
+                342
+            ],
+            [
+                142,
+                358
+            ]
+        ],
+        "true_positive_rate": 0.3160000145435333,
+        "false_positive_rate": 0.2840000092983246,
+        "auroc": 0.5449719429016113
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_Subsample(20)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                178,
+                322
+            ],
+            [
+                122,
+                378
+            ]
+        ],
+        "true_positive_rate": 0.35600000619888306,
+        "false_positive_rate": 0.24400000274181366,
+        "auroc": 0.5839280486106873
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_Subsample(20)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                2939,
+                7061
+            ],
+            [
+                3061,
+                6939
+            ]
+        ],
+        "true_positive_rate": 0.2939000129699707,
+        "false_positive_rate": 0.3061000108718872,
+        "auroc": 0.4926356375217438
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_PCA(n_components=20)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                171,
+                329
+            ],
+            [
+                129,
+                371
+            ]
+        ],
+        "true_positive_rate": 0.34200000762939453,
+        "false_positive_rate": 0.257999986410141,
+        "auroc": 0.525629997253418
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_PCA(n_components=20)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                175,
+                325
+            ],
+            [
+                125,
+                375
+            ]
+        ],
+        "true_positive_rate": 0.3499999940395355,
+        "false_positive_rate": 0.25,
+        "auroc": 0.5314620137214661
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_PCA(n_components=20)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                175,
+                325
+            ],
+            [
+                125,
+                375
+            ]
+        ],
+        "true_positive_rate": 0.3499999940395355,
+        "false_positive_rate": 0.25,
+        "auroc": 0.5344099402427673
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_PCA(n_components=20)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                164,
+                336
+            ],
+            [
+                136,
+                364
+            ]
+        ],
+        "true_positive_rate": 0.328000009059906,
+        "false_positive_rate": 0.2720000147819519,
+        "auroc": 0.5096660256385803
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_PCA(n_components=20)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                2990,
+                7010
+            ],
+            [
+                3010,
+                6990
+            ]
+        ],
+        "true_positive_rate": 0.29899999499320984,
+        "false_positive_rate": 0.3009999990463257,
+        "auroc": 0.5012673139572144
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_Subsample(10)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                155,
+                345
+            ],
+            [
+                145,
+                355
+            ]
+        ],
+        "true_positive_rate": 0.3100000023841858,
+        "false_positive_rate": 0.28999999165534973,
+        "auroc": 0.5054880380630493
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_Subsample(10)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                163,
+                337
+            ],
+            [
+                137,
+                363
+            ]
+        ],
+        "true_positive_rate": 0.32600000500679016,
+        "false_positive_rate": 0.27399998903274536,
+        "auroc": 0.5249720215797424
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_Subsample(10)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                169,
+                331
+            ],
+            [
+                131,
+                369
+            ]
+        ],
+        "true_positive_rate": 0.33799999952316284,
+        "false_positive_rate": 0.2619999945163727,
+        "auroc": 0.5640940070152283
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_Subsample(10)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                161,
+                339
+            ],
+            [
+                139,
+                361
+            ]
+        ],
+        "true_positive_rate": 0.32199999690055847,
+        "false_positive_rate": 0.27799999713897705,
+        "auroc": 0.5318400263786316
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_Subsample(10)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                703,
+                4297
+            ],
+            [
+                714,
+                4286
+            ]
+        ],
+        "true_positive_rate": 0.14059999585151672,
+        "false_positive_rate": 0.1428000032901764,
+        "auroc": 0.49770480394363403
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_PCA(n_components=10)",
+        "scoring_function": "knn(k=50)",
+        "confusion_matrix": [
+            [
+                155,
+                345
+            ],
+            [
+                145,
+                355
+            ]
+        ],
+        "true_positive_rate": 0.3100000023841858,
+        "false_positive_rate": 0.28999999165534973,
+        "auroc": 0.4862620234489441
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_PCA(n_components=10)",
+        "scoring_function": "knn(k=20)",
+        "confusion_matrix": [
+            [
+                150,
+                350
+            ],
+            [
+                150,
+                350
+            ]
+        ],
+        "true_positive_rate": 0.30000001192092896,
+        "false_positive_rate": 0.30000001192092896,
+        "auroc": 0.48508596420288086
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_PCA(n_components=10)",
+        "scoring_function": "knn(k=10)",
+        "confusion_matrix": [
+            [
+                147,
+                353
+            ],
+            [
+                153,
+                347
+            ]
+        ],
+        "true_positive_rate": 0.2939999997615814,
+        "false_positive_rate": 0.3059999942779541,
+        "auroc": 0.4927140474319458
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_PCA(n_components=10)",
+        "scoring_function": "mahalanobis_distance",
+        "confusion_matrix": [
+            [
+                146,
+                354
+            ],
+            [
+                154,
+                346
+            ]
+        ],
+        "true_positive_rate": 0.2919999957084656,
+        "false_positive_rate": 0.30799999833106995,
+        "auroc": 0.4776039719581604
+    },
+    {
+        "transformations": "pool_last_k_tokens(k=1)_PCA(n_components=10)",
+        "scoring_function": "identity",
+        "confusion_matrix": [
+            [
+                1431,
+                3569
+            ],
+            [
+                1569,
+                3431
+            ]
+        ],
+        "true_positive_rate": 0.28619998693466187,
+        "false_positive_rate": 0.31380000710487366,
+        "auroc": 0.489193856716156
+    }
+]
