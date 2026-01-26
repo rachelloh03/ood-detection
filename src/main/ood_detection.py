@@ -264,10 +264,14 @@ if __name__ == "__main__":
         (k_nearest_neighbors(k=50), "knn(k=50)"),
         (k_nearest_neighbors(k=20), "knn(k=20)"),
         (k_nearest_neighbors(k=10), "knn(k=10)"),
+        (k_nearest_neighbors(k=5), "knn(k=5)"),
+        (k_nearest_neighbors(k=3), "knn(k=3)"),
+        (k_nearest_neighbors(k=2), "knn(k=2)"),
+        (k_nearest_neighbors(k=1), "knn(k=1)"),
         (mahalanobis_distance, "mahalanobis_distance"),
         (identity, "identity"),
     ]
-    stats_file = "stats.json"
+    stats_file = "results/stats.json"
     all_stats = []
 
     graphs_dir = "./output/graphs"

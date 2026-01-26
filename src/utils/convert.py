@@ -8,6 +8,7 @@ import mido
 import contextlib
 
 import os
+from scipy.io import wavfile
 
 from constants.token_constants import (
     ATIME_OFFSET,
@@ -23,10 +24,12 @@ from constants.token_constants import (
     INCLUDE_VELOCITY,
     DEFAULT_VELOCITY,
     MAX_VELOCITY,
+    AR,
+    AAR,
 )
 
 from constants.data_constants import SOUNDFONT_FILEPATH
-from utils.ops import unpad
+from utils.ops import unpad, min_time
 from midi2audio import FluidSynth
 
 DRUMS_CHANNEL = 9
@@ -412,7 +415,7 @@ def sequence_to_wav(
     include_velocity=INCLUDE_VELOCITY,
 ):
     """
-    Convert a sequence to a WAV file.
+    Convert a sequence to a WAV file, removing leading silence based on the earliest onset.
 
     Args:
         sequence: The sequence to convert.
@@ -423,10 +426,42 @@ def sequence_to_wav(
     Returns:
         The WAV file.
     """
+    processed_sequence = sequence
+    if len(sequence) > 0 and sequence[0] in (AR, AAR):
+        processed_sequence = sequence[1:]
+
+    try:
+        earliest_onset_time = min_time(
+            processed_sequence, seconds=True, include_velocity=include_velocity
+        )
+    except (ValueError, IndexError):
+        earliest_onset_time = 0.0
+
     mid = events_to_midi(sequence, include_velocity=include_velocity)
     mid.save(f"{export_filepath}.mid")
     wav = midi_to_wav(
         f"{export_filepath}.mid", export_filepath, soundfont_filepath=soundfont_filepath
     )
     os.remove(f"{export_filepath}.mid")
+
+    try:
+        sample_rate = 44100
+        samples_to_trim = int(earliest_onset_time * sample_rate)
+
+        if samples_to_trim > 0:
+            sample_rate_actual, audio_data = wavfile.read(export_filepath)
+
+            samples_to_trim = min(samples_to_trim, len(audio_data))
+
+            if samples_to_trim > 0:
+                if len(audio_data.shape) > 1:
+                    trimmed_audio = audio_data[samples_to_trim:, :]
+                else:
+                    trimmed_audio = audio_data[samples_to_trim:]
+
+                wavfile.write(export_filepath, sample_rate_actual, trimmed_audio)
+
+    except Exception as e:
+        print(f"Warning: Could not trim leading silence: {e}")
+
     return wav

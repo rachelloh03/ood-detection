@@ -81,7 +81,9 @@ def k_nearest_neighbors_distances(
     assert k > 0 and k <= num_id
 
     if num_id > MAX_ID_SAMPLES:
-        perm = torch.randperm(num_id, device=id_embeddings.device)
+        generator = torch.Generator(device=id_embeddings.device)
+        generator.manual_seed(42)
+        perm = torch.randperm(num_id, device=id_embeddings.device, generator=generator)
         keep = perm[:MAX_ID_SAMPLES]
         id_embeddings = id_embeddings[keep]
         num_id = id_embeddings.shape[0]
