@@ -9,19 +9,30 @@ pool_mean_std_PCA(n_components=50),knn(k=20),0.7489,0.3917,0.2083,190,94,146,50
 pool_mean_std_PCA(n_components=20),knn(k=10),0.7389,0.4083,0.1917,194,98,142,46
 pool_mean_std_Subsample(50),knn(k=5),0.7330,0.4458,0.1542,203,107,133,37
 pool_mean_std_PCA(n_components=20),knn(k=20),0.7293,0.4125,0.1875,195,99,141,45
+"GMM(n_components=10, diagonal_cov=True)",identity,0.7256,0.4083,0.1917,194,98,142,46
+"GMM(n_components=5, diagonal_cov=False)",identity,0.7205,0.3958,0.2042,191,95,145,49
 pool_mean_std_PCA(n_components=50),knn(k=50),0.7196,0.3875,0.2125,189,93,147,51
+"GMM(n_components=25, diagonal_cov=True)",identity,0.7176,0.4208,0.1792,197,101,139,43
 pool_mean_std_PCA(n_components=10),knn(k=10),0.7138,0.3333,0.2667,176,80,160,64
+"GMM(n_components=3, diagonal_cov=False)",identity,0.7131,0.4250,0.1750,198,102,138,42
+"GMM(n_components=25, diagonal_cov=True)",identity,0.7120,0.4125,0.1875,195,99,141,45
+"GMM(n_components=25, diagonal_cov=True)",identity,0.7120,0.4125,0.1875,195,99,141,45
 pool_mean_std_PCA(n_components=20),knn(k=50),0.7102,0.3792,0.2208,187,91,149,53
+"GMM(n_components=25, diagonal_cov=True)",identity,0.7091,0.4083,0.1917,194,98,142,46
 pool_mean_std_PCA(n_components=10),knn(k=20),0.7044,0.3583,0.2417,182,86,154,58
 pool_mean_std_PCA(n_components=10),knn(k=50),0.6916,0.3375,0.2625,177,81,159,63
+"GMM(n_components=5, diagonal_cov=True)",identity,0.6871,0.3958,0.2042,191,95,145,49
+"GMM(n_components=25, diagonal_cov=False)",identity,0.6767,0.3625,0.2375,183,87,153,57
 pool_mean_std_PCA(n_components=50),mahalanobis_distance,0.6752,0.3750,0.2250,186,90,150,54
 pool_mean_std_KMeansDistance(n_clusters=25)_withoutmean,knn(k=5),0.6725,0.3458,0.2542,179,83,157,61
+"GMM(n_components=10, diagonal_cov=False)",identity,0.6696,0.3542,0.2458,181,85,155,59
 pool_mean_std_KMeansDistance(n_clusters=10)_withoutmean,knn(k=5),0.6689,0.3375,0.2625,177,81,159,63
 pool_mean_std_KMeansDistance(n_clusters=25)_withoutmean,knn(k=10),0.6630,0.3208,0.2792,173,77,163,67
 pool_mean_std_Subsample(50),knn(k=50),0.6628,0.3917,0.2083,190,94,146,50
 pool_mean_std_KMeansDistance(n_clusters=10)_withoutmean,knn(k=10),0.6608,0.3750,0.2250,186,90,150,54
 pool_mean_std_KMeansDistance(n_clusters=10)_withmean,identity,0.6592,0.3583,0.2417,182,86,154,58
 pool_mean_std_KMeansDistance(n_clusters=25)_withmean,identity,0.6589,0.3380,0.2231,188,169,331,54
+"GMM(n_components=3, diagonal_cov=True)",identity,0.6567,0.3792,0.2208,187,91,149,53
 pool_mean_std_KMeansDistance(n_clusters=25)_withmean,identity,0.6560,0.3667,0.2333,184,88,152,56
 pool_mean_std_KMeansDistance(n_clusters=25)_withoutmean,knn(k=10),0.6558,0.3100,0.2810,174,155,345,68
 pool_mean_std_KMeansDistance(n_clusters=10)_withoutmean,knn(k=20),0.6541,0.3292,0.2708,175,79,161,65

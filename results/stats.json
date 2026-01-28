@@ -4486,5 +4486,2895 @@
     "true_positive_rate": 0.4000000059604645,
     "false_positive_rate": 0.20000000298023224,
     "auroc": 0.635972261428833
+  },
+  {
+    "transformations": "GMM(n_components=25, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        98,
+        142
+      ],
+      [
+        46,
+        194
+      ]
+    ],
+    "true_positive_rate": 0.40833333134651184,
+    "false_positive_rate": 0.19166666269302368,
+    "auroc": 0.7091232538223267
+  },
+  {
+    "transformations": "GMM(n_components=25, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        9,
+        7
+      ],
+      [
+        1,
+        15
+      ]
+    ],
+    "true_positive_rate": 0.5625,
+    "false_positive_rate": 0.0625,
+    "auroc": 0.783203125
+  },
+  {
+    "transformations": "GMM(n_components=25, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        9,
+        7
+      ],
+      [
+        1,
+        15
+      ]
+    ],
+    "true_positive_rate": 0.5625,
+    "false_positive_rate": 0.0625,
+    "auroc": 0.783203125
+  },
+  {
+    "transformations": "GMM(n_components=25, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        6,
+        10
+      ],
+      [
+        4,
+        12
+      ]
+    ],
+    "true_positive_rate": 0.375,
+    "false_positive_rate": 0.25,
+    "auroc": 0.423828125
+  },
+  {
+    "transformations": "GMM(n_components=10, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        9,
+        7
+      ],
+      [
+        1,
+        15
+      ]
+    ],
+    "true_positive_rate": 0.5625,
+    "false_positive_rate": 0.0625,
+    "auroc": 0.88671875
+  },
+  {
+    "transformations": "GMM(n_components=10, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        9,
+        7
+      ],
+      [
+        1,
+        15
+      ]
+    ],
+    "true_positive_rate": 0.5625,
+    "false_positive_rate": 0.0625,
+    "auroc": 0.85546875
+  },
+  {
+    "transformations": "GMM(n_components=25, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        99,
+        141
+      ],
+      [
+        45,
+        195
+      ]
+    ],
+    "true_positive_rate": 0.4124999940395355,
+    "false_positive_rate": 0.1875,
+    "auroc": 0.7120051980018616
+  },
+  {
+    "transformations": "GMM(n_components=25, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        99,
+        141
+      ],
+      [
+        45,
+        195
+      ]
+    ],
+    "true_positive_rate": 0.4124999940395355,
+    "false_positive_rate": 0.1875,
+    "auroc": 0.7120051980018616
+  },
+  {
+    "transformations": "GMM(n_components=25, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        9,
+        7
+      ],
+      [
+        1,
+        15
+      ]
+    ],
+    "true_positive_rate": 0.5625,
+    "false_positive_rate": 0.0625,
+    "auroc": 0.783203125
+  },
+  {
+    "transformations": "GMM(n_components=25, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        101,
+        139
+      ],
+      [
+        43,
+        197
+      ]
+    ],
+    "true_positive_rate": 0.4208333194255829,
+    "false_positive_rate": 0.17916665971279144,
+    "auroc": 0.7176042199134827
+  },
+  {
+    "transformations": "GMM(n_components=25, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        87,
+        153
+      ],
+      [
+        57,
+        183
+      ]
+    ],
+    "true_positive_rate": 0.36250001192092896,
+    "false_positive_rate": 0.23749999701976776,
+    "auroc": 0.6767100691795349
+  },
+  {
+    "transformations": "GMM(n_components=10, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        98,
+        142
+      ],
+      [
+        46,
+        194
+      ]
+    ],
+    "true_positive_rate": 0.40833333134651184,
+    "false_positive_rate": 0.19166666269302368,
+    "auroc": 0.7256249785423279
+  },
+  {
+    "transformations": "GMM(n_components=10, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        85,
+        155
+      ],
+      [
+        59,
+        181
+      ]
+    ],
+    "true_positive_rate": 0.3541666567325592,
+    "false_positive_rate": 0.24583333730697632,
+    "auroc": 0.6695659756660461
+  },
+  {
+    "transformations": "GMM(n_components=5, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        95,
+        145
+      ],
+      [
+        49,
+        191
+      ]
+    ],
+    "true_positive_rate": 0.3958333432674408,
+    "false_positive_rate": 0.20416666567325592,
+    "auroc": 0.6870920062065125
+  },
+  {
+    "transformations": "GMM(n_components=5, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        95,
+        145
+      ],
+      [
+        49,
+        191
+      ]
+    ],
+    "true_positive_rate": 0.3958333432674408,
+    "false_positive_rate": 0.20416666567325592,
+    "auroc": 0.7205122113227844
+  },
+  {
+    "transformations": "GMM(n_components=3, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        91,
+        149
+      ],
+      [
+        53,
+        187
+      ]
+    ],
+    "true_positive_rate": 0.3791666626930237,
+    "false_positive_rate": 0.22083333134651184,
+    "auroc": 0.656701385974884
+  },
+  {
+    "transformations": "GMM(n_components=3, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        102,
+        138
+      ],
+      [
+        42,
+        198
+      ]
+    ],
+    "true_positive_rate": 0.42500001192092896,
+    "false_positive_rate": 0.17499999701976776,
+    "auroc": 0.7130902409553528
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        87,
+        153
+      ],
+      [
+        57,
+        183
+      ]
+    ],
+    "true_positive_rate": 0.36250001192092896,
+    "false_positive_rate": 0.23749999701976776,
+    "auroc": 0.6412760615348816
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        91,
+        149
+      ],
+      [
+        53,
+        187
+      ]
+    ],
+    "true_positive_rate": 0.3791666626930237,
+    "false_positive_rate": 0.22083333134651184,
+    "auroc": 0.6752691268920898
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        91,
+        149
+      ],
+      [
+        53,
+        187
+      ]
+    ],
+    "true_positive_rate": 0.3791666626930237,
+    "false_positive_rate": 0.22083333134651184,
+    "auroc": 0.6752691268920898
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        91,
+        149
+      ],
+      [
+        53,
+        187
+      ]
+    ],
+    "true_positive_rate": 0.3791666626930237,
+    "false_positive_rate": 0.22083333134651184,
+    "auroc": 0.6752691268920898
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        90,
+        150
+      ],
+      [
+        54,
+        186
+      ]
+    ],
+    "true_positive_rate": 0.375,
+    "false_positive_rate": 0.22499999403953552,
+    "auroc": 0.6673176884651184
+  },
+  {
+    "transformations": "GMM(n_components=6, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        88,
+        152
+      ],
+      [
+        56,
+        184
+      ]
+    ],
+    "true_positive_rate": 0.36666667461395264,
+    "false_positive_rate": 0.23333333432674408,
+    "auroc": 0.6707811951637268
+  },
+  {
+    "transformations": "GMM(n_components=8, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        92,
+        148
+      ],
+      [
+        52,
+        188
+      ]
+    ],
+    "true_positive_rate": 0.38333332538604736,
+    "false_positive_rate": 0.21666666865348816,
+    "auroc": 0.6671614050865173
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        91,
+        149
+      ],
+      [
+        53,
+        187
+      ]
+    ],
+    "true_positive_rate": 0.3791666626930237,
+    "false_positive_rate": 0.22083333134651184,
+    "auroc": 0.6764930486679077
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        89,
+        151
+      ],
+      [
+        55,
+        185
+      ]
+    ],
+    "true_positive_rate": 0.3708333373069763,
+    "false_positive_rate": 0.2291666716337204,
+    "auroc": 0.6780641674995422
+  },
+  {
+    "transformations": "GMM(n_components=6, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        88,
+        152
+      ],
+      [
+        56,
+        184
+      ]
+    ],
+    "true_positive_rate": 0.36666667461395264,
+    "false_positive_rate": 0.23333333432674408,
+    "auroc": 0.6703472137451172
+  },
+  {
+    "transformations": "GMM(n_components=8, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        94,
+        146
+      ],
+      [
+        50,
+        190
+      ]
+    ],
+    "true_positive_rate": 0.3916666805744171,
+    "false_positive_rate": 0.2083333283662796,
+    "auroc": 0.6658332943916321
+  },
+  {
+    "transformations": "GMM(n_components=10, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        93,
+        147
+      ],
+      [
+        51,
+        189
+      ]
+    ],
+    "true_positive_rate": 0.38749998807907104,
+    "false_positive_rate": 0.21250000596046448,
+    "auroc": 0.6740538477897644
+  },
+  {
+    "transformations": "GMM(n_components=12, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        91,
+        149
+      ],
+      [
+        53,
+        187
+      ]
+    ],
+    "true_positive_rate": 0.3791666626930237,
+    "false_positive_rate": 0.22083333134651184,
+    "auroc": 0.667100727558136
+  },
+  {
+    "transformations": "GMM(n_components=14, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        84,
+        156
+      ],
+      [
+        60,
+        180
+      ]
+    ],
+    "true_positive_rate": 0.3499999940395355,
+    "false_positive_rate": 0.25,
+    "auroc": 0.6299044489860535
+  },
+  {
+    "transformations": "GMM(n_components=16, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        86,
+        154
+      ],
+      [
+        58,
+        182
+      ]
+    ],
+    "true_positive_rate": 0.3583333194255829,
+    "false_positive_rate": 0.24166665971279144,
+    "auroc": 0.6457551717758179
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        91,
+        149
+      ],
+      [
+        53,
+        187
+      ]
+    ],
+    "true_positive_rate": 0.3791666626930237,
+    "false_positive_rate": 0.22083333134651184,
+    "auroc": 0.6763021349906921
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        89,
+        151
+      ],
+      [
+        55,
+        185
+      ]
+    ],
+    "true_positive_rate": 0.3708333373069763,
+    "false_positive_rate": 0.2291666716337204,
+    "auroc": 0.6799305081367493
+  },
+  {
+    "transformations": "GMM(n_components=6, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        88,
+        152
+      ],
+      [
+        56,
+        184
+      ]
+    ],
+    "true_positive_rate": 0.36666667461395264,
+    "false_positive_rate": 0.23333333432674408,
+    "auroc": 0.6711284518241882
+  },
+  {
+    "transformations": "GMM(n_components=8, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        94,
+        146
+      ],
+      [
+        50,
+        190
+      ]
+    ],
+    "true_positive_rate": 0.3916666805744171,
+    "false_positive_rate": 0.2083333283662796,
+    "auroc": 0.6663020849227905
+  },
+  {
+    "transformations": "GMM(n_components=10, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        93,
+        147
+      ],
+      [
+        51,
+        189
+      ]
+    ],
+    "true_positive_rate": 0.38749998807907104,
+    "false_positive_rate": 0.21250000596046448,
+    "auroc": 0.6735937595367432
+  },
+  {
+    "transformations": "GMM(n_components=12, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        90,
+        150
+      ],
+      [
+        54,
+        186
+      ]
+    ],
+    "true_positive_rate": 0.375,
+    "false_positive_rate": 0.22499999403953552,
+    "auroc": 0.6695225834846497
+  },
+  {
+    "transformations": "GMM(n_components=14, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        84,
+        156
+      ],
+      [
+        60,
+        180
+      ]
+    ],
+    "true_positive_rate": 0.3499999940395355,
+    "false_positive_rate": 0.25,
+    "auroc": 0.629687488079071
+  },
+  {
+    "transformations": "GMM(n_components=16, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        86,
+        154
+      ],
+      [
+        58,
+        182
+      ]
+    ],
+    "true_positive_rate": 0.3583333194255829,
+    "false_positive_rate": 0.24166665971279144,
+    "auroc": 0.6519097089767456
+  },
+  {
+    "transformations": "GMM(n_components=18, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        88,
+        152
+      ],
+      [
+        56,
+        184
+      ]
+    ],
+    "true_positive_rate": 0.36666667461395264,
+    "false_positive_rate": 0.23333333432674408,
+    "auroc": 0.6531075835227966
+  },
+  {
+    "transformations": "GMM(n_components=20, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        89,
+        151
+      ],
+      [
+        55,
+        185
+      ]
+    ],
+    "true_positive_rate": 0.3708333373069763,
+    "false_positive_rate": 0.2291666716337204,
+    "auroc": 0.6273090243339539
+  },
+  {
+    "transformations": "GMM(n_components=22, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        97,
+        143
+      ],
+      [
+        47,
+        193
+      ]
+    ],
+    "true_positive_rate": 0.40416666865348816,
+    "false_positive_rate": 0.19583334028720856,
+    "auroc": 0.6897569298744202
+  },
+  {
+    "transformations": "GMM(n_components=24, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        88,
+        152
+      ],
+      [
+        56,
+        184
+      ]
+    ],
+    "true_positive_rate": 0.36666667461395264,
+    "false_positive_rate": 0.23333333432674408,
+    "auroc": 0.6350867748260498
+  },
+  {
+    "transformations": "GMM(n_components=26, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        90,
+        150
+      ],
+      [
+        54,
+        186
+      ]
+    ],
+    "true_positive_rate": 0.375,
+    "false_positive_rate": 0.22499999403953552,
+    "auroc": 0.65276038646698
+  },
+  {
+    "transformations": "GMM(n_components=28, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        83,
+        157
+      ],
+      [
+        61,
+        179
+      ]
+    ],
+    "true_positive_rate": 0.34583333134651184,
+    "false_positive_rate": 0.2541666626930237,
+    "auroc": 0.5822309255599976
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        91,
+        149
+      ],
+      [
+        53,
+        187
+      ]
+    ],
+    "true_positive_rate": 0.3791666626930237,
+    "false_positive_rate": 0.22083333134651184,
+    "auroc": 0.6763021349906921
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        89,
+        151
+      ],
+      [
+        55,
+        185
+      ]
+    ],
+    "true_positive_rate": 0.3708333373069763,
+    "false_positive_rate": 0.2291666716337204,
+    "auroc": 0.6799305081367493
+  },
+  {
+    "transformations": "GMM(n_components=6, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        88,
+        152
+      ],
+      [
+        56,
+        184
+      ]
+    ],
+    "true_positive_rate": 0.36666667461395264,
+    "false_positive_rate": 0.23333333432674408,
+    "auroc": 0.6711284518241882
+  },
+  {
+    "transformations": "GMM(n_components=8, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        94,
+        146
+      ],
+      [
+        50,
+        190
+      ]
+    ],
+    "true_positive_rate": 0.3916666805744171,
+    "false_positive_rate": 0.2083333283662796,
+    "auroc": 0.6663020849227905
+  },
+  {
+    "transformations": "GMM(n_components=10, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        93,
+        147
+      ],
+      [
+        51,
+        189
+      ]
+    ],
+    "true_positive_rate": 0.38749998807907104,
+    "false_positive_rate": 0.21250000596046448,
+    "auroc": 0.6735937595367432
+  },
+  {
+    "transformations": "GMM(n_components=12, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        90,
+        150
+      ],
+      [
+        54,
+        186
+      ]
+    ],
+    "true_positive_rate": 0.375,
+    "false_positive_rate": 0.22499999403953552,
+    "auroc": 0.6695225834846497
+  },
+  {
+    "transformations": "GMM(n_components=14, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        84,
+        156
+      ],
+      [
+        60,
+        180
+      ]
+    ],
+    "true_positive_rate": 0.3499999940395355,
+    "false_positive_rate": 0.25,
+    "auroc": 0.629687488079071
+  },
+  {
+    "transformations": "GMM(n_components=16, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        86,
+        154
+      ],
+      [
+        58,
+        182
+      ]
+    ],
+    "true_positive_rate": 0.3583333194255829,
+    "false_positive_rate": 0.24166665971279144,
+    "auroc": 0.6519097089767456
+  },
+  {
+    "transformations": "GMM(n_components=18, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        88,
+        152
+      ],
+      [
+        56,
+        184
+      ]
+    ],
+    "true_positive_rate": 0.36666667461395264,
+    "false_positive_rate": 0.23333333432674408,
+    "auroc": 0.6531075835227966
+  },
+  {
+    "transformations": "GMM(n_components=20, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        89,
+        151
+      ],
+      [
+        55,
+        185
+      ]
+    ],
+    "true_positive_rate": 0.3708333373069763,
+    "false_positive_rate": 0.2291666716337204,
+    "auroc": 0.6273090243339539
+  },
+  {
+    "transformations": "GMM(n_components=22, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        97,
+        143
+      ],
+      [
+        47,
+        193
+      ]
+    ],
+    "true_positive_rate": 0.40416666865348816,
+    "false_positive_rate": 0.19583334028720856,
+    "auroc": 0.6897569298744202
+  },
+  {
+    "transformations": "GMM(n_components=24, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        88,
+        152
+      ],
+      [
+        56,
+        184
+      ]
+    ],
+    "true_positive_rate": 0.36666667461395264,
+    "false_positive_rate": 0.23333333432674408,
+    "auroc": 0.6350867748260498
+  },
+  {
+    "transformations": "GMM(n_components=26, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        90,
+        150
+      ],
+      [
+        54,
+        186
+      ]
+    ],
+    "true_positive_rate": 0.375,
+    "false_positive_rate": 0.22499999403953552,
+    "auroc": 0.65276038646698
+  },
+  {
+    "transformations": "GMM(n_components=28, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        83,
+        157
+      ],
+      [
+        61,
+        179
+      ]
+    ],
+    "true_positive_rate": 0.34583333134651184,
+    "false_positive_rate": 0.2541666626930237,
+    "auroc": 0.5822309255599976
+  },
+  {
+    "transformations": "GMM(n_components=30, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        96,
+        144
+      ],
+      [
+        48,
+        192
+      ]
+    ],
+    "true_positive_rate": 0.4000000059604645,
+    "false_positive_rate": 0.20000000298023224,
+    "auroc": 0.6583419442176819
+  },
+  {
+    "transformations": "GMM(n_components=32, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        92,
+        148
+      ],
+      [
+        52,
+        188
+      ]
+    ],
+    "true_positive_rate": 0.38333332538604736,
+    "false_positive_rate": 0.21666666865348816,
+    "auroc": 0.6799479126930237
+  },
+  {
+    "transformations": "GMM(n_components=34, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        93,
+        147
+      ],
+      [
+        51,
+        189
+      ]
+    ],
+    "true_positive_rate": 0.38749998807907104,
+    "false_positive_rate": 0.21250000596046448,
+    "auroc": 0.6532378792762756
+  },
+  {
+    "transformations": "GMM(n_components=36, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        92,
+        148
+      ],
+      [
+        52,
+        188
+      ]
+    ],
+    "true_positive_rate": 0.38333332538604736,
+    "false_positive_rate": 0.21666666865348816,
+    "auroc": 0.7029687762260437
+  },
+  {
+    "transformations": "GMM(n_components=38, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        88,
+        152
+      ],
+      [
+        56,
+        184
+      ]
+    ],
+    "true_positive_rate": 0.36666667461395264,
+    "false_positive_rate": 0.23333333432674408,
+    "auroc": 0.6839843988418579
+  },
+  {
+    "transformations": "GMM(n_components=40, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        89,
+        151
+      ],
+      [
+        55,
+        185
+      ]
+    ],
+    "true_positive_rate": 0.3708333373069763,
+    "false_positive_rate": 0.2291666716337204,
+    "auroc": 0.695980966091156
+  },
+  {
+    "transformations": "GMM(n_components=42, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        89,
+        151
+      ],
+      [
+        55,
+        185
+      ]
+    ],
+    "true_positive_rate": 0.3708333373069763,
+    "false_positive_rate": 0.2291666716337204,
+    "auroc": 0.6345139145851135
+  },
+  {
+    "transformations": "GMM(n_components=44, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        95,
+        145
+      ],
+      [
+        49,
+        191
+      ]
+    ],
+    "true_positive_rate": 0.3958333432674408,
+    "false_positive_rate": 0.20416666567325592,
+    "auroc": 0.6847829222679138
+  },
+  {
+    "transformations": "GMM(n_components=46, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        95,
+        145
+      ],
+      [
+        49,
+        191
+      ]
+    ],
+    "true_positive_rate": 0.3958333432674408,
+    "false_positive_rate": 0.20416666567325592,
+    "auroc": 0.6990277171134949
+  },
+  {
+    "transformations": "GMM(n_components=48, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        98,
+        142
+      ],
+      [
+        46,
+        194
+      ]
+    ],
+    "true_positive_rate": 0.40833333134651184,
+    "false_positive_rate": 0.19166666269302368,
+    "auroc": 0.708411455154419
+  },
+  {
+    "transformations": "GMM(n_components=50, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        95,
+        145
+      ],
+      [
+        49,
+        191
+      ]
+    ],
+    "true_positive_rate": 0.3958333432674408,
+    "false_positive_rate": 0.20416666567325592,
+    "auroc": 0.6928385496139526
+  },
+  {
+    "transformations": "GMM(n_components=52, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        81,
+        159
+      ],
+      [
+        63,
+        177
+      ]
+    ],
+    "true_positive_rate": 0.3375000059604645,
+    "false_positive_rate": 0.26249998807907104,
+    "auroc": 0.6481250524520874
+  },
+  {
+    "transformations": "GMM(n_components=54, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        90,
+        150
+      ],
+      [
+        54,
+        186
+      ]
+    ],
+    "true_positive_rate": 0.375,
+    "false_positive_rate": 0.22499999403953552,
+    "auroc": 0.6505208611488342
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        87,
+        153
+      ],
+      [
+        57,
+        183
+      ]
+    ],
+    "true_positive_rate": 0.36250001192092896,
+    "false_positive_rate": 0.23749999701976776,
+    "auroc": 0.6388628482818604
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        97,
+        143
+      ],
+      [
+        47,
+        193
+      ]
+    ],
+    "true_positive_rate": 0.40416666865348816,
+    "false_positive_rate": 0.19583334028720856,
+    "auroc": 0.6847135424613953
+  },
+  {
+    "transformations": "GMM(n_components=6, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        96,
+        144
+      ],
+      [
+        48,
+        192
+      ]
+    ],
+    "true_positive_rate": 0.4000000059604645,
+    "false_positive_rate": 0.20000000298023224,
+    "auroc": 0.7032638788223267
+  },
+  {
+    "transformations": "GMM(n_components=8, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        96,
+        144
+      ],
+      [
+        48,
+        192
+      ]
+    ],
+    "true_positive_rate": 0.4000000059604645,
+    "false_positive_rate": 0.20000000298023224,
+    "auroc": 0.7168576121330261
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        87,
+        153
+      ],
+      [
+        57,
+        183
+      ]
+    ],
+    "true_positive_rate": 0.36250001192092896,
+    "false_positive_rate": 0.23749999701976776,
+    "auroc": 0.6388628482818604
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        97,
+        143
+      ],
+      [
+        47,
+        193
+      ]
+    ],
+    "true_positive_rate": 0.40416666865348816,
+    "false_positive_rate": 0.19583334028720856,
+    "auroc": 0.6847135424613953
+  },
+  {
+    "transformations": "GMM(n_components=6, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        96,
+        144
+      ],
+      [
+        48,
+        192
+      ]
+    ],
+    "true_positive_rate": 0.4000000059604645,
+    "false_positive_rate": 0.20000000298023224,
+    "auroc": 0.7032638788223267
+  },
+  {
+    "transformations": "GMM(n_components=8, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        96,
+        144
+      ],
+      [
+        48,
+        192
+      ]
+    ],
+    "true_positive_rate": 0.4000000059604645,
+    "false_positive_rate": 0.20000000298023224,
+    "auroc": 0.7168576121330261
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        84,
+        156
+      ],
+      [
+        60,
+        180
+      ]
+    ],
+    "true_positive_rate": 0.3499999940395355,
+    "false_positive_rate": 0.25,
+    "auroc": 0.6003124713897705
+  },
+  {
+    "transformations": "GMM(n_components=3, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        75,
+        165
+      ],
+      [
+        69,
+        171
+      ]
+    ],
+    "true_positive_rate": 0.3125,
+    "false_positive_rate": 0.2874999940395355,
+    "auroc": 0.6054080724716187
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        92,
+        148
+      ],
+      [
+        52,
+        188
+      ]
+    ],
+    "true_positive_rate": 0.38333332538604736,
+    "false_positive_rate": 0.21666666865348816,
+    "auroc": 0.639210045337677
+  },
+  {
+    "transformations": "GMM(n_components=5, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        94,
+        146
+      ],
+      [
+        50,
+        190
+      ]
+    ],
+    "true_positive_rate": 0.3916666805744171,
+    "false_positive_rate": 0.2083333283662796,
+    "auroc": 0.6619357466697693
+  },
+  {
+    "transformations": "GMM(n_components=6, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        75,
+        165
+      ],
+      [
+        69,
+        171
+      ]
+    ],
+    "true_positive_rate": 0.3125,
+    "false_positive_rate": 0.2874999940395355,
+    "auroc": 0.5584028363227844
+  },
+  {
+    "transformations": "GMM(n_components=7, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        104,
+        136
+      ],
+      [
+        40,
+        200
+      ]
+    ],
+    "true_positive_rate": 0.4333333373069763,
+    "false_positive_rate": 0.1666666716337204,
+    "auroc": 0.6840364336967468
+  },
+  {
+    "transformations": "GMM(n_components=8, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        101,
+        139
+      ],
+      [
+        43,
+        197
+      ]
+    ],
+    "true_positive_rate": 0.4208333194255829,
+    "false_positive_rate": 0.17916665971279144,
+    "auroc": 0.6687412858009338
+  },
+  {
+    "transformations": "GMM(n_components=9, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        93,
+        147
+      ],
+      [
+        51,
+        189
+      ]
+    ],
+    "true_positive_rate": 0.38749998807907104,
+    "false_positive_rate": 0.21250000596046448,
+    "auroc": 0.6724565029144287
+  },
+  {
+    "transformations": "GMM(n_components=10, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        86,
+        154
+      ],
+      [
+        58,
+        182
+      ]
+    ],
+    "true_positive_rate": 0.3583333194255829,
+    "false_positive_rate": 0.24166665971279144,
+    "auroc": 0.6184461116790771
+  },
+  {
+    "transformations": "GMM(n_components=11, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        86,
+        154
+      ],
+      [
+        58,
+        182
+      ]
+    ],
+    "true_positive_rate": 0.3583333194255829,
+    "false_positive_rate": 0.24166665971279144,
+    "auroc": 0.6108159422874451
+  },
+  {
+    "transformations": "GMM(n_components=12, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        84,
+        156
+      ],
+      [
+        60,
+        180
+      ]
+    ],
+    "true_positive_rate": 0.3499999940395355,
+    "false_positive_rate": 0.25,
+    "auroc": 0.6041840314865112
+  },
+  {
+    "transformations": "GMM(n_components=13, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        87,
+        153
+      ],
+      [
+        57,
+        183
+      ]
+    ],
+    "true_positive_rate": 0.36250001192092896,
+    "false_positive_rate": 0.23749999701976776,
+    "auroc": 0.6157204508781433
+  },
+  {
+    "transformations": "GMM(n_components=14, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        98,
+        142
+      ],
+      [
+        46,
+        194
+      ]
+    ],
+    "true_positive_rate": 0.40833333134651184,
+    "false_positive_rate": 0.19166666269302368,
+    "auroc": 0.6972482204437256
+  },
+  {
+    "transformations": "GMM(n_components=1, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        83,
+        157
+      ],
+      [
+        61,
+        179
+      ]
+    ],
+    "true_positive_rate": 0.34583333134651184,
+    "false_positive_rate": 0.2541666626930237,
+    "auroc": 0.6189582943916321
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        88,
+        152
+      ],
+      [
+        56,
+        184
+      ]
+    ],
+    "true_positive_rate": 0.36666667461395264,
+    "false_positive_rate": 0.23333333432674408,
+    "auroc": 0.6225607395172119
+  },
+  {
+    "transformations": "GMM(n_components=3, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        73,
+        167
+      ],
+      [
+        71,
+        169
+      ]
+    ],
+    "true_positive_rate": 0.30416667461395264,
+    "false_positive_rate": 0.2958333194255829,
+    "auroc": 0.6307379007339478
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        92,
+        148
+      ],
+      [
+        52,
+        188
+      ]
+    ],
+    "true_positive_rate": 0.38333332538604736,
+    "false_positive_rate": 0.21666666865348816,
+    "auroc": 0.6863108277320862
+  },
+  {
+    "transformations": "GMM(n_components=5, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        82,
+        158
+      ],
+      [
+        62,
+        178
+      ]
+    ],
+    "true_positive_rate": 0.34166666865348816,
+    "false_positive_rate": 0.25833332538604736,
+    "auroc": 0.6716927289962769
+  },
+  {
+    "transformations": "GMM(n_components=9, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        96,
+        144
+      ],
+      [
+        48,
+        192
+      ]
+    ],
+    "true_positive_rate": 0.4000000059604645,
+    "false_positive_rate": 0.20000000298023224,
+    "auroc": 0.7190625071525574
+  },
+  {
+    "transformations": "GMM(n_components=9, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        96,
+        144
+      ],
+      [
+        48,
+        192
+      ]
+    ],
+    "true_positive_rate": 0.4000000059604645,
+    "false_positive_rate": 0.20000000298023224,
+    "auroc": 0.7190625071525574
+  },
+  {
+    "transformations": "GMM(n_components=9, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        91,
+        149
+      ],
+      [
+        53,
+        187
+      ]
+    ],
+    "true_positive_rate": 0.3791666626930237,
+    "false_positive_rate": 0.22083333134651184,
+    "auroc": 0.6441579461097717
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        93,
+        147
+      ],
+      [
+        51,
+        189
+      ]
+    ],
+    "true_positive_rate": 0.38749998807907104,
+    "false_positive_rate": 0.21250000596046448,
+    "auroc": 0.6556510925292969
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        82,
+        158
+      ],
+      [
+        62,
+        178
+      ]
+    ],
+    "true_positive_rate": 0.34166666865348816,
+    "false_positive_rate": 0.25833332538604736,
+    "auroc": 0.6502344012260437
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        84,
+        156
+      ],
+      [
+        60,
+        180
+      ]
+    ],
+    "true_positive_rate": 0.3499999940395355,
+    "false_positive_rate": 0.25,
+    "auroc": 0.6414756774902344
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        75,
+        165
+      ],
+      [
+        69,
+        171
+      ]
+    ],
+    "true_positive_rate": 0.3125,
+    "false_positive_rate": 0.2874999940395355,
+    "auroc": 0.6187413334846497
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        93,
+        147
+      ],
+      [
+        51,
+        189
+      ]
+    ],
+    "true_positive_rate": 0.38749998807907104,
+    "false_positive_rate": 0.21250000596046448,
+    "auroc": 0.6455815434455872
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        83,
+        157
+      ],
+      [
+        61,
+        179
+      ]
+    ],
+    "true_positive_rate": 0.34583333134651184,
+    "false_positive_rate": 0.2541666626930237,
+    "auroc": 0.6410069465637207
+  },
+  {
+    "transformations": "GMM(n_components=3, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        88,
+        152
+      ],
+      [
+        56,
+        184
+      ]
+    ],
+    "true_positive_rate": 0.36666667461395264,
+    "false_positive_rate": 0.23333333432674408,
+    "auroc": 0.6457639336585999
+  },
+  {
+    "transformations": "GMM(n_components=3, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        100,
+        140
+      ],
+      [
+        44,
+        196
+      ]
+    ],
+    "true_positive_rate": 0.4166666567325592,
+    "false_positive_rate": 0.18333333730697632,
+    "auroc": 0.7072048783302307
+  },
+  {
+    "transformations": "GMM(n_components=3, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        84,
+        156
+      ],
+      [
+        60,
+        180
+      ]
+    ],
+    "true_positive_rate": 0.3499999940395355,
+    "false_positive_rate": 0.25,
+    "auroc": 0.6542274355888367
+  },
+  {
+    "transformations": "GMM(n_components=3, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        83,
+        157
+      ],
+      [
+        61,
+        179
+      ]
+    ],
+    "true_positive_rate": 0.34583333134651184,
+    "false_positive_rate": 0.2541666626930237,
+    "auroc": 0.6609809398651123
+  },
+  {
+    "transformations": "GMM(n_components=3, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        87,
+        153
+      ],
+      [
+        57,
+        183
+      ]
+    ],
+    "true_positive_rate": 0.36250001192092896,
+    "false_positive_rate": 0.23749999701976776,
+    "auroc": 0.637499988079071
+  },
+  {
+    "transformations": "GMM(n_components=3, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        85,
+        155
+      ],
+      [
+        59,
+        181
+      ]
+    ],
+    "true_positive_rate": 0.3541666567325592,
+    "false_positive_rate": 0.24583333730697632,
+    "auroc": 0.6730989813804626
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        89,
+        151
+      ],
+      [
+        55,
+        185
+      ]
+    ],
+    "true_positive_rate": 0.3708333373069763,
+    "false_positive_rate": 0.2291666716337204,
+    "auroc": 0.6417796015739441
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        107,
+        133
+      ],
+      [
+        37,
+        203
+      ]
+    ],
+    "true_positive_rate": 0.44583332538604736,
+    "false_positive_rate": 0.15416666865348816,
+    "auroc": 0.7402169704437256
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        85,
+        155
+      ],
+      [
+        59,
+        181
+      ]
+    ],
+    "true_positive_rate": 0.3541666567325592,
+    "false_positive_rate": 0.24583333730697632,
+    "auroc": 0.6559288501739502
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        90,
+        150
+      ],
+      [
+        54,
+        186
+      ]
+    ],
+    "true_positive_rate": 0.375,
+    "false_positive_rate": 0.22499999403953552,
+    "auroc": 0.693897545337677
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        82,
+        158
+      ],
+      [
+        61,
+        179
+      ]
+    ],
+    "true_positive_rate": 0.34166666865348816,
+    "false_positive_rate": 0.2541666626930237,
+    "auroc": 0.6382031440734863
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        91,
+        149
+      ],
+      [
+        53,
+        187
+      ]
+    ],
+    "true_positive_rate": 0.3791666626930237,
+    "false_positive_rate": 0.22083333134651184,
+    "auroc": 0.6600521206855774
+  },
+  {
+    "transformations": "GMM(n_components=5, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        89,
+        151
+      ],
+      [
+        55,
+        185
+      ]
+    ],
+    "true_positive_rate": 0.3708333373069763,
+    "false_positive_rate": 0.2291666716337204,
+    "auroc": 0.6616753935813904
+  },
+  {
+    "transformations": "GMM(n_components=5, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        96,
+        144
+      ],
+      [
+        48,
+        192
+      ]
+    ],
+    "true_positive_rate": 0.4000000059604645,
+    "false_positive_rate": 0.20000000298023224,
+    "auroc": 0.7180468440055847
+  },
+  {
+    "transformations": "GMM(n_components=5, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        89,
+        151
+      ],
+      [
+        55,
+        185
+      ]
+    ],
+    "true_positive_rate": 0.3708333373069763,
+    "false_positive_rate": 0.2291666716337204,
+    "auroc": 0.6585937738418579
+  },
+  {
+    "transformations": "GMM(n_components=5, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        93,
+        147
+      ],
+      [
+        51,
+        189
+      ]
+    ],
+    "true_positive_rate": 0.38749998807907104,
+    "false_positive_rate": 0.21250000596046448,
+    "auroc": 0.6961545348167419
+  },
+  {
+    "transformations": "GMM(n_components=5, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        81,
+        159
+      ],
+      [
+        63,
+        177
+      ]
+    ],
+    "true_positive_rate": 0.3375000059604645,
+    "false_positive_rate": 0.26249998807907104,
+    "auroc": 0.6045226454734802
+  },
+  {
+    "transformations": "GMM(n_components=5, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        88,
+        152
+      ],
+      [
+        56,
+        184
+      ]
+    ],
+    "true_positive_rate": 0.36666667461395264,
+    "false_positive_rate": 0.23333333432674408,
+    "auroc": 0.6675260663032532
+  },
+  {
+    "transformations": "GMM(n_components=6, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        85,
+        155
+      ],
+      [
+        59,
+        181
+      ]
+    ],
+    "true_positive_rate": 0.3541666567325592,
+    "false_positive_rate": 0.24583333730697632,
+    "auroc": 0.6406076550483704
+  },
+  {
+    "transformations": "GMM(n_components=6, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        87,
+        153
+      ],
+      [
+        57,
+        183
+      ]
+    ],
+    "true_positive_rate": 0.36250001192092896,
+    "false_positive_rate": 0.23749999701976776,
+    "auroc": 0.658784806728363
+  },
+  {
+    "transformations": "GMM(n_components=6, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        88,
+        152
+      ],
+      [
+        56,
+        184
+      ]
+    ],
+    "true_positive_rate": 0.36666667461395264,
+    "false_positive_rate": 0.23333333432674408,
+    "auroc": 0.6600607633590698
+  },
+  {
+    "transformations": "GMM(n_components=6, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        81,
+        159
+      ],
+      [
+        63,
+        177
+      ]
+    ],
+    "true_positive_rate": 0.3375000059604645,
+    "false_positive_rate": 0.26249998807907104,
+    "auroc": 0.6488193869590759
+  },
+  {
+    "transformations": "GMM(n_components=6, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        82,
+        158
+      ],
+      [
+        62,
+        178
+      ]
+    ],
+    "true_positive_rate": 0.34166666865348816,
+    "false_positive_rate": 0.25833332538604736,
+    "auroc": 0.6282812356948853
+  },
+  {
+    "transformations": "GMM(n_components=6, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        85,
+        155
+      ],
+      [
+        59,
+        181
+      ]
+    ],
+    "true_positive_rate": 0.3541666567325592,
+    "false_positive_rate": 0.24583333730697632,
+    "auroc": 0.6524305939674377
+  },
+  {
+    "transformations": "GMM(n_components=7, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        92,
+        148
+      ],
+      [
+        52,
+        188
+      ]
+    ],
+    "true_positive_rate": 0.38333332538604736,
+    "false_positive_rate": 0.21666666865348816,
+    "auroc": 0.6566058993339539
+  },
+  {
+    "transformations": "GMM(n_components=7, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        88,
+        152
+      ],
+      [
+        56,
+        184
+      ]
+    ],
+    "true_positive_rate": 0.36666667461395264,
+    "false_positive_rate": 0.23333333432674408,
+    "auroc": 0.6765452027320862
+  },
+  {
+    "transformations": "GMM(n_components=7, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        82,
+        158
+      ],
+      [
+        62,
+        178
+      ]
+    ],
+    "true_positive_rate": 0.34166666865348816,
+    "false_positive_rate": 0.25833332538604736,
+    "auroc": 0.6517274379730225
+  },
+  {
+    "transformations": "GMM(n_components=7, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        83,
+        157
+      ],
+      [
+        61,
+        179
+      ]
+    ],
+    "true_positive_rate": 0.34583333134651184,
+    "false_positive_rate": 0.2541666626930237,
+    "auroc": 0.6609114408493042
+  },
+  {
+    "transformations": "GMM(n_components=7, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        98,
+        142
+      ],
+      [
+        46,
+        194
+      ]
+    ],
+    "true_positive_rate": 0.40833333134651184,
+    "false_positive_rate": 0.19166666269302368,
+    "auroc": 0.6786631941795349
+  },
+  {
+    "transformations": "GMM(n_components=7, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        89,
+        151
+      ],
+      [
+        55,
+        185
+      ]
+    ],
+    "true_positive_rate": 0.3708333373069763,
+    "false_positive_rate": 0.2291666716337204,
+    "auroc": 0.6745659708976746
+  },
+  {
+    "transformations": "GMM(n_components=8, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        91,
+        149
+      ],
+      [
+        53,
+        187
+      ]
+    ],
+    "true_positive_rate": 0.3791666626930237,
+    "false_positive_rate": 0.22083333134651184,
+    "auroc": 0.6551822423934937
+  },
+  {
+    "transformations": "GMM(n_components=8, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        99,
+        141
+      ],
+      [
+        45,
+        195
+      ]
+    ],
+    "true_positive_rate": 0.4124999940395355,
+    "false_positive_rate": 0.1875,
+    "auroc": 0.7191319465637207
+  },
+  {
+    "transformations": "GMM(n_components=8, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        84,
+        156
+      ],
+      [
+        60,
+        180
+      ]
+    ],
+    "true_positive_rate": 0.3499999940395355,
+    "false_positive_rate": 0.25,
+    "auroc": 0.6223784685134888
+  },
+  {
+    "transformations": "GMM(n_components=8, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        94,
+        146
+      ],
+      [
+        50,
+        190
+      ]
+    ],
+    "true_positive_rate": 0.3916666805744171,
+    "false_positive_rate": 0.2083333283662796,
+    "auroc": 0.7338281273841858
+  },
+  {
+    "transformations": "GMM(n_components=8, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        98,
+        142
+      ],
+      [
+        46,
+        194
+      ]
+    ],
+    "true_positive_rate": 0.40833333134651184,
+    "false_positive_rate": 0.19166666269302368,
+    "auroc": 0.7061805129051208
+  },
+  {
+    "transformations": "GMM(n_components=8, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        91,
+        149
+      ],
+      [
+        53,
+        187
+      ]
+    ],
+    "true_positive_rate": 0.3791666626930237,
+    "false_positive_rate": 0.22083333134651184,
+    "auroc": 0.6936805248260498
+  },
+  {
+    "transformations": "GMM(n_components=9, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        85,
+        155
+      ],
+      [
+        59,
+        181
+      ]
+    ],
+    "true_positive_rate": 0.3541666567325592,
+    "false_positive_rate": 0.24583333730697632,
+    "auroc": 0.6429339647293091
+  },
+  {
+    "transformations": "GMM(n_components=9, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        95,
+        145
+      ],
+      [
+        49,
+        191
+      ]
+    ],
+    "true_positive_rate": 0.3958333432674408,
+    "false_positive_rate": 0.20416666567325592,
+    "auroc": 0.7073870897293091
+  },
+  {
+    "transformations": "GMM(n_components=9, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        89,
+        151
+      ],
+      [
+        55,
+        185
+      ]
+    ],
+    "true_positive_rate": 0.3708333373069763,
+    "false_positive_rate": 0.2291666716337204,
+    "auroc": 0.6995833516120911
+  },
+  {
+    "transformations": "GMM(n_components=9, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        98,
+        142
+      ],
+      [
+        46,
+        194
+      ]
+    ],
+    "true_positive_rate": 0.40833333134651184,
+    "false_positive_rate": 0.19166666269302368,
+    "auroc": 0.7181857228279114
+  },
+  {
+    "transformations": "GMM(n_components=9, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        87,
+        153
+      ],
+      [
+        57,
+        183
+      ]
+    ],
+    "true_positive_rate": 0.36250001192092896,
+    "false_positive_rate": 0.23749999701976776,
+    "auroc": 0.6321527361869812
+  },
+  {
+    "transformations": "GMM(n_components=9, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        93,
+        147
+      ],
+      [
+        51,
+        189
+      ]
+    ],
+    "true_positive_rate": 0.38749998807907104,
+    "false_positive_rate": 0.21250000596046448,
+    "auroc": 0.7003732919692993
+  },
+  {
+    "transformations": "GMM(n_components=10, diagonal_cov=True)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        88,
+        152
+      ],
+      [
+        56,
+        184
+      ]
+    ],
+    "true_positive_rate": 0.36666667461395264,
+    "false_positive_rate": 0.23333333432674408,
+    "auroc": 0.6381857395172119
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        84,
+        156
+      ],
+      [
+        60,
+        180
+      ]
+    ],
+    "true_positive_rate": 0.3499999940395355,
+    "false_positive_rate": 0.25,
+    "auroc": 0.6708506345748901
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        98,
+        142
+      ],
+      [
+        46,
+        194
+      ]
+    ],
+    "true_positive_rate": 0.40833333134651184,
+    "false_positive_rate": 0.19166666269302368,
+    "auroc": 0.7029340267181396
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        111,
+        129
+      ],
+      [
+        33,
+        207
+      ]
+    ],
+    "true_positive_rate": 0.4625000059604645,
+    "false_positive_rate": 0.13750000298023224,
+    "auroc": 0.7579427361488342
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        85,
+        155
+      ],
+      [
+        59,
+        181
+      ]
+    ],
+    "true_positive_rate": 0.3541666567325592,
+    "false_positive_rate": 0.24583333730697632,
+    "auroc": 0.6877431273460388
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        101,
+        139
+      ],
+      [
+        43,
+        197
+      ]
+    ],
+    "true_positive_rate": 0.4208333194255829,
+    "false_positive_rate": 0.17916665971279144,
+    "auroc": 0.7365798354148865
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        113,
+        127
+      ],
+      [
+        31,
+        209
+      ]
+    ],
+    "true_positive_rate": 0.47083333134651184,
+    "false_positive_rate": 0.12916666269302368,
+    "auroc": 0.7778038382530212
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        104,
+        136
+      ],
+      [
+        40,
+        200
+      ]
+    ],
+    "true_positive_rate": 0.4333333373069763,
+    "false_positive_rate": 0.1666666716337204,
+    "auroc": 0.7312933802604675
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        98,
+        142
+      ],
+      [
+        46,
+        194
+      ]
+    ],
+    "true_positive_rate": 0.40833333134651184,
+    "false_positive_rate": 0.19166666269302368,
+    "auroc": 0.716467022895813
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        105,
+        135
+      ],
+      [
+        39,
+        201
+      ]
+    ],
+    "true_positive_rate": 0.4375,
+    "false_positive_rate": 0.16249999403953552,
+    "auroc": 0.7629600167274475
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        96,
+        144
+      ],
+      [
+        48,
+        192
+      ]
+    ],
+    "true_positive_rate": 0.4000000059604645,
+    "false_positive_rate": 0.20000000298023224,
+    "auroc": 0.7200173735618591
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        100,
+        140
+      ],
+      [
+        44,
+        196
+      ]
+    ],
+    "true_positive_rate": 0.4166666567325592,
+    "false_positive_rate": 0.18333333730697632,
+    "auroc": 0.718211829662323
+  },
+  {
+    "transformations": "GMM(n_components=2, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        101,
+        139
+      ],
+      [
+        43,
+        197
+      ]
+    ],
+    "true_positive_rate": 0.4208333194255829,
+    "false_positive_rate": 0.17916665971279144,
+    "auroc": 0.7076649069786072
+  },
+  {
+    "transformations": "GMM(n_components=3, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        91,
+        149
+      ],
+      [
+        53,
+        187
+      ]
+    ],
+    "true_positive_rate": 0.3791666626930237,
+    "false_positive_rate": 0.22083333134651184,
+    "auroc": 0.7030469179153442
+  },
+  {
+    "transformations": "GMM(n_components=3, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        105,
+        135
+      ],
+      [
+        39,
+        201
+      ]
+    ],
+    "true_positive_rate": 0.4375,
+    "false_positive_rate": 0.16249999403953552,
+    "auroc": 0.7760416865348816
+  },
+  {
+    "transformations": "GMM(n_components=3, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        121,
+        119
+      ],
+      [
+        23,
+        217
+      ]
+    ],
+    "true_positive_rate": 0.5041666626930237,
+    "false_positive_rate": 0.09583333134651184,
+    "auroc": 0.8315364718437195
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        106,
+        134
+      ],
+      [
+        38,
+        202
+      ]
+    ],
+    "true_positive_rate": 0.4416666626930237,
+    "false_positive_rate": 0.15833333134651184,
+    "auroc": 0.7335156798362732
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        106,
+        134
+      ],
+      [
+        38,
+        202
+      ]
+    ],
+    "true_positive_rate": 0.4416666626930237,
+    "false_positive_rate": 0.15833333134651184,
+    "auroc": 0.7604948282241821
+  },
+  {
+    "transformations": "GMM(n_components=4, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        118,
+        122
+      ],
+      [
+        26,
+        214
+      ]
+    ],
+    "true_positive_rate": 0.49166667461395264,
+    "false_positive_rate": 0.10833333432674408,
+    "auroc": 0.8162934184074402
+  },
+  {
+    "transformations": "GMM(n_components=5, diagonal_cov=False)",
+    "scoring_function": "identity",
+    "confusion_matrix": [
+      [
+        100,
+        140
+      ],
+      [
+        44,
+        196
+      ]
+    ],
+    "true_positive_rate": 0.4166666567325592,
+    "false_positive_rate": 0.18333333730697632,
+    "auroc": 0.7332812547683716
   }
 ]

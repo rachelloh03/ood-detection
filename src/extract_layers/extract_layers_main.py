@@ -9,11 +9,12 @@ hidden_states[i] is the output of the i-th transformer block.
 """
 
 import os
+import shutil
 from typing import Callable
 from constants.file_format import get_extract_layers_file_path, get_extract_layers_dir
 from data.jordan_dataset import JordanDataset
 from data.sliding_window import SlidingWindowDataset
-from constants.data_constants import JORDAN_DATASET_FILEPATH
+from constants.data_constants import JORDAN_DATASET_FILEPATH, SCRATCH_FILEPATH
 from constants.model_constants import JORDAN_MODEL_NAME, DEVICE
 from constants.real_time_constants import SLIDING_WINDOW_LEN, STRIDE
 import torch
@@ -292,5 +293,11 @@ def example_extract_representations():
     )
 
 
+def clear_cache():
+    """Remove any cached layer extracting files."""
+    shutil.rmtree(SCRATCH_FILEPATH)
+
+
 if __name__ == "__main__":
+    clear_cache()
     example_extract_representations()

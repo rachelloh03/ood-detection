@@ -15,7 +15,7 @@ SCRATCH_FILEPATH = "representations"
 OOD_DATASET_FILEPATH = None  # Default, may be set per user
 MAESTRO_DATASET_FILEPATH = None  # Default, may be set per user
 
-RUNNING_ON: Literal["hairesmobile", "huangl40s"] = "huangl40s"
+RUNNING_ON: Literal["hairesmobile", "huangl40s"] = "hairesmobile"
 
 if USER == "joeltjy1":
     JORDAN_DATASET_FILEPATH = (

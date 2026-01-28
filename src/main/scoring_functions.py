@@ -12,34 +12,46 @@ And return:
 """
 
 import torch
+from utils.misc import mahalanobis_from_stats
 
 
 def mahalanobis_distance(
-    id_embeddings: torch.Tensor, new_input_embeddings: torch.Tensor
+    id_embeddings: torch.Tensor,
+    new_input_embeddings: torch.Tensor,
+    eps: float = 1e-6,
 ) -> torch.Tensor:
     """
-    Compute the Mahalanobis distance between the ID embeddings and the new input embeddings.
+    Mahalanobis OOD score.
+
+    Args:
+        id_embeddings: (N, D)
+        new_input_embeddings: (M, D)
+        eps: float
+
+    Returns:
+        scores: (M,)
+        Higher scores = more OOD.
     """
     if id_embeddings.ndim == 1:
-        id_embeddings = id_embeddings.unsqueeze(-1)
+        id_embeddings = id_embeddings.unsqueeze(0)
     if new_input_embeddings.ndim == 1:
-        new_input_embeddings = new_input_embeddings.unsqueeze(-1)
+        new_input_embeddings = new_input_embeddings.unsqueeze(0)
     assert (
         id_embeddings.shape[1] == new_input_embeddings.shape[1]
     ), "ID embeddings and new input embeddings must have the same number of dimensions"
-    mu = id_embeddings.mean(dim=0)  # (D,)
 
-    X_centered = id_embeddings - mu
-    cov = X_centered.T @ X_centered / (id_embeddings.shape[0] - 1)  # (D, D)
+    mean = id_embeddings.mean(dim=0)  # (D,)
+    X_centered = id_embeddings - mean
+    covariance = X_centered.T @ X_centered / (id_embeddings.shape[0] - 1)  # (D, D)
 
-    cov_inv = torch.linalg.pinv(cov)
+    scores = mahalanobis_from_stats(
+        new_input_embeddings,
+        mean,
+        covariance,
+        eps=eps,
+    )
 
-    diff = new_input_embeddings - mu  # (M, D)
-    left = diff @ cov_inv  # (M, D)
-    distances_squared = (left * diff).sum(dim=1)  # (M,)
-    distances = torch.sqrt(distances_squared + 1e-12)  # (M,)
-
-    return distances
+    return scores
 
 
 def k_nearest_neighbors(k: int):

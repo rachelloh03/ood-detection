@@ -39,8 +39,9 @@ def get_graph_visualization(
     id_scores = ood_detector.score(id_data)
     ood_scores = ood_detector.score(ood_data)
 
-    id_np = id_scores.cpu().numpy()
-    ood_np = ood_scores.cpu().numpy()
+    # Detach from computation graph before converting to NumPy
+    id_np = id_scores.cpu().detach().numpy()
+    ood_np = ood_scores.cpu().detach().numpy()
 
     bin_edges = np.histogram_bin_edges(np.concatenate([id_np, ood_np]), bins=bins)
 

@@ -27,6 +27,7 @@ from eval.graph_viz import get_graph_visualization
 from main.ood_detector import OODDetector
 from main.scoring_functions import identity, k_nearest_neighbors, mahalanobis_distance
 from main.transformation_functions import (
+    GaussianMixtureWithScore,
     KMeansDistance,
     extract_layer_transformation,
     Subsample,
@@ -170,7 +171,9 @@ def load_dummy_datasets():
     return id_train_dataset, id_test_dataset, ood_dataset
 
 
-def generate_all_transformations(model, pooling_functions, subsampling_transformations):
+def generate_all_transformations_experiment_1(
+    model, pooling_functions, subsampling_transformations
+):
     all_transformations = []
     for pooling_function, pooling_function_name in pooling_functions:
         for n_clusters in [25, 10, 5]:
@@ -222,6 +225,39 @@ def generate_all_transformations(model, pooling_functions, subsampling_transform
                 )
             )
 
+    return all_transformations
+
+
+def generate_all_transformations_experiment_2(
+    model,
+    components_to_try=[2, 3, 4, 5],
+    pca_components_to_try=[20, 50, 100],
+    diagonal_cov_to_try=[False],
+):
+    """GMM + MD"""
+    all_transformations = []
+    for components in components_to_try:
+        for pca_components in pca_components_to_try:
+            for diagonal_cov in diagonal_cov_to_try:
+                all_transformations.append(
+                    (
+                        Transformations(
+                            [
+                                extract_layer_transformation(
+                                    model, pool_mean_std, [22]
+                                ),
+                                StandardScaler(),
+                                PCA(n_components=pca_components),
+                                GaussianMixtureWithScore(
+                                    n_components=components,
+                                    dim=pca_components,
+                                    diagonal_cov=diagonal_cov,
+                                ),  # (n_samples,)
+                            ]
+                        ),
+                        f"GMM(n_components={components}, diagonal_cov={diagonal_cov})",
+                    )
+                )
     return all_transformations
 
 
@@ -288,9 +324,7 @@ if __name__ == "__main__":
             print(f"Error details: {e}")
         all_stats = []
 
-    all_transformations = generate_all_transformations(
-        model, pooling_functions, subsampling_transformations
-    )
+    all_transformations = generate_all_transformations_experiment_2(model)
 
     total_iterations = len(all_transformations) * len(scoring_functions)
     for (transformations, transformations_name), (scoring_fn, scoring_fn_name) in tqdm(

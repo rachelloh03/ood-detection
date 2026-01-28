@@ -28,6 +28,20 @@ Iterated over various parameters and compared using AUROC. The top 10 show:
 (After this I tried k<5 and it's not much better)
 
 
+## Experiment 2: Fit a Gaussian Mixture model
+
+1. Empirically around 4 components is best after doing PCA.
+2. Using EM to fit the model is better than neural network (I coded up the neural network then removed it because it's bad at converging).
+3. There are a few ways to compute the OOD score.
+- Negative log density.
+- Min Mahalanobis score to nearest cluster. 
 
 
- 
+None of them are good enough yet. Expected AUROC ~ 0.9 range.
+
+| metric                | num_pca_components = 20 | 50 | 100 |
+|-----------------------|------------------------|---|---|
+| negative log density  | 0.69                   | 0.73 | 0.78 |
+| min maha distance     | 0.67                   | 0.70 | 0.75 |
+
+4. Right now it seems like later layers are better!

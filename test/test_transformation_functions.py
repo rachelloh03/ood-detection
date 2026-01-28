@@ -1,6 +1,7 @@
+import math
 import torch
 import pytest
-from src.main.transformation_functions import KMeansDistance
+from src.main.transformation_functions import GaussianMixtureWithMD, KMeansDistance
 
 
 def test_kmeans_distance():
@@ -58,5 +59,51 @@ def test_kmeans_distance():
     print("Cluster centers:", kmeans.get_cluster_centers())
 
 
+def test_gaussian_mixture_with_md():
+    """Test GaussianMixtureWithMD with concrete 2D tensor inputs, shape validation, and error handling."""
+    # bimodal data, one cluster around (0, 0) and one cluster around (10, 10)
+    X_train = torch.cat(
+        [
+            torch.randn(100, 2) * 0.5 + torch.tensor([0.0, 0.0]),
+            torch.randn(100, 2) * 0.5 + torch.tensor([10.0, 10.0]),
+        ],
+        dim=0,
+    )
+
+    gmm = GaussianMixtureWithMD(n_components=2, dim=2)
+    gmm.fit(X_train, num_epochs=1000)
+
+    means, covariances, weights = gmm.gm.get_params()
+    print("means:", means)
+    print("covariances:", covariances)
+    print("weights:", weights)
+
+    X_test = torch.tensor(
+        [
+            [-1, 1],
+            [0.5, 0.5],
+            [5, 5],
+            [10, 10],
+            [12, 7],
+        ]
+    )
+    test_distances = gmm.transform(X_test)
+    # expect distances to be the euclidean distance to the nearest point / 0.5**2
+    expected_test_distances = torch.tensor(
+        [
+            math.sqrt(2) / 0.5,
+            math.sqrt(0.5) / 0.5,
+            math.sqrt(50) / 0.5,
+            math.sqrt(0) / 0.5,
+            math.sqrt(13) / 0.5,
+        ]
+    )
+    print("expected_test_distances:", expected_test_distances)
+    print("test_distances:", test_distances)
+
+    assert torch.allclose(test_distances, expected_test_distances, atol=1)
+
+
 if __name__ == "__main__":
     test_kmeans_distance()
+    test_gaussian_mixture_with_md()
