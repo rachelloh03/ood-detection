@@ -44,4 +44,4 @@ None of them are good enough yet. Expected AUROC ~ 0.9 range.
 | negative log density  | 0.69                   | 0.73 | 0.78 |
 | min maha distance     | 0.67                   | 0.70 | 0.75 |
 
-4. Right now it seems like later layers are better!
+4. Right now it seems like later layers are better! Layer 17 is optimal (whichlayer.png), see visualization.png for what the OOD score distribution looks like.

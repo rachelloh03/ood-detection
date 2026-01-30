@@ -230,34 +230,36 @@ def generate_all_transformations_experiment_1(
 
 def generate_all_transformations_experiment_2(
     model,
-    components_to_try=[2, 3, 4, 5],
-    pca_components_to_try=[20, 50, 100],
-    diagonal_cov_to_try=[False],
+    components_to_try=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    pca_components_to_try=[50],
+    diagonal_cov_to_try=[True, False],
 ):
     """GMM + MD"""
     all_transformations = []
-    for components in components_to_try:
-        for pca_components in pca_components_to_try:
-            for diagonal_cov in diagonal_cov_to_try:
-                all_transformations.append(
-                    (
-                        Transformations(
-                            [
-                                extract_layer_transformation(
-                                    model, pool_mean_std, [22]
-                                ),
-                                StandardScaler(),
-                                PCA(n_components=pca_components),
-                                GaussianMixtureWithScore(
-                                    n_components=components,
-                                    dim=pca_components,
-                                    diagonal_cov=diagonal_cov,
-                                ),  # (n_samples,)
-                            ]
-                        ),
-                        f"GMM(n_components={components}, diagonal_cov={diagonal_cov})",
+    for layer in range(17, 18):
+        for components in components_to_try:
+            for pca_components in pca_components_to_try:
+                for diagonal_cov in diagonal_cov_to_try:
+                    all_transformations.append(
+                        (
+                            Transformations(
+                                [
+                                    extract_layer_transformation(
+                                        model, pool_mean_std, [layer]
+                                    ),
+                                    StandardScaler(),
+                                    PCA(n_components=pca_components),
+                                    GaussianMixtureWithScore(
+                                        n_components=components,
+                                        dim=pca_components,
+                                        diagonal_cov=diagonal_cov,
+                                    ),  # (n_samples,)
+                                ]
+                            ),
+                            f"GMM(layer={layer}, n_components={components}, pca_components={pca_components},"
+                            + f"diagonal_cov={diagonal_cov})",
+                        )
                     )
-                )
     return all_transformations
 
 
@@ -297,20 +299,20 @@ if __name__ == "__main__":
         (PCA(n_components=10), "PCA(n_components=10)"),
     ]
     scoring_functions = [
-        (k_nearest_neighbors(k=50), "knn(k=50)"),
-        (k_nearest_neighbors(k=20), "knn(k=20)"),
-        (k_nearest_neighbors(k=10), "knn(k=10)"),
-        (k_nearest_neighbors(k=5), "knn(k=5)"),
-        (k_nearest_neighbors(k=3), "knn(k=3)"),
-        (k_nearest_neighbors(k=2), "knn(k=2)"),
-        (k_nearest_neighbors(k=1), "knn(k=1)"),
-        (mahalanobis_distance, "mahalanobis_distance"),
+        # (k_nearest_neighbors(k=50), "knn(k=50)"),
+        # (k_nearest_neighbors(k=20), "knn(k=20)"),
+        # (k_nearest_neighbors(k=10), "knn(k=10)"),
+        # (k_nearest_neighbors(k=5), "knn(k=5)"),
+        # (k_nearest_neighbors(k=3), "knn(k=3)"),
+        # (k_nearest_neighbors(k=2), "knn(k=2)"),
+        # (k_nearest_neighbors(k=1), "knn(k=1)"),
+        # (mahalanobis_distance, "mahalanobis_distance"),
         (identity, "identity"),
     ]
     stats_file = "results/stats.json"
     all_stats = []
 
-    graphs_dir = "./output/graphs"
+    graphs_dir = "./output/graphs_test"
     Path(graphs_dir).mkdir(parents=True, exist_ok=True)
 
     try:

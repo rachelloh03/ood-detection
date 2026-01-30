@@ -15,28 +15,28 @@ SCRATCH_FILEPATH = "representations"
 OOD_DATASET_FILEPATH = None  # Default, may be set per user
 MAESTRO_DATASET_FILEPATH = None  # Default, may be set per user
 
-RUNNING_ON: Literal["hairesmobile", "huangl40s"] = "hairesmobile"
+RUNNING_ON: Literal["hairesmobile", "huangl40s"] = "huangl40s"
 
 if USER == "joeltjy1":
     JORDAN_DATASET_FILEPATH = (
         "/scratch/joel/jordan_dataset"
         if RUNNING_ON == "hairesmobile"
-        else "/data/scratch-oc40/joel/jordan_dataset"
+        else "/data/scratch/joel/jordan_dataset"
     )
     MAESTRO_DATASET_FILEPATH = (
         "/scratch/joel/maestrodata"
         if RUNNING_ON == "hairesmobile"
-        else "/data/scratch-oc40/joel/maestrodata"
+        else "/data/scratch/joel/maestrodata"
     )
     SCRATCH_FILEPATH = (
         "/scratch/joel/representations"
         if RUNNING_ON == "hairesmobile"
-        else "/data/scratch-oc40/joel/representations"
+        else "/data/scratch/joel/representations"
     )
     SOUNDFONT_FILEPATH = (
         "/data/scratch/joel/soundfont.sf2"
         if RUNNING_ON == "hairesmobile"
-        else "/data/scratch-oc40/joel/soundfont.sf2"
+        else "/data/scratch/joel/soundfont.sf2"
     )
 elif USER == "rachelloh":
     JORDAN_DATASET_FILEPATH = "/Users/rachelloh/Desktop/ood-detection/jordan_dataset"
