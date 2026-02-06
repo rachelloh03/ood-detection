@@ -1,5 +1,7 @@
 # Things I've tried
 
+I'll keep the best result in example.ipynb.
+
 For now, fix some layer $l \in \{1, 2, ..., 24\}$. Given an input tensor of shape $(L,)$, the $k$th hidden layer will have shape $(L, D)$ where $D=2048$ is the hidden dimension and $L=120$ is the length of input sequences (length of sliding window in the jambot as of now, equal to 40 events). Concatenating this into a $120 \times 2048$ dimensional vector and immediately doing OOD detection on this is not feasible because
 
 1. It's not computationally feasible
@@ -12,7 +14,7 @@ Once the preprocessing is done, the number of dimensions is still large given th
 
 ## Experiment 1: Methods with no density estimation
 
-See ```main/ood_detection.py.```
+See ```main/ood_detection_experiments.py.```
 
 I experiment with OOD detectors of the following format.
 1. Take the $l=12$th layer, pool from $(L, D)$ input to a smaller vector (call this the 'pooled vector'). Pooling methods include pooling mean and std as above, taking some number of $D$ dim vectors and concatenating them etc. Optionally include preprocessing steps like normalization and PCA.
@@ -45,3 +47,4 @@ None of them are good enough yet. Expected AUROC ~ 0.9 range.
 | min maha distance     | 0.67                   | 0.70 | 0.75 |
 
 4. Right now it seems like later layers are better! Layer 17 is optimal (whichlayer.png), see visualization.png for what the OOD score distribution looks like.
+

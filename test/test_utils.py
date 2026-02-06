@@ -2,8 +2,11 @@
 
 import os
 from constants.data_constants import JORDAN_DATASET_FILEPATH
+from constants.model_constants import DEVICE, JORDAN_MODEL_NAME
 from data.jordan_dataset import MAX_VELOCITY, JordanDataset
 import pytest
+import torch
+from transformers import AutoModelForCausalLM
 from src.constants.token_constants import ATIME_OFFSET, MAX_PITCH
 from src.utils.process_tokens import (
     filter_instrument,
@@ -12,7 +15,7 @@ from src.utils.process_tokens import (
     set_anticipated,
     set_instrument,
 )
-from src.utils.convert import sequence_to_wav
+from src.utils.convert import hear_model_output, sequence_to_wav
 
 
 def test_readable_tokens_no_vel():
@@ -267,6 +270,7 @@ def test_midi_to_wav():
         JORDAN_DATASET_FILEPATH,
         split="train",
         name="testcase_jordan_dataset",
+        split_input_and_output_ids=False,
         num_samples=5,
     )
     sequence = dataset[0]["input_ids"].tolist()
@@ -277,9 +281,33 @@ def test_midi_to_wav():
     assert os.path.getsize(export_filepath) > 0
 
 
+def test_hear_model_output():
+    id_train_dataset = JordanDataset(
+        JORDAN_DATASET_FILEPATH,
+        split="train",
+        name="testcase_jordan_dataset",
+        split_input_and_output_ids=True,
+        num_samples=5,
+    )
+    sequence = id_train_dataset[0]["input_ids"].tolist()[:31]
+    print("sequence", sequence)
+    export_filepath = os.path.join(
+        os.path.dirname(__file__), "test_hear_model_output.wav"
+    )
+
+    model = AutoModelForCausalLM.from_pretrained(
+        JORDAN_MODEL_NAME,
+        torch_dtype=torch.float32,
+    ).to(DEVICE)
+    hear_model_output(model, sequence, 120, export_filepath)
+    assert os.path.exists(export_filepath)
+    assert os.path.getsize(export_filepath) > 0
+
+
 if __name__ == "__main__":
     test_readable_tokens_no_vel()
     test_set_instrument()
     test_set_anticipated()
     test_filter_instrument()
     test_midi_to_wav()
+    test_hear_model_output()

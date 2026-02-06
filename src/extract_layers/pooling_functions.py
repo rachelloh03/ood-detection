@@ -80,3 +80,24 @@ def pool_last_k_tokens(k=10):
 
     pool_last_k_tokens_function.__name__ = f"pool_last_k_tokens(k={k})"
     return pool_last_k_tokens_function
+
+
+def norm_weighted_mean_std(h, eps=1e-8):
+    """
+    Pool using a norm-weighted mean and std across sequence dimension.
+
+    Args:
+        h: (B, L, D)
+    Returns:
+        pooled: (B, 2D)
+    """
+    norms = torch.norm(h, dim=-1)  # (B, L)
+    weights = norms / (norms.sum(dim=1, keepdim=True) + eps)
+    weights = weights.unsqueeze(-1)  # (B, L, 1)
+
+    mean = (h * weights).sum(dim=1)  # (B, D)
+
+    var = (weights * (h - mean.unsqueeze(1)) ** 2).sum(dim=1)
+    std = torch.sqrt(var + eps)  # (B, D)
+
+    return torch.cat([mean, std], dim=-1)  # (B, 2*D)

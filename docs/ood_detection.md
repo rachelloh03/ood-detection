@@ -39,7 +39,7 @@ This can be fit to the input data via ```transform_obj.fit(input_data)```.
 
 When this object is called on new data ```transform_obj(new_data)```, it passes the new data through the pipeline using the same parameters learnt from the input data.
 
-The code for this class is in ```main/transformations.py```.
+The code for this class is in ```transformations/transformations.py```.
 
 ### Scoring Function
 Refer to Step 3 in the General Framework. Given the embeddings of new inputs $h(x')$, we need to compare them against the distribution of $h(x)$, the embeddings of ID data.

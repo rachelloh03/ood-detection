@@ -8,8 +8,7 @@ from constants.token_constants import (
     AR,
 )
 
-# from utils.process_tokens import set_anticipated, set_instrument
-from utils.process_tokens import filter_instrument
+from utils.process_tokens import filter_instrument, set_instrument
 from utils.sanity_checks import check_valid_input_ids
 
 
@@ -19,6 +18,7 @@ class JordanDataset(Dataset):
         data_dir,
         split,
         name,
+        split_input_and_output_ids,
         num_samples=None,
         include_velocity=INCLUDE_VELOCITY,
         debug=False,
@@ -30,6 +30,7 @@ class JordanDataset(Dataset):
             data_dir: Directory where dataset was saved with save_to_disk()
             split: Dataset split to load ('train', 'validation')
             name: Name of the dataset (e.g. 'jordan_dataset', 'maestro_dataset')
+            split_input_and_output_ids: Whether to split the input_ids and output_ids into separate fields
             num_samples: Optional limit on number of samples to load
             num_events_per_sample: Optional limit on number of events per sample
             include_velocity: Whether to include velocity information
@@ -44,6 +45,7 @@ class JordanDataset(Dataset):
 
         dataset = load_from_disk(data_dir)
         self.name = name
+        self.split_input_and_output_ids = split_input_and_output_ids
 
         if split not in dataset:
             available_splits = list(dataset.keys())
@@ -66,9 +68,6 @@ class JordanDataset(Dataset):
             if "text" in sample:
                 original_sample_tokens = [int(x) for x in sample["text"].split()]
                 sample_tokens = original_sample_tokens.copy()
-                for j in range(0, len(sample_tokens), 4):
-                    if sample_tokens[j] == MAX_VELOCITY - 1:
-                        sample_tokens[j] = MAX_VELOCITY + VELOCITY_OFFSET - 1
             elif "input_ids" in sample:
                 original_sample_tokens = sample["input_ids"]
                 sample_tokens = original_sample_tokens.copy()
@@ -78,36 +77,57 @@ class JordanDataset(Dataset):
                     f"Found keys: {list(sample.keys())}"
                 )
 
-            if not include_velocity:
+            has_velocity_tokens = any(
+                VELOCITY_OFFSET <= t < VELOCITY_OFFSET + MAX_VELOCITY
+                for t in sample_tokens
+            )
+            if not include_velocity and has_velocity_tokens:
                 sample_tokens = [
                     x for j, x in enumerate(sample_tokens) if (j % 4 != 0 or j == 0)
                 ]
 
             sample_tokens[0] = AR
 
-            input_ids = filter_instrument(
-                sample_tokens, 0, include_velocity=include_velocity
-            )
-            output_ids = filter_instrument(
-                sample_tokens, 1, include_velocity=include_velocity
-            )
+            if self.split_input_and_output_ids:
+                input_ids = filter_instrument(
+                    sample_tokens, 0, include_velocity=include_velocity
+                )
+                output_ids = filter_instrument(
+                    sample_tokens, 1, include_velocity=include_velocity
+                )
+            else:
+                input_ids = set_instrument(sample_tokens, 0)
+                output_ids = None
 
             try:
                 check_valid_input_ids(input_ids)
-                check_valid_input_ids(output_ids)
+                if output_ids is not None:
+                    check_valid_input_ids(output_ids)
             except AssertionError as e:
                 print(f"AssertionError: {e} at sample index {i}")
                 bad_samples += 1
                 print(f"Input IDs (first 50): {input_ids[:50]}")
-                print(f"Output IDs (first 50): {output_ids[:50]}")
+                if output_ids is not None:
+                    print(f"Output IDs (first 50): {output_ids[:50]}")
+                raise e
             except ValueError as e:
                 print(f"ValueError: {e} at sample index {i}")
                 bad_samples += 1
-                continue
+                print(f"Input IDs (first 50): {input_ids[:50]}")
+                if output_ids is not None:
+                    print(f"Output IDs (first 50): {output_ids[:50]}")
+                print(f"Original tokens (first 50): {original_sample_tokens[:50]}")
+                print(max(original_sample_tokens))
+                print(f"Processed sample_tokens (first 50): {sample_tokens[:50]}")
+                raise e
 
             processed_sample = {
                 "input_ids": torch.tensor(input_ids, dtype=torch.long),
-                "output_ids": torch.tensor(output_ids, dtype=torch.long),
+                "output_ids": (
+                    torch.tensor(output_ids, dtype=torch.long)
+                    if output_ids is not None
+                    else None
+                ),
             }
 
             processed_data.append(processed_sample)

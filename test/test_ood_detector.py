@@ -4,7 +4,7 @@ from src.main.ood_detector import OODDetector
 import torch
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
-from src.main.transformations import Transformations
+from src.transformations.transformations import Transformations
 from src.main.scoring_functions import mahalanobis_distance
 
 

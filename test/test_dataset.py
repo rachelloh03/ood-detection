@@ -13,6 +13,7 @@ def test_jordan_dataset():
             data_dir=JORDAN_DATASET_FILEPATH,
             split="train",
             name="testcase_jordan_dataset",
+            split_input_and_output_ids=True,
         )
         print("Successfully loaded train dataset")
         print(f"Length: {len(train_dataset)}")
@@ -38,35 +39,48 @@ def test_sliding_window_dataset():
         data_dir=JORDAN_DATASET_FILEPATH,
         split="train",
         name="testcase_jordan_dataset",
+        split_input_and_output_ids=True,
         num_samples=2,
     )
-    k = 12
-    stride = 3
+    # k and stride are in *events*; TOKENS_PER_EVENT=3 so k=4 -> 12 tokens, stride=1 -> 3 tokens
+    k_events = 4
+    stride_events = 1
+    k_tokens = k_events * 3
+    stride_tokens = stride_events * 3
     sliding_window_dataset = SlidingWindowDataset(
         base_dataset=dataset,
         name="testcase_sliding_window_dataset",
-        k=k,
-        stride=stride,
+        k=k_events,
+        stride=stride_events,
         drop_last=True,
         lm_labels=False,
         first_token_special=True,
+        max_silence_length=-1,  # disable gap filtering so window indices are deterministic
     )
 
     assert torch.equal(
-        sliding_window_dataset[0]["input_ids"], dataset[0]["input_ids"][:13]
+        sliding_window_dataset[0]["input_ids"], dataset[0]["input_ids"][: k_tokens + 1]
     )
     assert torch.equal(
         sliding_window_dataset[1]["input_ids"],
-        torch.cat([dataset[0]["input_ids"][:1], dataset[0]["input_ids"][4:16]]),
+        torch.cat(
+            [
+                dataset[0]["input_ids"][:1],
+                dataset[0]["input_ids"][
+                    1 + stride_tokens : 1 + stride_tokens + k_tokens
+                ],
+            ]
+        ),
     )
-    num_samples_per_sample = (len(dataset[0]["input_ids"]) - k - 1) // stride + 1
+    n = len(dataset[0]["input_ids"])
+    num_samples_per_sample = (n - 1 - k_tokens) // stride_tokens + 1
     assert torch.equal(
         sliding_window_dataset[num_samples_per_sample - 1]["input_ids"],
-        torch.cat([dataset[0]["input_ids"][:1], dataset[0]["input_ids"][-k:]]),
+        torch.cat([dataset[0]["input_ids"][:1], dataset[0]["input_ids"][-k_tokens:]]),
     )
     assert torch.equal(
         sliding_window_dataset[num_samples_per_sample]["input_ids"],
-        dataset[1]["input_ids"][: k + 1],
+        dataset[1]["input_ids"][: k_tokens + 1],
     )
 
 

@@ -1,10 +1,9 @@
 import os
 from src.constants.file_format import get_extract_layers_file_path
 from src.extract_layers.extract_layers_main import extract_representations
-from src.constants.model_constants import JORDAN_MODEL_NAME
+from src.constants.model_constants import JORDAN_MODEL_NAME, DEVICE
 from src.constants.data_constants import (
     JORDAN_DATASET_FILEPATH,
-    DEVICE,
 )
 from src.data.jordan_dataset import JordanDataset
 from src.utils.data_loading import collate_fn
@@ -40,6 +39,7 @@ def main(layers_to_extract: list[int]):
         split="train",
         name="id_train_dataset",
         num_samples=NUM_SAMPLES_LIMIT,
+        split_input_and_output_ids=True,
     )
 
     dataloader = DataLoader(
@@ -73,6 +73,7 @@ def test_extract_representations():
         split="train",
         name="id_train_dataset",
         num_samples=NUM_SAMPLES_LIMIT,
+        split_input_and_output_ids=True,
     )
     dataloader = DataLoader(
         dataset,

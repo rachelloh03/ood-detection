@@ -1,8 +1,10 @@
 import torch
+import numpy as np
 import pytest
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
-from src.main.transformations import Transformations
+from transformations.ensemble_transformations import EnsembleTransformations
+from src.transformations.transformations import Transformations
 
 
 def test_transformations():
@@ -38,5 +40,33 @@ def test_transformations():
     assert torch.allclose(result, torch.zeros_like(result), atol=1e-5)
 
 
+def test_ensemble_transformations():
+    x = torch.randn(8, 20)
+    base_transforms = [PCA(n_components=5), StandardScaler()]
+
+    def mean_pooling(z):
+        return z.mean(dim=0)
+
+    ensemble = EnsembleTransformations(base_transforms, 3, 10, mean_pooling, seed=42)
+    ensemble.fit(x)
+    z = ensemble(x)
+    assert z.shape == (8, 5)
+
+    pca_1 = ensemble.transformations[0].transformations[0]
+    pca_2 = ensemble.transformations[1].transformations[0]
+
+    # checks that the PCA transformations are different
+    reduced_x_1 = x[:, ensemble.feature_indices[0]]
+    reduced_x_2 = x[:, ensemble.feature_indices[1]]
+    assert reduced_x_1.shape == (8, 10)
+    assert reduced_x_2.shape == (8, 10)
+    post_pca_1 = pca_1.transform(reduced_x_1)
+    post_pca_2 = pca_2.transform(reduced_x_2)
+    assert post_pca_1.shape == (8, 5)
+    assert post_pca_2.shape == (8, 5)
+    assert not np.allclose(post_pca_1, post_pca_2, atol=1e-5)
+
+
 if __name__ == "__main__":
     test_transformations()
+    test_ensemble_transformations()

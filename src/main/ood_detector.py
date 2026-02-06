@@ -4,7 +4,7 @@ OOD Detector class.
 
 from collections.abc import Callable
 from typing import Literal
-from main.transformations import Transformations
+from transformations.transformations import Transformations
 import torch
 from torch.utils.data import DataLoader
 

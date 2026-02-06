@@ -14,10 +14,10 @@
 from data.jordan_dataset import JordanDataset
 from extract_layers.extract_layers_main import BATCH_SIZE
 from extract_layers.pooling_functions import pool_mean_std
-from main.transformation_functions import (
+from transformations.transformation_functions import (
     extract_layer_transformation,
 )
-from main.transformations import Transformations
+from transformations.transformations import Transformations
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 from main.scoring_functions import mahalanobis_distance
@@ -50,6 +50,7 @@ def setup_ood_detector(layer_idxs):
         data_dir=JORDAN_DATASET_FILEPATH,
         split="train",
         name="id_train_dataset",
+        split_input_and_output_ids=False,
     )
     id_train_dataloader = DataLoader(
         dataset, batch_size=BATCH_SIZE, shuffle=False, collate_fn=collate_fn

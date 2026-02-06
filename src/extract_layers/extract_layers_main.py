@@ -268,6 +268,7 @@ def example_extract_representations():
         data_dir=JORDAN_DATASET_FILEPATH,
         split="train",
         name="id_train_dataset",
+        split_input_and_output_ids=True,
     )
 
     dataset = SlidingWindowDataset(

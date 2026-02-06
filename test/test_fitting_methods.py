@@ -3,7 +3,7 @@
 import itertools
 
 import torch
-from src.main.transformation_functions import GaussianMixture
+from src.transformations.transformation_functions import GaussianMixture
 
 
 def _params_match_up_to_permutation(

@@ -31,6 +31,7 @@ from constants.token_constants import (
 from constants.data_constants import SOUNDFONT_FILEPATH
 from utils.ops import unpad, min_time
 from midi2audio import FluidSynth
+from utils.sample import generate_tokens
 
 DRUMS_CHANNEL = 9
 
@@ -465,3 +466,29 @@ def sequence_to_wav(
         print(f"Warning: Could not trim leading silence: {e}")
 
     return wav
+
+
+def hear_model_output(model, original_sequence, generate_length, export_filepath):
+    if os.path.exists(export_filepath):
+        os.remove(export_filepath)
+    sequence = original_sequence.copy()
+    if sequence[0] in [AR, AAR]:
+        sequence = sequence[1:]
+    sequence = sequence[: 3 * len(sequence) // 3]
+    min_time = sequence[0]
+    sequence[::3] = [t - min_time for t in sequence[::3]]
+    assert len(sequence) % 3 == 0
+
+    output_sample = generate_tokens(
+        model,
+        [AR],
+        sequence,
+        generate_length,
+        top_p=0.95,
+    )
+
+    print("input", sequence)
+    print("output", output_sample[len(sequence) : len(sequence) + generate_length])
+    print("full output", output_sample)
+    sequence_to_wav(output_sample, export_filepath)
+    return export_filepath

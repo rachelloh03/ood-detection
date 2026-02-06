@@ -1,7 +1,10 @@
 import math
 import torch
 import pytest
-from src.main.transformation_functions import GaussianMixtureWithMD, KMeansDistance
+from src.transformations.transformation_functions import (
+    GaussianMixtureWithScore,
+    KMeansDistance,
+)
 
 
 def test_kmeans_distance():
@@ -70,8 +73,8 @@ def test_gaussian_mixture_with_md():
         dim=0,
     )
 
-    gmm = GaussianMixtureWithMD(n_components=2, dim=2)
-    gmm.fit(X_train, num_epochs=1000)
+    gmm = GaussianMixtureWithScore(n_components=2, dim=2, score_type="md")
+    gmm.fit(X_train)
 
     means, covariances, weights = gmm.gm.get_params()
     print("means:", means)
@@ -105,5 +108,5 @@ def test_gaussian_mixture_with_md():
 
 
 if __name__ == "__main__":
-    test_kmeans_distance()
+    # test_kmeans_distance()
     test_gaussian_mixture_with_md()
