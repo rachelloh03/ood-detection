@@ -289,10 +289,10 @@ def test_hear_model_output():
         split_input_and_output_ids=True,
         num_samples=5,
     )
-    sequence = id_train_dataset[0]["input_ids"].tolist()[:31]
+    sequence = id_train_dataset[1]["input_ids"].tolist()[:31]
     print("sequence", sequence)
     export_filepath = os.path.join(
-        os.path.dirname(__file__), "test_hear_model_output.wav"
+        os.path.dirname(__file__), "test_hear_model_output_1.wav"
     )
 
     model = AutoModelForCausalLM.from_pretrained(

@@ -207,7 +207,7 @@ class GaussianMixtureWithScore:
             ),
         )  # x: (N, D)
         print("Mixture weights:", self.gm.get_params()[2])
-        print("ELBO", self.gm.gmm.lower_bound_)
+        print("NormalizedELBO", self.gm.gmm.lower_bound_ / (x.shape[0] * x.shape[1]))
         return self.transform(x)  # (N,)
 
     def transform(self, x):

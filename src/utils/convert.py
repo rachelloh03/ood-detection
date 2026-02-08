@@ -468,9 +468,20 @@ def sequence_to_wav(
     return wav
 
 
-def hear_model_output(model, original_sequence, generate_length, export_filepath):
+def hear_model_output(model, sequence, generate_length, export_filepath):
     if os.path.exists(export_filepath):
         os.remove(export_filepath)
+
+    output_sample = generate_sample(model, sequence, generate_length)
+    sequence_to_wav(output_sample, export_filepath)
+    return export_filepath
+
+
+def generate_sample(
+    model,
+    original_sequence,
+    generate_length,
+) -> list[int]:
     sequence = original_sequence.copy()
     if sequence[0] in [AR, AAR]:
         sequence = sequence[1:]
@@ -486,9 +497,4 @@ def hear_model_output(model, original_sequence, generate_length, export_filepath
         generate_length,
         top_p=0.95,
     )
-
-    print("input", sequence)
-    print("output", output_sample[len(sequence) : len(sequence) + generate_length])
-    print("full output", output_sample)
-    sequence_to_wav(output_sample, export_filepath)
-    return export_filepath
+    return output_sample

@@ -36,8 +36,10 @@ from constants.token_constants import (
 
 from utils.ops import min_time, max_time, pad, clip, print_tokens, sort, split, unpad
 
+MAX_GAP = 200
 
-def safe_logits(logits, idx, include_velocity=False):
+
+def safe_logits(logits, idx, current_time, include_velocity=False):
     logits[ATIME_OFFSET:SEP] = -float("inf")
     logits[REST] = -float("inf")
     if include_velocity:
@@ -49,6 +51,8 @@ def safe_logits(logits, idx, include_velocity=False):
         )  # don't generate velocities above 127
         # don't generate stuff in the wrong time slot
         if idx % 4 == 0:
+            logits[TIME_OFFSET : current_time - 1] = -float("inf")
+            logits[current_time + MAX_GAP : DUR_OFFSET] = -float("inf")
             logits[DUR_OFFSET : DUR_OFFSET + MAX_DUR] = -float("inf")
             logits[NOTE_OFFSET : NOTE_OFFSET + MAX_NOTE] = -float("inf")
             logits[VELOCITY_OFFSET:] = -float("inf")
@@ -66,6 +70,8 @@ def safe_logits(logits, idx, include_velocity=False):
         logits[SEP:] = -float("inf")  # don't generate special tokens and velocities
         # don't generate stuff in the wrong time slot
         if idx % 3 == 0:
+            logits[TIME_OFFSET : current_time - 1] = -float("inf")
+            logits[current_time + MAX_GAP : DUR_OFFSET] = -float("inf")
             logits[DUR_OFFSET : DUR_OFFSET + MAX_DUR] = -float("inf")
             logits[NOTE_OFFSET : NOTE_OFFSET + MAX_NOTE] = -float("inf")
         elif idx % 3 == 1:
@@ -186,6 +192,7 @@ def add_token_without_velocity(model, z, tokens, top_p, current_time, debug=Fals
     ]  # relativize time in the history buffer
 
     new_token = []
+    current_time = max_time(history, seconds=False, include_velocity=False)
     with torch.no_grad():
         for i in range(3):
             input_tokens = (
@@ -193,7 +200,7 @@ def add_token_without_velocity(model, z, tokens, top_p, current_time, debug=Fals
             )
             logits = model(input_tokens).logits[0, -1]
             idx = input_tokens.shape[1] - 1
-            logits = safe_logits(logits, idx)
+            logits = safe_logits(logits, idx, current_time)
 
             if i == 0:
                 logits = future_logits(logits, current_time - offset)
@@ -737,7 +744,7 @@ def generate_tokens(
     top_p=1.0,
     debug=False,
     include_velocity=INCLUDE_VELOCITY,
-):
+) -> list[int]:
     """
     Generate a specified number of tokens from an input sequence.
 

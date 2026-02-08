@@ -48,3 +48,14 @@ None of them are good enough yet. Expected AUROC ~ 0.9 range.
 
 4. Right now it seems like later layers are better! Layer 17 is optimal (whichlayer.png), see visualization.png for what the OOD score distribution looks like.
 
+5. I considered `ensembling' i.e. subsample a fixed number of dimensions and apply the transformations multiple times, and aggregate the individual OOD scores from each subsampling to a fixed score. Things I tried: 
+- Q: does it help to do ensembling? For example, the following require roughly the same number of parameters to be learnt:
+(i) Fit a GMM of 4 components
+(ii) Fit an ensemble of 4 transformations, each of which fits a GMM of 1 component.
+They seem comparable.
+
+Hidden layer (2048 dim) -> subsample (1024) -> PCA (50 components) -> GMM (4 components): AUROC 0.74
+Hidden layer (2048 dim) -> ensemble of [subsample 1024 -> PCA (50 components) -> Gaussian]: AUROC 0.73
+
+
+
